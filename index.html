@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>格安ホームページ制作 | GrowUP サポート</title>
-  <meta name="description" content="個人事業主向け格安ホームページ制作。AI活用で制作費6万円・月1万円を実現。LINE・電話・地図リンク・料金表を1ページにまとめます。">
+  <meta name="description" content="個人事業主向け格安ホームページ制作。丁寧なヒアリングで、制作費6万円・月1万円を実現。LINE・電話・地図リンク・料金表を1ページにまとめます。">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -23,11 +23,11 @@
       --gray-text: #64748B;
       --black: #1E293B;
       --white: #FFFFFF;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
@@ -37,10 +37,7 @@
       line-height: 1.7;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     /* ===== HEADER ===== */
     .header {
@@ -53,6 +50,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      box-shadow: var(--shadow-sm);
     }
 
     .header-logo {
@@ -62,26 +60,44 @@
       letter-spacing: -0.3px;
     }
 
+    .header-logo span {
+      color: var(--green);
+    }
+
     .btn-line-header {
       background: var(--green);
       color: var(--white);
       font-size: 14px;
       font-weight: 700;
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 9px 18px;
+      border-radius: 50px;
       white-space: nowrap;
-      transition: background 0.2s;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(22,163,74,0.3);
     }
 
     .btn-line-header:hover {
       background: #15803D;
+      box-shadow: 0 4px 12px rgba(22,163,74,0.4);
     }
 
-    /* ===== HERO / FV ===== */
+    /* ===== HERO ===== */
     .hero {
-      background: var(--gray-light);
-      padding: 60px 20px 70px;
+      background: linear-gradient(160deg, #F0F7FF 0%, #FFFFFF 60%, #F0FFF4 100%);
+      padding: 64px 20px 72px;
       text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
     }
 
     .hero h1 {
@@ -89,15 +105,38 @@
       font-weight: 900;
       color: var(--black);
       line-height: 1.35;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       letter-spacing: -0.5px;
     }
 
     .hero-sub {
       font-size: 16px;
       color: var(--gray-text);
-      line-height: 1.8;
-      margin-bottom: 32px;
+      line-height: 1.85;
+      margin-bottom: 28px;
+    }
+
+    .hero-message {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--white);
+      border-left: 4px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 18px;
+      margin: 0 auto 32px;
+      max-width: 380px;
+      text-align: left;
+      font-size: 14px;
+      color: var(--gray-text);
+      line-height: 1.75;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-message-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
     .hero-badges {
@@ -114,8 +153,9 @@
       font-size: 14px;
       font-weight: 700;
       padding: 8px 16px;
-      border-radius: 8px;
+      border-radius: 50px;
       background: var(--white);
+      box-shadow: var(--shadow-sm);
     }
 
     .hero-cta {
@@ -134,13 +174,16 @@
       font-size: 18px;
       font-weight: 800;
       padding: 18px 24px;
-      border-radius: 10px;
+      border-radius: 50px;
       text-align: center;
-      transition: background 0.2s;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 4px 16px rgba(22,163,74,0.35);
     }
 
     .btn-primary:hover {
       background: #15803D;
+      box-shadow: 0 6px 20px rgba(22,163,74,0.45);
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
@@ -152,20 +195,20 @@
       font-size: 16px;
       font-weight: 700;
       padding: 16px 24px;
-      border-radius: 10px;
+      border-radius: 50px;
       border: 2px solid var(--blue);
       text-align: center;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: var(--shadow-sm);
     }
 
     .btn-secondary:hover {
       background: var(--blue-light);
+      box-shadow: var(--shadow-md);
     }
 
     /* ===== SECTIONS COMMON ===== */
-    section {
-      padding: 60px 20px;
-    }
+    section { padding: 64px 20px; }
 
     .section-title {
       font-size: 26px;
@@ -173,25 +216,33 @@
       text-align: center;
       margin-bottom: 40px;
       line-height: 1.4;
+      position: relative;
+      padding-bottom: 16px;
     }
 
-    .section-title-sub {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--gray-text);
-      margin-top: 8px;
-      display: block;
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 4px;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+
+    .section-title.green-line::after {
+      background: var(--green);
     }
 
     /* ===== FOR WHOM ===== */
-    .for-whom {
-      background: var(--blue-light);
-    }
+    .for-whom { background: var(--blue-light); }
 
     .checklist {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
       max-width: 600px;
       margin: 0 auto;
     }
@@ -201,119 +252,131 @@
       align-items: flex-start;
       gap: 12px;
       background: var(--white);
-      border-radius: 10px;
-      padding: 16px 18px;
+      border-radius: 12px;
+      border-left: 4px solid var(--green);
+      padding: 14px 18px;
       font-size: 15px;
       line-height: 1.7;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s;
     }
+
+    .checklist-item:hover { box-shadow: var(--shadow-md); }
 
     .checklist-icon {
       flex-shrink: 0;
       color: var(--green);
       font-size: 18px;
+      font-weight: 800;
       margin-top: 1px;
     }
 
     /* ===== REASONS ===== */
-    .reasons {
-      background: var(--white);
-    }
+    .reasons { background: var(--white); }
 
     .cards-3 {
       display: flex;
       flex-direction: column;
       gap: 20px;
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
     }
 
     .card {
-      background: var(--gray-light);
-      border-radius: 12px;
-      padding: 24px 22px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 24px;
+      border: 1px solid #E2E8F0;
+      border-top: 4px solid var(--blue);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
 
     .card-icon {
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: 34px;
+      margin-bottom: 12px;
     }
 
     .card-title {
       font-size: 17px;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--black);
     }
 
     .card-text {
       font-size: 15px;
       color: var(--gray-text);
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     /* ===== INCLUDES ===== */
-    .includes {
-      background: var(--gray-light);
-    }
+    .includes { background: var(--gray-light); }
 
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 14px;
+      gap: 12px;
       max-width: 600px;
       margin: 0 auto;
     }
 
     .grid-item {
       background: var(--white);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 16px 18px;
       display: flex;
       align-items: center;
       gap: 12px;
       font-size: 15px;
       font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #E2E8F0;
     }
 
-    .grid-item-icon {
-      font-size: 22px;
-    }
+    .grid-item-icon { font-size: 22px; }
 
     /* ===== PRICING ===== */
-    .pricing {
-      background: var(--white);
-    }
+    .pricing { background: var(--white); }
 
     .pricing-cards {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      max-width: 640px;
-      margin: 0 auto 20px;
+      gap: 24px;
+      max-width: 660px;
+      margin: 0 auto 24px;
     }
 
     .pricing-card {
       border: 2px solid #CBD5E1;
-      border-radius: 14px;
-      padding: 28px 22px;
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: var(--shadow-sm);
     }
 
     .pricing-card.featured {
       border-color: var(--blue);
+      border-top: 6px solid var(--blue);
       position: relative;
+      box-shadow: 0 8px 28px rgba(37,99,235,0.13);
     }
 
     .badge-recommended {
       position: absolute;
-      top: -14px;
+      top: -16px;
       left: 50%;
       transform: translateX(-50%);
       background: var(--blue);
       color: var(--white);
       font-size: 13px;
       font-weight: 800;
-      padding: 4px 16px;
-      border-radius: 20px;
+      padding: 5px 18px;
+      border-radius: 50px;
       white-space: nowrap;
     }
 
@@ -321,7 +384,7 @@
       font-size: 16px;
       font-weight: 700;
       color: var(--gray-text);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       text-align: center;
     }
 
@@ -331,8 +394,9 @@
     }
 
     .pricing-price-label {
-      font-size: 14px;
-      color: var(--gray-text);
+      font-size: 13px;
+      color: var(--gray-mid);
+      margin-bottom: 2px;
     }
 
     .pricing-price-num {
@@ -349,34 +413,34 @@
     }
 
     .badge-cancel {
-      display: inline-block;
+      display: block;
       background: var(--green-light);
       color: var(--green);
       font-size: 13px;
       font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin: 12px auto 16px;
-      display: block;
-      text-align: center;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin: 14px auto 18px;
       width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
+      text-align: center;
     }
 
     .pricing-list {
       list-style: none;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .pricing-list li {
       font-size: 14px;
-      padding: 5px 0;
+      padding: 6px 0;
       display: flex;
       align-items: flex-start;
       gap: 8px;
       color: var(--gray-text);
+      border-bottom: 1px solid #F1F5F9;
     }
+
+    .pricing-list li:last-child { border-bottom: none; }
 
     .pricing-list li::before {
       content: "✓";
@@ -384,6 +448,10 @@
       font-weight: 700;
       flex-shrink: 0;
     }
+
+    .pricing-monthly { margin-top: 12px; }
+
+    .pricing-monthly .pricing-price-num { font-size: 42px; }
 
     .btn-green-full {
       display: block;
@@ -393,31 +461,32 @@
       font-size: 16px;
       font-weight: 800;
       padding: 16px;
-      border-radius: 8px;
+      border-radius: 50px;
       text-align: center;
-      transition: background 0.2s;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 3px 10px rgba(22,163,74,0.3);
     }
 
     .btn-green-full:hover {
       background: #15803D;
+      box-shadow: 0 5px 14px rgba(22,163,74,0.4);
     }
 
     .btn-blue-full {
       display: block;
       width: 100%;
-      background: var(--blue);
-      color: var(--white);
+      background: var(--white);
+      color: var(--blue);
       font-size: 16px;
       font-weight: 800;
       padding: 16px;
-      border-radius: 8px;
+      border-radius: 50px;
+      border: 2px solid var(--blue);
       text-align: center;
       transition: background 0.2s;
     }
 
-    .btn-blue-full:hover {
-      background: var(--blue-dark);
-    }
+    .btn-blue-full:hover { background: var(--blue-light); }
 
     .pricing-note {
       font-size: 13px;
@@ -428,23 +497,12 @@
       line-height: 1.7;
     }
 
-    .pricing-monthly {
-      margin-top: 8px;
-    }
-
-    .pricing-monthly .pricing-price-num {
-      font-size: 42px;
-    }
-
     /* ===== FLOW ===== */
-    .flow {
-      background: var(--blue-light);
-    }
+    .flow { background: var(--blue-light); }
 
     .steps {
       display: flex;
       flex-direction: column;
-      gap: 0;
       max-width: 600px;
       margin: 0 auto;
     }
@@ -463,7 +521,7 @@
       bottom: 0;
       width: 2px;
       background: var(--blue);
-      opacity: 0.3;
+      opacity: 0.25;
     }
 
     .step-num {
@@ -480,53 +538,51 @@
       justify-content: center;
       position: relative;
       z-index: 1;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.35);
     }
 
-    .step-body {
-      padding-bottom: 36px;
+    .step-body { padding-bottom: 36px; }
+
+    .step-inner {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .step-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
     }
 
     .step-title {
       font-size: 17px;
       font-weight: 800;
       margin-bottom: 6px;
-      line-height: 1.4;
-    }
-
-    .step-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
     }
 
     .step-text {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--gray-text);
       line-height: 1.75;
     }
 
     /* ===== FAQ ===== */
-    .faq {
-      background: var(--white);
-    }
+    .faq { background: var(--white); }
 
     .faq-list {
       max-width: 680px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
     }
 
     .faq-item {
       border-bottom: 1px solid #E2E8F0;
     }
 
-    .faq-item:first-child {
-      border-top: 1px solid #E2E8F0;
-    }
+    .faq-item:first-child { border-top: 1px solid #E2E8F0; }
 
     .faq-q {
       width: 100%;
@@ -551,8 +607,8 @@
 
     .faq-q-icon {
       flex-shrink: 0;
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       background: var(--blue-light);
       color: var(--blue);
@@ -561,12 +617,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.25s;
+      transition: transform 0.25s, background 0.2s;
       margin-top: 1px;
     }
 
     .faq-item.open .faq-q-icon {
       transform: rotate(45deg);
+      background: var(--blue);
+      color: var(--white);
     }
 
     .faq-a {
@@ -574,17 +632,13 @@
       padding: 0 0 20px;
       font-size: 15px;
       color: var(--gray-text);
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
-    .faq-item.open .faq-a {
-      display: block;
-    }
+    .faq-item.open .faq-a { display: block; }
 
     /* ===== OTHER SUPPORT ===== */
-    .other-support {
-      background: var(--gray-light);
-    }
+    .other-support { background: var(--gray-light); }
 
     .other-support-sub {
       text-align: center;
@@ -597,21 +651,23 @@
     .support-cards {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       max-width: 480px;
       margin: 0 auto 28px;
     }
 
     .support-card {
       background: var(--white);
-      border-radius: 10px;
-      padding: 16px 20px;
-      font-size: 16px;
+      border-radius: 12px;
+      padding: 18px 20px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--black);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #E2E8F0;
     }
 
     .support-contact {
@@ -623,8 +679,32 @@
     /* ===== CTA ===== */
     .cta-section {
       background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-      padding: 70px 20px;
+      padding: 72px 20px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .cta-section::after {
+      content: "";
+      position: absolute;
+      bottom: -80px;
+      left: -40px;
+      width: 240px;
+      height: 240px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
     }
 
     .cta-title {
@@ -633,16 +713,20 @@
       color: var(--white);
       margin-bottom: 16px;
       line-height: 1.45;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-sub {
       font-size: 15px;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.88);
       margin-bottom: 36px;
-      line-height: 1.8;
+      line-height: 1.85;
       max-width: 480px;
       margin-left: auto;
       margin-right: auto;
+      position: relative;
+      z-index: 1;
     }
 
     .btn-cta {
@@ -653,19 +737,25 @@
       color: var(--blue);
       font-size: 18px;
       font-weight: 800;
-      padding: 20px 24px;
-      border-radius: 10px;
+      padding: 20px 28px;
+      border-radius: 50px;
       text-align: center;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 1;
     }
 
     .btn-cta:hover {
-      opacity: 0.9;
+      opacity: 0.95;
+      transform: translateY(-2px);
     }
 
     .cta-notes {
       font-size: 13px;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.72);
+      position: relative;
+      z-index: 1;
     }
 
     /* ===== FOOTER ===== */
@@ -685,7 +775,7 @@
 
     .footer-link {
       display: inline-block;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.7);
       font-size: 14px;
       margin-bottom: 16px;
       text-decoration: underline;
@@ -693,7 +783,7 @@
 
     .footer-copy {
       font-size: 12px;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.35);
     }
 
     /* ===== FLOATING BUTTON ===== */
@@ -706,23 +796,22 @@
       color: var(--white);
       font-size: 14px;
       font-weight: 800;
-      padding: 14px 20px;
-      border-radius: 40px;
-      box-shadow: 0 4px 20px rgba(22,163,74,0.4);
-      transition: background 0.2s, box-shadow 0.2s;
+      padding: 14px 22px;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(22,163,74,0.45);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
       white-space: nowrap;
     }
 
     .float-btn:hover {
       background: #15803D;
-      box-shadow: 0 6px 24px rgba(22,163,74,0.5);
+      box-shadow: 0 6px 24px rgba(22,163,74,0.55);
+      transform: translateY(-2px);
     }
 
-    /* ===== RESPONSIVE (tablet+) ===== */
+    /* ===== RESPONSIVE ===== */
     @media (min-width: 600px) {
-      .hero h1 {
-        font-size: 44px;
-      }
+      .hero h1 { font-size: 44px; }
 
       .cards-3 {
         flex-direction: row;
@@ -742,9 +831,7 @@
         align-items: flex-start;
       }
 
-      .pricing-card {
-        flex: 1;
-      }
+      .pricing-card { flex: 1; }
 
       .support-cards {
         flex-direction: row;
@@ -762,33 +849,33 @@
         flex: 1 1 calc(33% - 14px);
       }
 
-      .section-title {
-        font-size: 30px;
-      }
-
-      .cta-title {
-        font-size: 28px;
-      }
+      .section-title { font-size: 30px; }
+      .cta-title { font-size: 28px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
+  <!-- HEADER -->
   <header class="header">
-    <div class="header-logo">GrowUP サポート</div>
-    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header">LINEで相談</a>
+    <div class="header-logo">GrowUP<span> サポート</span></div>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header">💬 LINEで相談</a>
   </header>
 
-  <!-- ===== HERO / FV ===== -->
+  <!-- HERO -->
   <section class="hero">
-    <h1>個人事業主向け<br>格安ホームページ制作</h1>
+    <span class="hero-eyebrow">個人事業主・フリーランス向け</span>
+    <h1>ホームページ、<br>安くて後回しに<br>していませんか？</h1>
     <p class="hero-sub">
-      AIを活用した効率制作で、<br>
+      丁寧なヒアリングと無駄のない制作で、<br>
       制作費6万円・月1万円を実現。<br>
       LINE・電話・地図リンク・料金表を<br>
       1ページにまとめます。
     </p>
+    <div class="hero-message">
+      <div class="hero-message-icon">💬</div>
+      <p>「何を載せたらいいか分からない」でも大丈夫。まずはLINEで一言送るだけで、無料でページ案をお出しします。</p>
+    </div>
     <div class="hero-badges">
       <span class="hero-badge">✅ 制作費 60,000円</span>
       <span class="hero-badge">✅ 月額 10,000円</span>
@@ -800,9 +887,9 @@
     </div>
   </section>
 
-  <!-- ===== FOR WHOM ===== -->
+  <!-- FOR WHOM -->
   <section class="for-whom">
-    <h2 class="section-title">こんな方にぴったりです</h2>
+    <h2 class="section-title green-line">こんな方にぴったりです</h2>
     <ul class="checklist">
       <li class="checklist-item">
         <span class="checklist-icon">✓</span>
@@ -827,14 +914,14 @@
     </ul>
   </section>
 
-  <!-- ===== REASONS ===== -->
+  <!-- REASONS -->
   <section class="reasons">
     <h2 class="section-title">なぜこの価格で作れるのか</h2>
     <div class="cards-3">
       <div class="card">
-        <div class="card-icon">🤖</div>
-        <div class="card-title">AI活用で制作を効率化</div>
-        <p class="card-text">文章作成・構成・コーディングにAIを活用することで、工数を大幅に削減。その分をそのまま価格に還元しています。</p>
+        <div class="card-icon">⚡</div>
+        <div class="card-title">無駄のない制作フロー</div>
+        <p class="card-text">何十人もの担当が関わる大手とは違い、必要な工程だけに集中して動きます。その分のコストをそのまま価格に還元しています。</p>
       </div>
       <div class="card">
         <div class="card-icon">💰</div>
@@ -849,63 +936,38 @@
     </div>
   </section>
 
-  <!-- ===== INCLUDES ===== -->
+  <!-- INCLUDES -->
   <section class="includes">
     <h2 class="section-title">制作するホームページに含まれるもの</h2>
     <div class="grid-2">
-      <div class="grid-item">
-        <span class="grid-item-icon">📱</span>スマホ対応デザイン
-      </div>
-      <div class="grid-item">
-        <span class="grid-item-icon">📋</span>サービス紹介・料金表
-      </div>
-      <div class="grid-item">
-        <span class="grid-item-icon">📞</span>LINE／電話／地図リンク
-      </div>
-      <div class="grid-item">
-        <span class="grid-item-icon">📣</span>SNSリンク
-      </div>
-      <div class="grid-item">
-        <span class="grid-item-icon">📩</span>問い合わせボタン
-      </div>
-      <div class="grid-item">
-        <span class="grid-item-icon">🔍</span>基本SEO設定
-      </div>
-      <div class="grid-item">
-        <span class="grid-item-icon">✏️</span>制作中の修正1回
-      </div>
-      <div class="grid-item">
-        <span class="grid-item-icon">🔄</span>公開後の軽微な更新
-      </div>
+      <div class="grid-item"><span class="grid-item-icon">📱</span>スマホ対応デザイン</div>
+      <div class="grid-item"><span class="grid-item-icon">📋</span>サービス紹介・料金表</div>
+      <div class="grid-item"><span class="grid-item-icon">📞</span>LINE／電話／地図リンク</div>
+      <div class="grid-item"><span class="grid-item-icon">📣</span>SNSリンク</div>
+      <div class="grid-item"><span class="grid-item-icon">📩</span>問い合わせボタン</div>
+      <div class="grid-item"><span class="grid-item-icon">🔍</span>基本SEO設定</div>
+      <div class="grid-item"><span class="grid-item-icon">✏️</span>制作中の修正1回</div>
+      <div class="grid-item"><span class="grid-item-icon">🔄</span>公開後の軽微な更新</div>
     </div>
   </section>
 
-  <!-- ===== PRICING ===== -->
+  <!-- PRICING -->
   <section class="pricing">
     <h2 class="section-title">料金プラン</h2>
     <div class="pricing-cards">
 
-      <!-- 月額プラン -->
       <div class="pricing-card featured">
         <span class="badge-recommended">おすすめ</span>
         <p class="pricing-plan-name">月額プラン</p>
-
         <div class="pricing-price">
           <div class="pricing-price-label">初期制作費</div>
-          <div>
-            <span class="pricing-price-num">60,000</span><span class="pricing-price-unit">円</span>
-          </div>
+          <div><span class="pricing-price-num">60,000</span><span class="pricing-price-unit">円</span></div>
         </div>
-
         <div class="pricing-price pricing-monthly">
           <div class="pricing-price-label">月額管理費</div>
-          <div>
-            <span class="pricing-price-num">10,000</span><span class="pricing-price-unit">円／月</span>
-          </div>
+          <div><span class="pricing-price-num">10,000</span><span class="pricing-price-unit">円／月</span></div>
         </div>
-
         <span class="badge-cancel">いつでも解約OK</span>
-
         <ul class="pricing-list">
           <li>スマホ対応ホームページ</li>
           <li>サービス紹介・料金表</li>
@@ -916,26 +978,19 @@
           <li>修正1回込み</li>
           <li>軽微な更新込み</li>
         </ul>
-
         <a href="https://lin.ee/Y4Uq7uP" class="btn-green-full">LINEで相談する</a>
       </div>
 
-      <!-- 買い切りプラン -->
       <div class="pricing-card">
         <p class="pricing-plan-name">買い切りプラン</p>
-
         <div class="pricing-price">
           <div class="pricing-price-label">制作費</div>
-          <div>
-            <span class="pricing-price-num">98,000</span><span class="pricing-price-unit">円〜</span>
-          </div>
+          <div><span class="pricing-price-num">98,000</span><span class="pricing-price-unit">円〜</span></div>
         </div>
-
-        <div style="margin: 20px 0 16px; font-size: 14px; color: var(--gray-text);">
+        <div style="margin: 20px 0 24px; font-size: 14px; color: var(--gray-text); line-height: 2;">
           <p>月額なし</p>
-          <p style="margin-top:6px;">公開後の修正は別料金</p>
+          <p>公開後の修正は別料金</p>
         </div>
-
         <a href="https://lin.ee/Y4Uq7uP" class="btn-blue-full">LINEで相談する</a>
       </div>
 
@@ -943,46 +998,54 @@
     <p class="pricing-note">ページ追加・大幅なデザイン変更・予約システム・決済機能などは別途お見積りとなります</p>
   </section>
 
-  <!-- ===== FLOW ===== -->
+  <!-- FLOW -->
   <section class="flow">
     <h2 class="section-title">制作の流れ</h2>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <div class="step-label">STEP 1</div>
-          <div class="step-title">無料相談（LINE）</div>
-          <p class="step-text">現在の集客状況・掲載したい内容をヒアリングします。「何を載せればいいか分からない」でも大丈夫です。</p>
+          <div class="step-inner">
+            <div class="step-label">STEP 1</div>
+            <div class="step-title">無料相談（LINE）</div>
+            <p class="step-text">現在の集客状況・掲載したい内容をヒアリングします。「何を載せればいいか分からない」でも大丈夫です。</p>
+          </div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-body">
-          <div class="step-label">STEP 2</div>
-          <div class="step-title">ページ構成の提案</div>
-          <p class="step-text">ヒアリングをもとに、無料で簡単なページ案をお出しします。内容・方向性に合意したら制作スタートです。</p>
+          <div class="step-inner">
+            <div class="step-label">STEP 2</div>
+            <div class="step-title">ページ構成の提案</div>
+            <p class="step-text">ヒアリングをもとに、無料で簡単なページ案をお出しします。内容・方向性に合意したら制作スタートです。</p>
+          </div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-body">
-          <div class="step-label">STEP 3</div>
-          <div class="step-title">制作・確認</div>
-          <p class="step-text">1〜2週間で初稿を納品。1回の修正を反映します。</p>
+          <div class="step-inner">
+            <div class="step-label">STEP 3</div>
+            <div class="step-title">制作・確認</div>
+            <p class="step-text">1〜2週間で初稿を納品。1回の修正を反映します。</p>
+          </div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <div class="step-body">
-          <div class="step-label">STEP 4</div>
-          <div class="step-title">公開</div>
-          <p class="step-text">ドメイン・サーバー設定を含めて対応します。公開後も軽微な更新はご連絡ください。</p>
+          <div class="step-inner">
+            <div class="step-label">STEP 4</div>
+            <div class="step-title">公開</div>
+            <p class="step-text">ドメイン・サーバー設定を含めて対応します。公開後も軽微な更新はご連絡ください。</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- FAQ -->
   <section class="faq">
     <h2 class="section-title">よくある質問</h2>
     <div class="faq-list">
@@ -992,7 +1055,7 @@
           <span class="faq-q-text">本当に6万円で作れますか？</span>
           <span class="faq-q-icon">+</span>
         </button>
-        <div class="faq-a">はい。AIを活用した制作フローにより、一般的な制作会社よりも工数を抑えられるため、この価格を実現しています。ただし、予約システム・決済機能・複数ページなどは別途お見積りになります。</div>
+        <div class="faq-a">はい。無駄な工程を省いたシンプルな制作フローにより、一般的な制作会社よりもコストを抑えています。ただし、予約システム・決済機能・複数ページなどは別途お見積りになります。</div>
       </div>
 
       <div class="faq-item">
@@ -1008,7 +1071,7 @@
           <span class="faq-q-text">パソコンが苦手でも大丈夫ですか？</span>
           <span class="faq-q-icon">+</span>
         </button>
-        <div class="faq-a">はい。LINEでのやりとりで進められます。専門知識は不要です。</div>
+        <div class="faq-a">はい。LINEでのやりとりで全て進められます。専門知識は一切不要です。</div>
       </div>
 
       <div class="faq-item">
@@ -1032,13 +1095,13 @@
           <span class="faq-q-text">今のInstagramの投稿内容を使えますか？</span>
           <span class="faq-q-icon">+</span>
         </button>
-        <div class="faq-a">はい。Instagramの投稿内容を参考に構成を作ることができます。「AIで無料ページ案作成」もLINEからどうぞ。</div>
+        <div class="faq-a">はい。Instagramの投稿内容を参考に構成を作ることができます。LINEからお気軽にご相談ください。</div>
       </div>
 
     </div>
   </section>
 
-  <!-- ===== OTHER SUPPORT ===== -->
+  <!-- OTHER SUPPORT -->
   <section class="other-support">
     <h2 class="section-title">その他のサポートメニュー</h2>
     <p class="other-support-sub">ホームページ制作以外にも対応できます</p>
@@ -1050,25 +1113,24 @@
     <p class="support-contact">詳細はLINEでご相談ください</p>
   </section>
 
-  <!-- ===== CTA ===== -->
+  <!-- CTA -->
   <section class="cta-section">
-    <h2 class="cta-title">まずは無料で相談してみてください</h2>
+    <h2 class="cta-title">まずは無料で<br>相談してみてください</h2>
     <p class="cta-sub">「何を載せればいいか分からない」その段階でもOKです。今の投稿内容をもとに、無料で簡単なページ案をお出しします。</p>
     <a href="https://lin.ee/Y4Uq7uP" class="btn-cta">▶ LINEで「HP相談」と送る</a>
     <p class="cta-notes">返信24時間以内 ／ 強引な勧誘なし ／ 完全無料</p>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-logo">GrowUP サポート</div>
     <a href="https://lin.ee/Y4Uq7uP" class="footer-link">LINEで相談する</a>
     <p class="footer-copy">© 2025 GrowUP サポート</p>
   </footer>
 
-  <!-- ===== FLOATING BUTTON ===== -->
+  <!-- FLOATING BUTTON -->
   <a href="https://lin.ee/Y4Uq7uP" class="float-btn">💬 LINE相談</a>
 
-  <!-- ===== FAQ ACCORDION JS ===== -->
   <script>
     document.querySelectorAll('.faq-q').forEach(function(btn) {
       btn.addEventListener('click', function() {

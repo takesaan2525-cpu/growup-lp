@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>格安ホームページ制作 | GrowUP サポート</title>
+  <meta name="description" content="個人事業主向け格安ホームページ制作。AI活用で制作費6万円・月1万円を実現。LINE・電話・地図リンク・料金表を1ページにまとめます。">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #2563EB;
+      --blue-dark: #1D4ED8;
+      --blue-light: #EFF6FF;
+      --green: #16A34A;
+      --green-light: #DCFCE7;
+      --gray-light: #F8FAFC;
+      --gray-mid: #94A3B8;
+      --gray-text: #64748B;
+      --black: #1E293B;
+      --white: #FFFFFF;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+      font-size: 16px;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid #E2E8F0;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -0.3px;
+    }
+
+    .btn-line-header {
+      background: var(--green);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .btn-line-header:hover {
+      background: #15803D;
+    }
+
+    /* ===== HERO / FV ===== */
+    .hero {
+      background: var(--gray-light);
+      padding: 60px 20px 70px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1.35;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--gray-text);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .hero-badge {
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 800;
+      padding: 18px 24px;
+      border-radius: 10px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #15803D;
+    }
+
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      background: var(--white);
+      color: var(--blue);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 24px;
+      border-radius: 10px;
+      border: 2px solid var(--blue);
+      text-align: center;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--blue-light);
+    }
+
+    /* ===== SECTIONS COMMON ===== */
+    section {
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+
+    .section-title-sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray-text);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ===== FOR WHOM ===== */
+    .for-whom {
+      background: var(--blue-light);
+    }
+
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--white);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .checklist-icon {
+      flex-shrink: 0;
+      color: var(--green);
+      font-size: 18px;
+      margin-top: 1px;
+    }
+
+    /* ===== REASONS ===== */
+    .reasons {
+      background: var(--white);
+    }
+
+    .cards-3 {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--gray-light);
+      border-radius: 12px;
+      padding: 24px 22px;
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .card-text {
+      font-size: 15px;
+      color: var(--gray-text);
+      line-height: 1.75;
+    }
+
+    /* ===== INCLUDES ===== */
+    .includes {
+      background: var(--gray-light);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid-item {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .grid-item-icon {
+      font-size: 22px;
+    }
+
+    /* ===== PRICING ===== */
+    .pricing {
+      background: var(--white);
+    }
+
+    .pricing-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+
+    .pricing-card {
+      border: 2px solid #CBD5E1;
+      border-radius: 14px;
+      padding: 28px 22px;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--blue);
+      position: relative;
+    }
+
+    .badge-recommended {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 4px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .pricing-plan-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-text);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .pricing-price {
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .pricing-price-label {
+      font-size: 14px;
+      color: var(--gray-text);
+    }
+
+    .pricing-price-num {
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1.1;
+    }
+
+    .pricing-price-unit {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-text);
+    }
+
+    .badge-cancel {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin: 12px auto 16px;
+      display: block;
+      text-align: center;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-list {
+      list-style: none;
+      margin-bottom: 22px;
+    }
+
+    .pricing-list li {
+      font-size: 14px;
+      padding: 5px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--gray-text);
+    }
+
+    .pricing-list li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .btn-green-full {
+      display: block;
+      width: 100%;
+      background: var(--green);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .btn-green-full:hover {
+      background: #15803D;
+    }
+
+    .btn-blue-full {
+      display: block;
+      width: 100%;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .btn-blue-full:hover {
+      background: var(--blue-dark);
+    }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--gray-mid);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .pricing-monthly {
+      margin-top: 8px;
+    }
+
+    .pricing-monthly .pricing-price-num {
+      font-size: 42px;
+    }
+
+    /* ===== FLOW ===== */
+    .flow {
+      background: var(--blue-light);
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      gap: 18px;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 19px;
+      top: 48px;
+      bottom: 0;
+      width: 2px;
+      background: var(--blue);
+      opacity: 0.3;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-body {
+      padding-bottom: 36px;
+    }
+
+    .step-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .step-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .step-text {
+      font-size: 15px;
+      color: var(--gray-text);
+      line-height: 1.75;
+    }
+
+    /* ===== FAQ ===== */
+    .faq {
+      background: var(--white);
+    }
+
+    .faq-list {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid #E2E8F0;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 20px 0;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      font-family: inherit;
+    }
+
+    .faq-q-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.5;
+    }
+
+    .faq-q-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s;
+      margin-top: 1px;
+    }
+
+    .faq-item.open .faq-q-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 0 20px;
+      font-size: 15px;
+      color: var(--gray-text);
+      line-height: 1.8;
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    /* ===== OTHER SUPPORT ===== */
+    .other-support {
+      background: var(--gray-light);
+    }
+
+    .other-support-sub {
+      text-align: center;
+      font-size: 15px;
+      color: var(--gray-text);
+      margin-top: -28px;
+      margin-bottom: 32px;
+    }
+
+    .support-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+
+    .support-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .support-contact {
+      text-align: center;
+      font-size: 14px;
+      color: var(--gray-text);
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    .cta-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 36px;
+      line-height: 1.8;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-cta {
+      display: block;
+      max-width: 340px;
+      margin: 0 auto 20px;
+      background: var(--white);
+      color: var(--blue);
+      font-size: 18px;
+      font-weight: 800;
+      padding: 20px 24px;
+      border-radius: 10px;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .btn-cta:hover {
+      opacity: 0.9;
+    }
+
+    .cta-notes {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.7);
+      padding: 36px 20px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .footer-link {
+      display: inline-block;
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      margin-bottom: 16px;
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ===== FLOATING BUTTON ===== */
+    .float-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 200;
+      background: var(--green);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 14px 20px;
+      border-radius: 40px;
+      box-shadow: 0 4px 20px rgba(22,163,74,0.4);
+      transition: background 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+
+    .float-btn:hover {
+      background: #15803D;
+      box-shadow: 0 6px 24px rgba(22,163,74,0.5);
+    }
+
+    /* ===== RESPONSIVE (tablet+) ===== */
+    @media (min-width: 600px) {
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .cards-3 {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .cards-3 .card {
+        flex: 1 1 calc(50% - 10px);
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pricing-cards {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .pricing-card {
+        flex: 1;
+      }
+
+      .support-cards {
+        flex-direction: row;
+        max-width: 680px;
+      }
+
+      .support-card {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    @media (min-width: 800px) {
+      .cards-3 .card {
+        flex: 1 1 calc(33% - 14px);
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+
+      .cta-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-logo">GrowUP サポート</div>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header">LINEで相談</a>
+  </header>
+
+  <!-- ===== HERO / FV ===== -->
+  <section class="hero">
+    <h1>個人事業主向け<br>格安ホームページ制作</h1>
+    <p class="hero-sub">
+      AIを活用した効率制作で、<br>
+      制作費6万円・月1万円を実現。<br>
+      LINE・電話・地図リンク・料金表を<br>
+      1ページにまとめます。
+    </p>
+    <div class="hero-badges">
+      <span class="hero-badge">✅ 制作費 60,000円</span>
+      <span class="hero-badge">✅ 月額 10,000円</span>
+      <span class="hero-badge">✅ いつでも解約OK</span>
+    </div>
+    <div class="hero-cta">
+      <a href="https://lin.ee/Y4Uq7uP" class="btn-primary">▶ LINEで無料相談する</a>
+      <a href="https://lin.ee/Y4Uq7uP" class="btn-secondary">無料でページ案を見る</a>
+    </div>
+  </section>
+
+  <!-- ===== FOR WHOM ===== -->
+  <section class="for-whom">
+    <h2 class="section-title">こんな方にぴったりです</h2>
+    <ul class="checklist">
+      <li class="checklist-item">
+        <span class="checklist-icon">✓</span>
+        <span>Instagramだけで営業していて、料金表や予約方法が流れてしまう</span>
+      </li>
+      <li class="checklist-item">
+        <span class="checklist-icon">✓</span>
+        <span>Googleマップに公式サイトがなく、信用してもらいにくい</span>
+      </li>
+      <li class="checklist-item">
+        <span class="checklist-icon">✓</span>
+        <span>ホームページが欲しいけど、制作会社に10〜100万円は出せない</span>
+      </li>
+      <li class="checklist-item">
+        <span class="checklist-icon">✓</span>
+        <span>開業したばかりで、集客の入口を作りたい</span>
+      </li>
+      <li class="checklist-item">
+        <span class="checklist-icon">✓</span>
+        <span>LINEやDMで予約を受けているが、問い合わせが来ない</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== REASONS ===== -->
+  <section class="reasons">
+    <h2 class="section-title">なぜこの価格で作れるのか</h2>
+    <div class="cards-3">
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <div class="card-title">AI活用で制作を効率化</div>
+        <p class="card-text">文章作成・構成・コーディングにAIを活用することで、工数を大幅に削減。その分をそのまま価格に還元しています。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <div class="card-title">1人運営だから中間コストゼロ</div>
+        <p class="card-text">大手制作会社のような営業費・管理費がかかりません。あなたの費用はそのまま制作品質に使われます。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">必要なものに絞った設計</div>
+        <p class="card-text">予約システムや決済機能など「今は不要なもの」は省いています。料金表・連絡先・SNSリンクを1ページにまとめるだけで、集客効果は大きく変わります。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INCLUDES ===== -->
+  <section class="includes">
+    <h2 class="section-title">制作するホームページに含まれるもの</h2>
+    <div class="grid-2">
+      <div class="grid-item">
+        <span class="grid-item-icon">📱</span>スマホ対応デザイン
+      </div>
+      <div class="grid-item">
+        <span class="grid-item-icon">📋</span>サービス紹介・料金表
+      </div>
+      <div class="grid-item">
+        <span class="grid-item-icon">📞</span>LINE／電話／地図リンク
+      </div>
+      <div class="grid-item">
+        <span class="grid-item-icon">📣</span>SNSリンク
+      </div>
+      <div class="grid-item">
+        <span class="grid-item-icon">📩</span>問い合わせボタン
+      </div>
+      <div class="grid-item">
+        <span class="grid-item-icon">🔍</span>基本SEO設定
+      </div>
+      <div class="grid-item">
+        <span class="grid-item-icon">✏️</span>制作中の修正1回
+      </div>
+      <div class="grid-item">
+        <span class="grid-item-icon">🔄</span>公開後の軽微な更新
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="pricing">
+    <h2 class="section-title">料金プラン</h2>
+    <div class="pricing-cards">
+
+      <!-- 月額プラン -->
+      <div class="pricing-card featured">
+        <span class="badge-recommended">おすすめ</span>
+        <p class="pricing-plan-name">月額プラン</p>
+
+        <div class="pricing-price">
+          <div class="pricing-price-label">初期制作費</div>
+          <div>
+            <span class="pricing-price-num">60,000</span><span class="pricing-price-unit">円</span>
+          </div>
+        </div>
+
+        <div class="pricing-price pricing-monthly">
+          <div class="pricing-price-label">月額管理費</div>
+          <div>
+            <span class="pricing-price-num">10,000</span><span class="pricing-price-unit">円／月</span>
+          </div>
+        </div>
+
+        <span class="badge-cancel">いつでも解約OK</span>
+
+        <ul class="pricing-list">
+          <li>スマホ対応ホームページ</li>
+          <li>サービス紹介・料金表</li>
+          <li>LINE / 電話 / 地図リンク</li>
+          <li>SNSリンク</li>
+          <li>問い合わせボタン</li>
+          <li>基本SEO設定</li>
+          <li>修正1回込み</li>
+          <li>軽微な更新込み</li>
+        </ul>
+
+        <a href="https://lin.ee/Y4Uq7uP" class="btn-green-full">LINEで相談する</a>
+      </div>
+
+      <!-- 買い切りプラン -->
+      <div class="pricing-card">
+        <p class="pricing-plan-name">買い切りプラン</p>
+
+        <div class="pricing-price">
+          <div class="pricing-price-label">制作費</div>
+          <div>
+            <span class="pricing-price-num">98,000</span><span class="pricing-price-unit">円〜</span>
+          </div>
+        </div>
+
+        <div style="margin: 20px 0 16px; font-size: 14px; color: var(--gray-text);">
+          <p>月額なし</p>
+          <p style="margin-top:6px;">公開後の修正は別料金</p>
+        </div>
+
+        <a href="https://lin.ee/Y4Uq7uP" class="btn-blue-full">LINEで相談する</a>
+      </div>
+
+    </div>
+    <p class="pricing-note">ページ追加・大幅なデザイン変更・予約システム・決済機能などは別途お見積りとなります</p>
+  </section>
+
+  <!-- ===== FLOW ===== -->
+  <section class="flow">
+    <h2 class="section-title">制作の流れ</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-label">STEP 1</div>
+          <div class="step-title">無料相談（LINE）</div>
+          <p class="step-text">現在の集客状況・掲載したい内容をヒアリングします。「何を載せればいいか分からない」でも大丈夫です。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-label">STEP 2</div>
+          <div class="step-title">ページ構成の提案</div>
+          <p class="step-text">ヒアリングをもとに、無料で簡単なページ案をお出しします。内容・方向性に合意したら制作スタートです。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-label">STEP 3</div>
+          <div class="step-title">制作・確認</div>
+          <p class="step-text">1〜2週間で初稿を納品。1回の修正を反映します。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-label">STEP 4</div>
+          <div class="step-title">公開</div>
+          <p class="step-text">ドメイン・サーバー設定を含めて対応します。公開後も軽微な更新はご連絡ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq">
+    <h2 class="section-title">よくある質問</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">本当に6万円で作れますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">はい。AIを活用した制作フローにより、一般的な制作会社よりも工数を抑えられるため、この価格を実現しています。ただし、予約システム・決済機能・複数ページなどは別途お見積りになります。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">月額1万円はいつまでかかりますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">解約されるまでです。月単位でいつでも解約できます。解約後のサイト管理・更新対応は終了となります。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">パソコンが苦手でも大丈夫ですか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">はい。LINEでのやりとりで進められます。専門知識は不要です。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">完成まで何日かかりますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">ヒアリング〜公開まで、通常1〜2週間程度です。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">更新はどこまで込みですか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">料金・営業時間・連絡先の変更など、軽微なテキスト更新は月額内で対応します。ページ追加・デザイン変更・機能追加は別料金です。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">今のInstagramの投稿内容を使えますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">はい。Instagramの投稿内容を参考に構成を作ることができます。「AIで無料ページ案作成」もLINEからどうぞ。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== OTHER SUPPORT ===== -->
+  <section class="other-support">
+    <h2 class="section-title">その他のサポートメニュー</h2>
+    <p class="other-support-sub">ホームページ制作以外にも対応できます</p>
+    <div class="support-cards">
+      <div class="support-card">📱 SNS投稿代行（Instagram・X）</div>
+      <div class="support-card">💬 LINE公式アカウント構築</div>
+      <div class="support-card">🎬 ショート動画制作（TikTok・Reels）</div>
+    </div>
+    <p class="support-contact">詳細はLINEでご相談ください</p>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <h2 class="cta-title">まずは無料で相談してみてください</h2>
+    <p class="cta-sub">「何を載せればいいか分からない」その段階でもOKです。今の投稿内容をもとに、無料で簡単なページ案をお出しします。</p>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-cta">▶ LINEで「HP相談」と送る</a>
+    <p class="cta-notes">返信24時間以内 ／ 強引な勧誘なし ／ 完全無料</p>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-logo">GrowUP サポート</div>
+    <a href="https://lin.ee/Y4Uq7uP" class="footer-link">LINEで相談する</a>
+    <p class="footer-copy">© 2025 GrowUP サポート</p>
+  </footer>
+
+  <!-- ===== FLOATING BUTTON ===== -->
+  <a href="https://lin.ee/Y4Uq7uP" class="float-btn">💬 LINE相談</a>
+
+  <!-- ===== FAQ ACCORDION JS ===== -->
+  <script>
+    document.querySelectorAll('.faq-q').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(el) {
+          el.classList.remove('open');
+          el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

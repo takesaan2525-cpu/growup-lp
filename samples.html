@@ -7,352 +7,396 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --blue: #2563EB; --black: #1E293B; --gray: #F8FAFC;
-      --white: #fff; --gray-text: #64748B;
+      --blue: #2563EB; --black: #1E293B; --white: #fff;
+      --gray: #F1F5F9; --gray-text: #64748B;
     }
     html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
-      background: var(--gray); color: var(--black);
+      background: #0F172A; color: var(--black);
     }
 
     /* ヘッダー */
     .hero {
-      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
-      color: var(--white); text-align: center; padding: 56px 20px 48px;
+      background: #0F172A;
+      color: var(--white); text-align: center;
+      padding: 64px 20px 56px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.25) 0%, transparent 70%);
     }
     .hero-badge {
-      display: inline-block; background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25); border-radius: 20px;
+      display: inline-block; background: rgba(37,99,235,0.2);
+      border: 1px solid rgba(37,99,235,0.4); border-radius: 20px;
       padding: 4px 16px; font-size: 12px; font-weight: 700;
-      letter-spacing: 0.1em; margin-bottom: 20px; color: #94A3B8;
+      letter-spacing: 0.12em; margin-bottom: 24px; color: #93C5FD;
+      position: relative;
     }
-    .hero h1 { font-size: clamp(22px, 5vw, 36px); font-weight: 800; line-height: 1.4; margin-bottom: 14px; }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 44px); font-weight: 900;
+      line-height: 1.3; margin-bottom: 16px; position: relative;
+    }
     .hero h1 span { color: #60A5FA; }
-    .hero p { font-size: 14px; color: #94A3B8; line-height: 1.8; }
+    .hero p { font-size: 15px; color: #94A3B8; line-height: 1.8; position: relative; }
 
-    /* セクション */
-    .section { padding: 56px 16px; max-width: 1100px; margin: 0 auto; }
-    .section-title {
-      text-align: center; font-size: 22px; font-weight: 800;
-      margin-bottom: 8px; color: var(--black);
+    /* グリッド */
+    .grid-section {
+      padding: 56px 20px 80px;
+      max-width: 1200px; margin: 0 auto;
     }
-    .section-sub {
-      text-align: center; font-size: 14px; color: var(--gray-text);
-      margin-bottom: 40px; line-height: 1.7;
+    .grid-label {
+      text-align: center; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.12em; color: #475569;
+      text-transform: uppercase; margin-bottom: 40px;
     }
-
-    /* サンプルグリッド */
     .samples-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
     }
 
-    /* サンプルカード */
+    /* カード */
     .sample-card {
-      background: var(--white); border-radius: 20px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      overflow: hidden; transition: transform 0.25s, box-shadow 0.25s;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+      background: #1E293B;
     }
-    .sample-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.14); }
+    .sample-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
 
-    /* ブラウザフレーム */
+    /* ブラウザバー */
     .browser-bar {
-      background: #E2E8F0; padding: 10px 14px;
-      display: flex; align-items: center; gap: 8px;
+      background: #1E293B; padding: 11px 16px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid #334155;
     }
-    .browser-dots { display: flex; gap: 5px; }
-    .browser-dots span {
-      width: 10px; height: 10px; border-radius: 50%;
-    }
-    .dot-red   { background: #FC615D; }
-    .dot-yellow{ background: #FDBC40; }
+    .browser-dots { display: flex; gap: 6px; }
+    .browser-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-red { background: #FC615D; }
+    .dot-yellow { background: #FDBC40; }
     .dot-green { background: #34C749; }
     .browser-url {
-      flex: 1; background: var(--white); border-radius: 6px;
-      padding: 4px 10px; font-size: 11px; color: #94A3B8;
+      flex: 1; background: #0F172A; border-radius: 6px;
+      padding: 5px 12px; font-size: 11px; color: #64748B;
+      border: 1px solid #334155;
     }
 
-    /* ミニサイトプレビュー */
-    .site-preview { padding: 0; }
-
-    /* === ネイルサロン === */
-    .nail .site-hero {
-      background: linear-gradient(135deg, #FCE7F3, #FDF2F8);
-      padding: 28px 20px; text-align: center;
+    /* サイトヒーロー（写真） */
+    .site-hero {
+      height: 220px; position: relative;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 24px;
+      background-size: cover; background-position: center;
     }
-    .nail .site-logo { font-size: 11px; font-weight: 800; color: #9D174D; letter-spacing: 0.15em; margin-bottom: 16px; }
-    .nail .site-h1 { font-size: 17px; font-weight: 800; color: #831843; line-height: 1.5; margin-bottom: 8px; }
-    .nail .site-sub { font-size: 11px; color: #9D174D; margin-bottom: 16px; }
-    .nail .site-btn { display: inline-block; background: #DB2777; color: var(--white); padding: 9px 22px; border-radius: 99px; font-size: 12px; font-weight: 700; }
-    .nail .site-features { display: flex; border-top: 1px solid #FCE7F3; }
-    .nail .site-feat { flex: 1; padding: 12px 8px; text-align: center; border-right: 1px solid #FCE7F3; }
-    .nail .site-feat:last-child { border-right: none; }
-    .nail .feat-icon { font-size: 18px; margin-bottom: 4px; }
-    .nail .feat-text { font-size: 10px; color: #9D174D; font-weight: 600; line-height: 1.4; }
-
-    /* === 中古車 === */
-    .car .site-hero {
-      background: linear-gradient(135deg, #0F172A, #1E293B);
-      padding: 28px 20px; text-align: center;
+    .site-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: inherit;
+      filter: brightness(0.45);
     }
-    .car .site-logo { font-size: 13px; font-weight: 900; color: #EF4444; letter-spacing: 0.2em; margin-bottom: 16px; }
-    .car .site-h1 { font-size: 16px; font-weight: 800; color: var(--white); line-height: 1.5; margin-bottom: 8px; }
-    .car .site-sub { font-size: 11px; color: #94A3B8; margin-bottom: 16px; }
-    .car .site-btn { display: inline-block; background: #EF4444; color: var(--white); padding: 9px 22px; border-radius: 6px; font-size: 12px; font-weight: 700; }
-    .car .site-features { display: flex; background: #F8FAFC; border-top: 3px solid #EF4444; }
-    .car .site-feat { flex: 1; padding: 12px 8px; text-align: center; border-right: 1px solid #E2E8F0; }
-    .car .site-feat:last-child { border-right: none; }
-    .car .feat-icon { font-size: 18px; margin-bottom: 4px; }
-    .car .feat-text { font-size: 10px; color: var(--black); font-weight: 600; line-height: 1.4; }
-
-    /* === 小売・雑貨 === */
-    .shop .site-hero {
-      background: linear-gradient(135deg, #FEF3C7, #FFFBEB);
-      padding: 28px 20px; text-align: center;
+    .site-hero-content { position: relative; z-index: 1; }
+    .site-category {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 4px; padding: 3px 10px; color: rgba(255,255,255,0.9);
+      margin-bottom: 10px;
     }
-    .shop .site-logo { font-size: 13px; font-weight: 800; color: #92400E; letter-spacing: 0.12em; margin-bottom: 16px; }
-    .shop .site-h1 { font-size: 16px; font-weight: 800; color: #78350F; line-height: 1.5; margin-bottom: 8px; }
-    .shop .site-sub { font-size: 11px; color: #92400E; margin-bottom: 16px; }
-    .shop .site-btn { display: inline-block; background: #D97706; color: var(--white); padding: 9px 22px; border-radius: 8px; font-size: 12px; font-weight: 700; }
-    .shop .site-features { display: flex; border-top: 1px solid #FDE68A; }
-    .shop .site-feat { flex: 1; padding: 12px 8px; text-align: center; border-right: 1px solid #FDE68A; }
-    .shop .site-feat:last-child { border-right: none; }
-    .shop .feat-icon { font-size: 18px; margin-bottom: 4px; }
-    .shop .feat-text { font-size: 10px; color: #92400E; font-weight: 600; line-height: 1.4; }
-
-    /* === 整体 === */
-    .seitai .site-hero {
-      background: linear-gradient(135deg, #CCFBF1, #F0FDFA);
-      padding: 28px 20px; text-align: center;
+    .site-h1 {
+      font-size: 20px; font-weight: 800; color: var(--white);
+      line-height: 1.4; margin-bottom: 6px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
-    .seitai .site-logo { font-size: 12px; font-weight: 800; color: #0F766E; letter-spacing: 0.12em; margin-bottom: 16px; }
-    .seitai .site-h1 { font-size: 16px; font-weight: 800; color: #134E4A; line-height: 1.5; margin-bottom: 8px; }
-    .seitai .site-sub { font-size: 11px; color: #0F766E; margin-bottom: 16px; }
-    .seitai .site-btn { display: inline-block; background: #0F766E; color: var(--white); padding: 9px 22px; border-radius: 99px; font-size: 12px; font-weight: 700; }
-    .seitai .site-features { display: flex; border-top: 1px solid #CCFBF1; }
-    .seitai .site-feat { flex: 1; padding: 12px 8px; text-align: center; border-right: 1px solid #CCFBF1; }
-    .seitai .site-feat:last-child { border-right: none; }
-    .seitai .feat-icon { font-size: 18px; margin-bottom: 4px; }
-    .seitai .feat-text { font-size: 10px; color: #0F766E; font-weight: 600; line-height: 1.4; }
-
-    /* === キッチンカー === */
-    .kitchen .site-hero {
-      background: linear-gradient(135deg, #FED7AA, #FFF7ED);
-      padding: 28px 20px; text-align: center;
+    .site-sub {
+      font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.5;
     }
-    .kitchen .site-logo { font-size: 13px; font-weight: 900; color: #C2410C; letter-spacing: 0.15em; margin-bottom: 16px; }
-    .kitchen .site-h1 { font-size: 16px; font-weight: 800; color: #7C2D12; line-height: 1.5; margin-bottom: 8px; }
-    .kitchen .site-sub { font-size: 11px; color: #C2410C; margin-bottom: 16px; }
-    .kitchen .site-btn { display: inline-block; background: #EA580C; color: var(--white); padding: 9px 22px; border-radius: 8px; font-size: 12px; font-weight: 700; }
-    .kitchen .site-features { display: flex; border-top: 1px solid #FED7AA; }
-    .kitchen .site-feat { flex: 1; padding: 12px 8px; text-align: center; border-right: 1px solid #FED7AA; }
-    .kitchen .site-feat:last-child { border-right: none; }
-    .kitchen .feat-icon { font-size: 18px; margin-bottom: 4px; }
-    .kitchen .feat-text { font-size: 10px; color: #C2410C; font-weight: 600; line-height: 1.4; }
 
-    /* カード下部 */
+    /* アクセントライン */
+    .accent-line {
+      height: 3px; width: 100%;
+    }
+
+    /* サービス部分 */
+    .site-body {
+      background: var(--white); padding: 18px 20px 20px;
+    }
+    .site-features {
+      display: flex; gap: 8px; margin-bottom: 16px;
+    }
+    .site-feat {
+      flex: 1; background: var(--gray); border-radius: 10px;
+      padding: 10px 6px; text-align: center;
+    }
+    .feat-icon { font-size: 18px; margin-bottom: 4px; }
+    .feat-label { font-size: 10px; font-weight: 700; color: var(--gray-text); line-height: 1.3; }
+
+    .site-cta-row { display: flex; gap: 8px; }
+    .site-cta-btn {
+      flex: 1; padding: 10px; border-radius: 8px;
+      font-size: 12px; font-weight: 700; text-align: center;
+      border: none; cursor: default;
+    }
+    .site-cta-btn.primary { color: var(--white); }
+    .site-cta-btn.outline { background: var(--white); border: 2px solid currentColor; }
+
+    /* カードフッター */
     .card-footer {
-      padding: 16px 20px 20px;
-      background: var(--white);
+      background: #1E293B; padding: 18px 20px 20px;
+      border-top: 1px solid #334155;
     }
-    .card-label {
-      font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 4px;
+    .card-industry {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      color: #94A3B8; text-transform: uppercase; margin-bottom: 6px;
     }
-    .card-desc {
-      font-size: 12px; color: var(--gray-text); margin-bottom: 14px; line-height: 1.6;
-    }
+    .card-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .card-desc { font-size: 12px; color: #64748B; line-height: 1.6; margin-bottom: 14px; }
     .card-cta {
       display: block; text-align: center; background: #06C755;
-      color: var(--white); text-decoration: none; padding: 11px;
-      border-radius: 8px; font-size: 13px; font-weight: 700;
-      transition: background 0.2s;
+      color: var(--white); text-decoration: none; padding: 12px;
+      border-radius: 10px; font-size: 13px; font-weight: 700;
+      transition: all 0.2s; box-shadow: 0 4px 12px rgba(6,199,85,0.3);
     }
-    .card-cta:hover { background: #05a847; }
+    .card-cta:hover { background: #05a847; transform: translateY(-1px); }
 
     /* ボトムCTA */
     .bottom-cta {
-      background: linear-gradient(135deg, var(--blue), #1D4ED8);
-      color: var(--white); text-align: center; padding: 56px 20px;
+      background: linear-gradient(135deg, #1D4ED8, #1E40AF);
+      color: var(--white); text-align: center;
+      padding: 72px 20px;
+      position: relative; overflow: hidden;
     }
-    .bottom-cta h2 { font-size: clamp(20px, 4vw, 28px); font-weight: 800; margin-bottom: 12px; line-height: 1.5; }
-    .bottom-cta p { font-size: 14px; opacity: 0.85; margin-bottom: 28px; line-height: 1.7; }
-    .bottom-btn-line {
+    .bottom-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, rgba(99,102,241,0.3) 0%, transparent 70%);
+    }
+    .bottom-cta h2 {
+      font-size: clamp(20px, 4vw, 30px); font-weight: 900;
+      margin-bottom: 14px; line-height: 1.4; position: relative;
+    }
+    .bottom-cta p {
+      font-size: 14px; opacity: 0.8; margin-bottom: 32px;
+      line-height: 1.8; position: relative;
+    }
+    .bottom-btn {
       display: inline-block; background: #06C755; color: var(--white);
-      text-decoration: none; padding: 16px 40px; border-radius: 12px;
-      font-size: 16px; font-weight: 800; margin-bottom: 12px;
-      transition: all 0.2s; box-shadow: 0 4px 16px rgba(6,199,85,0.4);
+      text-decoration: none; padding: 18px 48px; border-radius: 14px;
+      font-size: 16px; font-weight: 800; transition: all 0.2s;
+      box-shadow: 0 6px 24px rgba(6,199,85,0.45); position: relative;
     }
-    .bottom-btn-line:hover { background: #05a847; transform: translateY(-2px); }
-    .bottom-note { font-size: 12px; opacity: 0.65; }
+    .bottom-btn:hover { background: #05a847; transform: translateY(-2px); }
+    .bottom-note {
+      margin-top: 16px; font-size: 12px; opacity: 0.55; position: relative;
+    }
 
-    /* 戻るリンク */
-    .back { text-align: center; padding: 20px; }
-    .back a { color: var(--gray-text); font-size: 13px; text-decoration: underline; }
-
-    footer { text-align: center; padding: 20px; font-size: 12px; color: #94A3B8; }
+    .back {
+      background: #0F172A; text-align: center; padding: 20px;
+    }
+    .back a { color: #475569; font-size: 13px; text-decoration: underline; }
+    footer { background: #0F172A; text-align: center; padding: 20px; font-size: 12px; color: #334155; }
   </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="hero-badge">SAMPLE PAGES</div>
+  <div class="hero-badge">✦ SAMPLE PAGES</div>
   <h1>こんなページが<br><span>作れます</span></h1>
-  <p>業種に合わせたデザインで<br>あなたのお店のホームページを制作します</p>
+  <p>業種・カラー・コンテンツに合わせて<br>完全オーダーメイドで制作します</p>
 </div>
 
-<div class="section">
-  <div class="section-title">業種別 サンプル</div>
-  <div class="section-sub">デザインやカラーはご要望に合わせてカスタマイズできます</div>
+<div class="grid-section">
+  <div class="grid-label">— 5 Industry Samples —</div>
 
   <div class="samples-grid">
 
     <!-- ネイルサロン -->
-    <div class="sample-card nail">
+    <div class="sample-card">
       <div class="browser-bar">
         <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
         <div class="browser-url">aurora-nail.com</div>
       </div>
-      <div class="site-preview">
-        <div class="site-hero">
-          <div class="site-logo">✦ AURORA NAIL ✦</div>
-          <div class="site-h1">指先から、<br>あなたをもっと輝かせる</div>
-          <div class="site-sub">埼玉県大宮駅3分｜完全予約制プライベートサロン</div>
-          <div class="site-btn">📩 予約・お問い合わせ</div>
+      <div class="site-hero" style="background-image: url('https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=80'), linear-gradient(135deg,#FCE7F3,#FDF2F8);">
+        <div class="site-hero-content">
+          <div class="site-category">Nail Salon</div>
+          <div class="site-h1">指先から、あなたを<br>もっと輝かせる</div>
+          <div class="site-sub">大宮駅3分｜完全予約制プライベートサロン</div>
         </div>
+      </div>
+      <div class="accent-line" style="background: linear-gradient(90deg,#EC4899,#F9A8D4);"></div>
+      <div class="site-body">
         <div class="site-features">
-          <div class="site-feat"><div class="feat-icon">💅</div><div class="feat-text">ジェル<br>ネイル</div></div>
-          <div class="site-feat"><div class="feat-icon">✨</div><div class="feat-text">アート<br>コース</div></div>
-          <div class="site-feat"><div class="feat-icon">📋</div><div class="feat-text">料金<br>表あり</div></div>
+          <div class="site-feat"><div class="feat-icon">💅</div><div class="feat-label">ジェル<br>ネイル</div></div>
+          <div class="site-feat"><div class="feat-icon">✨</div><div class="feat-label">アート<br>コース</div></div>
+          <div class="site-feat"><div class="feat-icon">📋</div><div class="feat-label">料金表<br>あり</div></div>
+          <div class="site-feat"><div class="feat-icon">📅</div><div class="feat-label">LINE<br>予約</div></div>
+        </div>
+        <div class="site-cta-row">
+          <div class="site-cta-btn primary" style="background:#DB2777;">📩 ご予約はこちら</div>
+          <div class="site-cta-btn outline" style="color:#DB2777;border-color:#DB2777;">料金を見る</div>
         </div>
       </div>
       <div class="card-footer">
-        <div class="card-label">💅 ネイル・美容サロン</div>
-        <div class="card-desc">ピンク・ローズ系のエレガントなデザイン。料金表・メニュー・予約導線を1ページにまとめます。</div>
-        <a href="https://lin.ee/xxli8Kr" class="card-cta">このデザインで無料相談する</a>
+        <div class="card-industry">💅 Nail · Beauty Salon</div>
+        <div class="card-title">ネイル・美容サロン向け</div>
+        <div class="card-desc">ピンク×ローズのエレガントなデザイン。作品写真・料金・予約導線を1ページにまとめます。</div>
+        <a href="https://lin.ee/xxli8Kr" class="card-cta">📩 このデザインで無料相談する</a>
       </div>
     </div>
 
     <!-- 中古車 -->
-    <div class="sample-card car">
+    <div class="sample-card">
       <div class="browser-bar">
         <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
         <div class="browser-url">auto-select.jp</div>
       </div>
-      <div class="site-preview">
-        <div class="site-hero">
-          <div class="site-logo">🚗 AUTO SELECT</div>
+      <div class="site-hero" style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80'), linear-gradient(135deg,#0F172A,#1E293B);">
+        <div class="site-hero-content">
+          <div class="site-category">Car Dealer</div>
           <div class="site-h1">理想の一台、<br>きっと見つかる</div>
-          <div class="site-sub">在庫台数200台以上｜全車整備済み｜ローン対応</div>
-          <div class="site-btn">🚘 在庫・お問い合わせ</div>
+          <div class="site-sub">在庫200台以上｜全車整備済み｜ローン対応</div>
         </div>
+      </div>
+      <div class="accent-line" style="background: linear-gradient(90deg,#EF4444,#F97316);"></div>
+      <div class="site-body">
         <div class="site-features">
-          <div class="site-feat"><div class="feat-icon">🔧</div><div class="feat-text">整備<br>済み</div></div>
-          <div class="site-feat"><div class="feat-icon">💳</div><div class="feat-text">ローン<br>対応</div></div>
-          <div class="site-feat"><div class="feat-icon">📞</div><div class="feat-text">即日<br>対応</div></div>
+          <div class="site-feat"><div class="feat-icon">🔧</div><div class="feat-label">整備<br>済み</div></div>
+          <div class="site-feat"><div class="feat-icon">💳</div><div class="feat-label">ローン<br>対応</div></div>
+          <div class="site-feat"><div class="feat-icon">🚗</div><div class="feat-label">在庫<br>200台</div></div>
+          <div class="site-feat"><div class="feat-icon">📞</div><div class="feat-label">即日<br>対応</div></div>
+        </div>
+        <div class="site-cta-row">
+          <div class="site-cta-btn primary" style="background:#EF4444;">🚘 在庫を見る</div>
+          <div class="site-cta-btn outline" style="color:#EF4444;border-color:#EF4444;">お問い合わせ</div>
         </div>
       </div>
       <div class="card-footer">
-        <div class="card-label">🚗 中古車・車販売</div>
-        <div class="card-desc">ダーク×レッドの重厚感あるデザイン。在庫・料金・問い合わせ先をまとめます。</div>
-        <a href="https://lin.ee/xxli8Kr" class="card-cta">このデザインで無料相談する</a>
+        <div class="card-industry">🚗 Car Dealer · Auto Shop</div>
+        <div class="card-title">中古車・自動車販売向け</div>
+        <div class="card-desc">ダーク×レッドの重厚感あるデザイン。在庫・ローン情報・問い合わせ先を整理します。</div>
+        <a href="https://lin.ee/xxli8Kr" class="card-cta">📩 このデザインで無料相談する</a>
       </div>
     </div>
 
     <!-- 小売・雑貨 -->
-    <div class="sample-card shop">
+    <div class="sample-card">
       <div class="browser-bar">
         <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
         <div class="browser-url">mellow-store.jp</div>
       </div>
-      <div class="site-preview">
-        <div class="site-hero">
-          <div class="site-logo">☕ mellow store</div>
+      <div class="site-hero" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80'), linear-gradient(135deg,#FEF3C7,#FFFBEB);">
+        <div class="site-hero-content">
+          <div class="site-category">Select Shop</div>
           <div class="site-h1">暮らしを、<br>もっと心地よく</div>
           <div class="site-sub">セレクト雑貨・インテリア・ギフト｜大宮</div>
-          <div class="site-btn">🛍 商品を見る</div>
         </div>
+      </div>
+      <div class="accent-line" style="background: linear-gradient(90deg,#D97706,#F59E0B);"></div>
+      <div class="site-body">
         <div class="site-features">
-          <div class="site-feat"><div class="feat-icon">🎁</div><div class="feat-text">ギフト<br>対応</div></div>
-          <div class="site-feat"><div class="feat-icon">📦</div><div class="feat-text">通販<br>あり</div></div>
-          <div class="site-feat"><div class="feat-icon">🗺</div><div class="feat-text">アクセス<br>案内</div></div>
+          <div class="site-feat"><div class="feat-icon">🎁</div><div class="feat-label">ギフト<br>対応</div></div>
+          <div class="site-feat"><div class="feat-icon">📦</div><div class="feat-label">通販<br>あり</div></div>
+          <div class="site-feat"><div class="feat-icon">🕐</div><div class="feat-label">営業<br>時間</div></div>
+          <div class="site-feat"><div class="feat-icon">🗺</div><div class="feat-label">アクセス<br>案内</div></div>
+        </div>
+        <div class="site-cta-row">
+          <div class="site-cta-btn primary" style="background:#D97706;">🛍 商品を見る</div>
+          <div class="site-cta-btn outline" style="color:#D97706;border-color:#D97706;">アクセス</div>
         </div>
       </div>
       <div class="card-footer">
-        <div class="card-label">🛍 小売・雑貨・ショップ</div>
-        <div class="card-desc">アンバー×クリームの温かみあるデザイン。商品紹介・アクセス・SNSリンクをまとめます。</div>
-        <a href="https://lin.ee/xxli8Kr" class="card-cta">このデザインで無料相談する</a>
+        <div class="card-industry">🛍 Retail · Select Shop</div>
+        <div class="card-title">小売・雑貨・セレクトショップ向け</div>
+        <div class="card-desc">アンバー×クリームの温かみあるデザイン。商品・アクセス・SNSをまとめます。</div>
+        <a href="https://lin.ee/xxli8Kr" class="card-cta">📩 このデザインで無料相談する</a>
       </div>
     </div>
 
     <!-- 整体 -->
-    <div class="sample-card seitai">
+    <div class="sample-card">
       <div class="browser-bar">
         <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
         <div class="browser-url">yasuragi-seitai.com</div>
       </div>
-      <div class="site-preview">
-        <div class="site-hero">
-          <div class="site-logo">🌿 やすらぎ整体院</div>
+      <div class="site-hero" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80'), linear-gradient(135deg,#CCFBF1,#F0FDFA);">
+        <div class="site-hero-content">
+          <div class="site-category">Seitai · Wellness</div>
           <div class="site-h1">痛みのない毎日を、<br>取り戻す</div>
           <div class="site-sub">腰痛・肩こり・産後ケア専門｜完全予約制</div>
-          <div class="site-btn">📅 予約する</div>
         </div>
+      </div>
+      <div class="accent-line" style="background: linear-gradient(90deg,#0F766E,#14B8A6);"></div>
+      <div class="site-body">
         <div class="site-features">
-          <div class="site-feat"><div class="feat-icon">💆</div><div class="feat-text">全身<br>調整</div></div>
-          <div class="site-feat"><div class="feat-icon">👶</div><div class="feat-text">産後<br>ケア</div></div>
-          <div class="site-feat"><div class="feat-icon">⭐</div><div class="feat-text">口コミ<br>多数</div></div>
+          <div class="site-feat"><div class="feat-icon">💆</div><div class="feat-label">全身<br>調整</div></div>
+          <div class="site-feat"><div class="feat-icon">👶</div><div class="feat-label">産後<br>ケア</div></div>
+          <div class="site-feat"><div class="feat-icon">⭐</div><div class="feat-label">口コミ<br>多数</div></div>
+          <div class="site-feat"><div class="feat-icon">📅</div><div class="feat-label">当日<br>予約可</div></div>
+        </div>
+        <div class="site-cta-row">
+          <div class="site-cta-btn primary" style="background:#0F766E;">📅 予約する</div>
+          <div class="site-cta-btn outline" style="color:#0F766E;border-color:#0F766E;">料金・コース</div>
         </div>
       </div>
       <div class="card-footer">
-        <div class="card-label">🧘 整体・マッサージ・リラクゼーション</div>
-        <div class="card-desc">ティール×ホワイトの清潔感あるデザイン。コース・料金・予約導線をまとめます。</div>
-        <a href="https://lin.ee/xxli8Kr" class="card-cta">このデザインで無料相談する</a>
+        <div class="card-industry">🧘 Seitai · Massage · Wellness</div>
+        <div class="card-title">整体・マッサージ・リラクゼーション向け</div>
+        <div class="card-desc">ティール×ホワイトの清潔感あるデザイン。コース・料金・予約導線を整理します。</div>
+        <a href="https://lin.ee/xxli8Kr" class="card-cta">📩 このデザインで無料相談する</a>
       </div>
     </div>
 
     <!-- キッチンカー -->
-    <div class="sample-card kitchen">
+    <div class="sample-card">
       <div class="browser-bar">
         <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
         <div class="browser-url">spice-wagon.jp</div>
       </div>
-      <div class="site-preview">
-        <div class="site-hero">
-          <div class="site-logo">🌶 SPICE WAGON</div>
+      <div class="site-hero" style="background-image: url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80'), linear-gradient(135deg,#FED7AA,#FFF7ED);">
+        <div class="site-hero-content">
+          <div class="site-category">Kitchen Car</div>
           <div class="site-h1">本格スパイスを、<br>あなたの街へ</div>
           <div class="site-sub">毎週火・木・土出店｜大宮・さいたま市周辺</div>
-          <div class="site-btn">📍 出店スケジュール</div>
         </div>
+      </div>
+      <div class="accent-line" style="background: linear-gradient(90deg,#EA580C,#F97316);"></div>
+      <div class="site-body">
         <div class="site-features">
-          <div class="site-feat"><div class="feat-icon">📅</div><div class="feat-text">出店<br>情報</div></div>
-          <div class="site-feat"><div class="feat-icon">🍛</div><div class="feat-text">メニュー<br>一覧</div></div>
-          <div class="site-feat"><div class="feat-icon">📸</div><div class="feat-text">SNS<br>リンク</div></div>
+          <div class="site-feat"><div class="feat-icon">📅</div><div class="feat-label">出店<br>情報</div></div>
+          <div class="site-feat"><div class="feat-icon">🍛</div><div class="feat-label">メニュー<br>一覧</div></div>
+          <div class="site-feat"><div class="feat-icon">📍</div><div class="feat-label">場所<br>案内</div></div>
+          <div class="site-feat"><div class="feat-icon">📸</div><div class="feat-label">SNS<br>リンク</div></div>
+        </div>
+        <div class="site-cta-row">
+          <div class="site-cta-btn primary" style="background:#EA580C;">📍 出店スケジュール</div>
+          <div class="site-cta-btn outline" style="color:#EA580C;border-color:#EA580C;">メニュー</div>
         </div>
       </div>
       <div class="card-footer">
-        <div class="card-label">🍔 キッチンカー・フードトラック</div>
-        <div class="card-desc">オレンジ×クリームの元気なデザイン。出店スケジュール・メニュー・SNSリンクをまとめます。</div>
-        <a href="https://lin.ee/xxli8Kr" class="card-cta">このデザインで無料相談する</a>
+        <div class="card-industry">🍔 Kitchen Car · Food Truck</div>
+        <div class="card-title">キッチンカー・フードトラック向け</div>
+        <div class="card-desc">オレンジの元気なデザイン。出店スケジュール・メニュー・SNSリンクをまとめます。</div>
+        <a href="https://lin.ee/xxli8Kr" class="card-cta">📩 このデザインで無料相談する</a>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- ボトムCTA -->
 <div class="bottom-cta">
   <h2>あなたのお店の<br>ページ案を無料で作ります</h2>
   <p>業種・カラー・載せたい内容を教えてもらえれば<br>無料でイメージ案を作ってお送りします</p>
-  <a href="https://lin.ee/xxli8Kr" class="bottom-btn-line">📩 LINEで無料相談する</a><br>
+  <a href="https://lin.ee/xxli8Kr" class="bottom-btn">📩 LINEで無料相談する</a>
   <div class="bottom-note">制作費 60,000円 ／ 月額 10,000円 ／ いつでも解約OK</div>
 </div>
 
 <div class="back">
   <a href="index.html">← トップページに戻る</a>
 </div>
-
 <footer>© 2026 GrowUP サポート｜遠田 健</footer>
 
 </body>

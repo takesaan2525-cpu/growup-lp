@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ホームページ必要度チェック｜60秒無料診断</title>
+  <meta name="description" content="個人事業主・フリーランス向け。今のあなたにホームページは必要？7つの質問で60秒診断。">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563EB;
+      --blue-dark: #1D4ED8;
+      --blue-light: #EFF6FF;
+      --blue-mid: #BFDBFE;
+      --green: #16A34A;
+      --green-light: #DCFCE7;
+      --orange: #EA580C;
+      --orange-light: #FFF7ED;
+      --gray-light: #F8FAFC;
+      --gray-mid: #94A3B8;
+      --gray-text: #64748B;
+      --black: #1E293B;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+      font-size: 16px;
+      color: var(--black);
+      background: var(--gray-light);
+      min-height: 100vh;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--blue) 0%, #1D4ED8 60%, #1e40af 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 48px 20px 40px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+    .hero h1 span { color: #FCD34D; }
+    .hero p { font-size: 14px; opacity: 0.85; line-height: 1.7; }
+
+    .progress-wrap {
+      background: var(--white);
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid #E2E8F0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--gray-text);
+      margin-bottom: 8px;
+    }
+    .progress-label strong { color: var(--blue); font-weight: 700; }
+    .progress-bar-bg { height: 8px; background: #E2E8F0; border-radius: 99px; overflow: hidden; }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), #60A5FA);
+      border-radius: 99px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    .container { max-width: 600px; margin: 0 auto; padding: 24px 16px 60px; }
+
+    .question-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: none;
+      animation: fadeUp 0.35s ease both;
+    }
+    .question-card.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-number { font-size: 12px; font-weight: 700; color: var(--blue); letter-spacing: 0.08em; margin-bottom: 10px; }
+    .q-text { font-size: 17px; font-weight: 700; line-height: 1.55; color: var(--black); margin-bottom: 20px; }
+    .q-text .emoji { font-size: 22px; display: block; margin-bottom: 8px; }
+
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    .option-label:hover { border-color: var(--blue-mid); background: var(--blue-light); }
+    .option-label input[type="radio"] { display: none; }
+    .option-label.selected { border-color: var(--blue); background: var(--blue-light); color: var(--blue-dark); font-weight: 600; }
+    .option-circle {
+      width: 24px; height: 24px; border-radius: 50%; border: 2px solid #CBD5E1;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .option-label.selected .option-circle { border-color: var(--blue); background: var(--blue); }
+    .option-label.selected .option-circle::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--white); }
+
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-next, .btn-prev, .btn-result, .btn-submit {
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-next, .btn-result, .btn-submit { flex: 1; background: var(--blue); color: var(--white); }
+    .btn-next:hover, .btn-result:hover, .btn-submit:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-next:disabled, .btn-result:disabled { background: #CBD5E1; cursor: not-allowed; transform: none; }
+    .btn-prev { background: var(--white); border: 2px solid #E2E8F0; color: var(--gray-text); }
+    .btn-prev:hover { border-color: #94A3B8; }
+
+    /* 情報収集フォーム */
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .form-group label .required {
+      display: inline-block;
+      background: #FEE2E2;
+      color: #DC2626;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+    .form-group label .optional {
+      display: inline-block;
+      background: #F1F5F9;
+      color: var(--gray-text);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 1px 7px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+    .form-group select, .form-group input[type="text"] {
+      width: 100%;
+      padding: 13px 14px;
+      border: 2px solid #E2E8F0;
+      border-radius: 10px;
+      font-size: 15px;
+      color: var(--black);
+      font-family: inherit;
+      appearance: none;
+      background: var(--white);
+      transition: border-color 0.2s;
+    }
+    .form-group select:focus, .form-group input[type="text"]:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▼';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: var(--gray-mid);
+      pointer-events: none;
+    }
+    .form-hint { font-size: 12px; color: var(--gray-text); margin-top: 5px; }
+    .skip-link {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      color: var(--gray-mid);
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .skip-link:hover { color: var(--gray-text); }
+
+    /* 送信中スピナー */
+    .sending-state { text-align: center; padding: 8px 0 4px; display: none; }
+    .sending-state .spinner {
+      display: inline-block;
+      width: 20px; height: 20px;
+      border: 3px solid #E2E8F0;
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* 結果 */
+    #result-section { display: none; animation: fadeUp 0.5s ease both; }
+
+    .result-header {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px 24px 28px;
+      text-align: center;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .result-icon {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center; font-size: 36px;
+    }
+    .result-icon.high { background: #FEF9C3; }
+    .result-icon.mid  { background: var(--orange-light); }
+    .result-icon.low  { background: var(--green-light); }
+
+    .result-label { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .result-label.high { color: var(--blue); }
+    .result-label.mid  { color: var(--orange); }
+    .result-label.low  { color: var(--green); }
+
+    .result-title { font-size: 22px; font-weight: 800; line-height: 1.4; margin-bottom: 14px; color: var(--black); }
+    .result-desc { font-size: 14px; color: var(--gray-text); line-height: 1.7; text-align: left; }
+
+    .score-display { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin: 20px 0 8px; }
+    .score-num { font-size: 52px; font-weight: 900; line-height: 1; color: var(--blue); }
+    .score-max { font-size: 18px; color: var(--gray-mid); font-weight: 600; }
+    .score-bar-wrap { height: 10px; background: #E2E8F0; border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
+    .score-bar { height: 100%; border-radius: 99px; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; }
+    .score-bar.high { background: linear-gradient(90deg, var(--blue), #60A5FA); }
+    .score-bar.mid  { background: linear-gradient(90deg, var(--orange), #FB923C); }
+    .score-bar.low  { background: linear-gradient(90deg, var(--green), #4ADE80); }
+
+    .result-detail {
+      background: var(--white); border-radius: 16px; padding: 24px;
+      margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .result-detail h3 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #F1F5F9; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .check-list li { display: flex; gap: 10px; font-size: 14px; color: var(--gray-text); line-height: 1.5; }
+    .check-list li .icon { flex-shrink: 0; margin-top: 1px; }
+    .check-list li.positive { color: var(--black); }
+
+    .cta-card { border-radius: 16px; padding: 28px 24px; margin-bottom: 16px; text-align: center; }
+    .cta-card.primary {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(37,99,235,0.35);
+    }
+    .cta-card.secondary { background: var(--white); border: 2px solid #E2E8F0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .cta-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; line-height: 1.45; }
+    .cta-card p { font-size: 13px; line-height: 1.7; margin-bottom: 20px; opacity: 0.88; }
+    .cta-card.secondary p { color: var(--gray-text); opacity: 1; }
+
+    .btn-cta-line {
+      display: block; background: #06C755; color: var(--white); text-decoration: none;
+      padding: 15px 24px; border-radius: 10px; font-size: 15px; font-weight: 700;
+      margin-bottom: 10px; transition: all 0.2s;
+    }
+    .btn-cta-line:hover { background: #05b34b; transform: translateY(-1px); }
+    .btn-cta-white {
+      display: block; background: var(--white); color: var(--blue); text-decoration: none;
+      padding: 13px 24px; border-radius: 10px; font-size: 14px; font-weight: 700;
+      border: 2px solid rgba(255,255,255,0.6); transition: all 0.2s;
+    }
+    .btn-cta-white:hover { background: var(--blue-light); }
+    .btn-cta-blue {
+      display: block; background: var(--blue); color: var(--white); text-decoration: none;
+      padding: 14px 24px; border-radius: 10px; font-size: 15px; font-weight: 700; transition: all 0.2s;
+    }
+    .btn-cta-blue:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    .retry-btn {
+      display: block; text-align: center; margin-top: 24px;
+      color: var(--gray-mid); font-size: 13px; cursor: pointer; text-decoration: underline;
+    }
+    .retry-btn:hover { color: var(--gray-text); }
+
+    .trust-note {
+      background: var(--white); border-radius: 12px; padding: 16px 18px;
+      font-size: 12px; color: var(--gray-text); line-height: 1.7; text-align: center;
+      margin-bottom: 16px; border: 1px solid #F1F5F9;
+    }
+    .trust-note strong { color: var(--black); }
+
+    footer { text-align: center; padding: 24px 20px; font-size: 12px; color: var(--gray-mid); }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">✦ 60秒 無料診断</div>
+  <h1>あなたのお店に<br><span>ホームページは必要？</span></h1>
+  <p>7つの質問に答えるだけで<br>今のあなたに必要なものがわかります</p>
+</div>
+
+<div class="progress-wrap" id="progress-wrap" style="display:none">
+  <div class="progress-label">
+    <span>質問 <strong id="progress-current">1</strong> / 7</span>
+    <span id="progress-pct">14%</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- スタート -->
+  <div class="question-card active" id="start-card">
+    <div class="q-text">
+      <span class="emoji">👋</span>
+      個人事業主・フリーランスの方へ。<br>
+      このチェックで「今の自分に何が足りないか」がわかります。
+    </div>
+    <ul class="check-list" style="margin-bottom:20px">
+      <li class="positive"><span class="icon">✅</span>所要時間：約60秒</li>
+      <li class="positive"><span class="icon">✅</span>7つの質問に答えるだけ</li>
+      <li class="positive"><span class="icon">✅</span>完全無料・登録不要</li>
+    </ul>
+    <button class="btn-next" onclick="startQuiz()">診断スタート →</button>
+  </div>
+
+  <!-- Q1〜Q7 -->
+  <div class="question-card" id="q1">
+    <div class="q-number">Question 1 / 7</div>
+    <div class="q-text"><span class="emoji">🌐</span>今、お店やサービスの<br>ホームページはありますか？</div>
+    <div class="options">
+      <label class="option-label" onclick="selectOption(this,1,3)"><input type="radio" name="q1"><div class="option-circle"></div><span>ない（または作ったことがない）</span></label>
+      <label class="option-label" onclick="selectOption(this,1,2)"><input type="radio" name="q1"><div class="option-circle"></div><span>古い・スマホで崩れている・放置している</span></label>
+      <label class="option-label" onclick="selectOption(this,1,1)"><input type="radio" name="q1"><div class="option-circle"></div><span>きれいなホームページがある</span></label>
+    </div>
+    <div class="nav-btns"><button class="btn-next" id="next1" onclick="nextQ(1)" disabled>次へ →</button></div>
+  </div>
+
+  <div class="question-card" id="q2">
+    <div class="q-number">Question 2 / 7</div>
+    <div class="q-text"><span class="emoji">📸</span>Instagramやその他SNSの<br>更新頻度はどのくらいですか？</div>
+    <div class="options">
+      <label class="option-label" onclick="selectOption(this,2,3)"><input type="radio" name="q2"><div class="option-circle"></div><span>先月も今月も投稿している（月1回以上）</span></label>
+      <label class="option-label" onclick="selectOption(this,2,2)"><input type="radio" name="q2"><div class="option-circle"></div><span>数ヶ月投稿していない・不定期</span></label>
+      <label class="option-label" onclick="selectOption(this,2,1)"><input type="radio" name="q2"><div class="option-circle"></div><span>SNSはほとんどやっていない</span></label>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="prevQ(2)">← 戻る</button>
+      <button class="btn-next" id="next2" onclick="nextQ(2)" disabled>次へ →</button>
+    </div>
+  </div>
+
+  <div class="question-card" id="q3">
+    <div class="q-number">Question 3 / 7</div>
+    <div class="q-text"><span class="emoji">💰</span>料金やメニューの情報は<br>どこかで見やすく公開していますか？</div>
+    <div class="options">
+      <label class="option-label" onclick="selectOption(this,3,3)"><input type="radio" name="q3"><div class="option-circle"></div><span>SNSの投稿に埋もれていて見つけにくい</span></label>
+      <label class="option-label" onclick="selectOption(this,3,2)"><input type="radio" name="q3"><div class="option-circle"></div><span>プロフィール欄に一部書いてある</span></label>
+      <label class="option-label" onclick="selectOption(this,3,1)"><input type="radio" name="q3"><div class="option-circle"></div><span>わかりやすい料金表ページがある</span></label>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="prevQ(3)">← 戻る</button>
+      <button class="btn-next" id="next3" onclick="nextQ(3)" disabled>次へ →</button>
+    </div>
+  </div>
+
+  <div class="question-card" id="q4">
+    <div class="q-number">Question 4 / 7</div>
+    <div class="q-text"><span class="emoji">📩</span>お客様からの予約・問い合わせは<br>どのように受けていますか？</div>
+    <div class="options">
+      <label class="option-label" onclick="selectOption(this,4,3)"><input type="radio" name="q4"><div class="option-circle"></div><span>DMかLINEへの連絡のみ</span></label>
+      <label class="option-label" onclick="selectOption(this,4,2)"><input type="radio" name="q4"><div class="option-circle"></div><span>ホットペッパー等の予約サイトを使っている</span></label>
+      <label class="option-label" onclick="selectOption(this,4,1)"><input type="radio" name="q4"><div class="option-circle"></div><span>自前の予約システムが整っている</span></label>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="prevQ(4)">← 戻る</button>
+      <button class="btn-next" id="next4" onclick="nextQ(4)" disabled>次へ →</button>
+    </div>
+  </div>
+
+  <div class="question-card" id="q5">
+    <div class="q-number">Question 5 / 7</div>
+    <div class="q-text"><span class="emoji">🎨</span>お店・サービスの写真や<br>こだわりのコンテンツはありますか？</div>
+    <div class="options">
+      <label class="option-label" onclick="selectOption(this,5,3)"><input type="radio" name="q5"><div class="option-circle"></div><span>こだわりの写真・作品・実績がある</span></label>
+      <label class="option-label" onclick="selectOption(this,5,2)"><input type="radio" name="q5"><div class="option-circle"></div><span>普通の写真はある</span></label>
+      <label class="option-label" onclick="selectOption(this,5,1)"><input type="radio" name="q5"><div class="option-circle"></div><span>写真が少ない・まだこれから</span></label>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="prevQ(5)">← 戻る</button>
+      <button class="btn-next" id="next5" onclick="nextQ(5)" disabled>次へ →</button>
+    </div>
+  </div>
+
+  <div class="question-card" id="q6">
+    <div class="q-number">Question 6 / 7</div>
+    <div class="q-text"><span class="emoji">🏪</span>開業・独立してから<br>どのくらいになりますか？</div>
+    <div class="options">
+      <label class="option-label" onclick="selectOption(this,6,3)"><input type="radio" name="q6"><div class="option-circle"></div><span>1年以内（開業したて）</span></label>
+      <label class="option-label" onclick="selectOption(this,6,2)"><input type="radio" name="q6"><div class="option-circle"></div><span>2〜4年</span></label>
+      <label class="option-label" onclick="selectOption(this,6,1)"><input type="radio" name="q6"><div class="option-circle"></div><span>5年以上</span></label>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="prevQ(6)">← 戻る</button>
+      <button class="btn-next" id="next6" onclick="nextQ(6)" disabled>次へ →</button>
+    </div>
+  </div>
+
+  <div class="question-card" id="q7">
+    <div class="q-number">Question 7 / 7</div>
+    <div class="q-text"><span class="emoji">🚀</span>これから集客をもっと<br>強化したいと思っていますか？</div>
+    <div class="options">
+      <label class="option-label" onclick="selectOption(this,7,3)"><input type="radio" name="q7"><div class="option-circle"></div><span>はい、もっとお客様を増やしたい</span></label>
+      <label class="option-label" onclick="selectOption(this,7,2)"><input type="radio" name="q7"><div class="option-circle"></div><span>できれば増やしたい</span></label>
+      <label class="option-label" onclick="selectOption(this,7,1)"><input type="radio" name="q7"><div class="option-circle"></div><span>現状で十分満足している</span></label>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="prevQ(7)">← 戻る</button>
+      <button class="btn-result" id="next7" onclick="goToContact()" disabled>次へ →</button>
+    </div>
+  </div>
+
+  <!-- 情報収集フォーム -->
+  <div class="question-card" id="qContact">
+    <div class="q-number">あと少し！</div>
+    <div class="q-text">
+      <span class="emoji">📋</span>
+      診断結果に合わせた<br>ページ案をご提案するために<br>お店の情報を教えてください
+    </div>
+
+    <div class="form-group">
+      <label>業種<span class="required">必須</span></label>
+      <div class="select-wrap">
+        <select id="field-gyoshu">
+          <option value="">― 選択してください ―</option>
+          <option>美容サロン / ヘアサロン</option>
+          <option>ネイルサロン</option>
+          <option>まつ毛サロン</option>
+          <option>エステ / リラクゼーション</option>
+          <option>整体 / マッサージ</option>
+          <option>便利屋 / 生活サポート</option>
+          <option>清掃 / ハウスクリーニング</option>
+          <option>軽貨物 / 配送</option>
+          <option>キッチンカー / フードトラック</option>
+          <option>リフォーム / 外構 / 塗装</option>
+          <option>料理教室 / カルチャースクール</option>
+          <option>ピアノ教室 / 音楽教室</option>
+          <option>個人スクール / 習い事</option>
+          <option>その他</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>お店・屋号<span class="required">必須</span></label>
+      <input type="text" id="field-mise" placeholder="例：ネイルサロン○○" maxlength="50">
+    </div>
+
+    <div class="form-group">
+      <label>連絡先<span class="optional">任意</span></label>
+      <input type="text" id="field-renraku" placeholder="LINE IDまたはお電話番号" maxlength="60">
+      <div class="form-hint">ページ案が完成したらご連絡します。入力しなくても結果は見られます。</div>
+    </div>
+
+    <div class="sending-state" id="sending-state">
+      <span class="spinner"></span>送信中...
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="prevQ('contact')">← 戻る</button>
+      <button class="btn-submit" onclick="submitAndShowResult()">診断結果を見る 🎉</button>
+    </div>
+    <a class="skip-link" onclick="skipAndShowResult()">入力せずに結果だけ見る</a>
+  </div>
+
+  <!-- 結果 -->
+  <div id="result-section">
+
+    <div class="result-header">
+      <div class="result-icon" id="result-icon"></div>
+      <div class="result-label" id="result-rank-label"></div>
+      <div class="score-display">
+        <div class="score-num" id="score-num">0</div>
+        <div class="score-max">/ 21点</div>
+      </div>
+      <div class="score-bar-wrap"><div class="score-bar" id="score-bar"></div></div>
+      <div class="result-title" id="result-title"></div>
+      <div class="result-desc" id="result-desc"></div>
+    </div>
+
+    <div class="result-detail">
+      <h3>📋 あなたの診断ポイント</h3>
+      <ul class="check-list" id="result-checklist"></ul>
+    </div>
+
+    <div id="result-cta"></div>
+
+    <div class="trust-note">
+      <strong>🔒 プレッシャーは一切ありません</strong><br>
+      相談・ページ案の提示はすべて無料です。<br>
+      その後の制作はご希望の方だけ。しつこい営業は行いません。
+    </div>
+
+    <a class="retry-btn" onclick="retryQuiz()">← もう一度診断する</a>
+  </div>
+
+</div>
+
+<footer>© 2026 GrowUP サポート｜格安ホームページ制作</footer>
+
+<script>
+  // ★ GASをデプロイしたらここにURLを貼る
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwPAZq_pwEKJzlkEbAB8Zky8KlA0tUP9FXuNVrsUTpbcYNnKrJ_OobkJXtaqGuc9mfr/exec';
+
+  const LINE_URL = 'https://lin.ee/xxli8Kr';
+
+  const answers = {};
+  let currentQ = 0;
+
+  function startQuiz() {
+    document.getElementById('start-card').classList.remove('active');
+    document.getElementById('progress-wrap').style.display = 'block';
+    showQ(1);
+  }
+
+  function showQ(n) {
+    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+    const id = n === 'contact' ? 'qContact' : 'q' + n;
+    document.getElementById(id).classList.add('active');
+    currentQ = n;
+    if (n === 'contact') {
+      document.getElementById('progress-current').textContent = '7';
+      document.getElementById('progress-pct').textContent = '100%';
+      document.getElementById('progress-bar').style.width = '100%';
+    } else {
+      updateProgress(n);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateProgress(n) {
+    const pct = Math.round((n / 7) * 100);
+    document.getElementById('progress-current').textContent = n;
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-bar').style.width = pct + '%';
+  }
+
+  function selectOption(el, qNum, score) {
+    document.querySelectorAll('#q' + qNum + ' .option-label').forEach(l => l.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[qNum] = score;
+    const btn = document.getElementById('next' + qNum);
+    if (btn) btn.disabled = false;
+  }
+
+  function nextQ(n) {
+    if (!answers[n]) return;
+    showQ(n + 1);
+  }
+
+  function prevQ(n) {
+    if (n === 'contact') { showQ(7); return; }
+    if (n > 1) { showQ(n - 1); return; }
+    document.getElementById('progress-wrap').style.display = 'none';
+    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('start-card').classList.add('active');
+  }
+
+  function goToContact() {
+    if (!answers[7]) return;
+    showQ('contact');
+  }
+
+  function submitAndShowResult() {
+    const gyoshu  = document.getElementById('field-gyoshu').value;
+    const mise    = document.getElementById('field-mise').value.trim();
+    const renraku = document.getElementById('field-renraku').value.trim();
+
+    if (!gyoshu)  { alert('業種を選択してください'); return; }
+    if (!mise)    { alert('お店・屋号を入力してください'); return; }
+
+    const total = Object.values(answers).reduce((s, v) => s + v, 0);
+    const rank  = total >= 17 ? '高' : total >= 11 ? '中' : '低';
+
+    const payload = {
+      timestamp: new Date().toLocaleString('ja-JP'),
+      gyoshu, mise, renraku, score: total, rank,
+      q1: answers[1], q2: answers[2], q3: answers[3], q4: answers[4],
+      q5: answers[5], q6: answers[6], q7: answers[7]
+    };
+
+    if (GAS_URL && GAS_URL !== 'YOUR_GAS_ENDPOINT_URL') {
+      document.getElementById('sending-state').style.display = 'block';
+      fetch(GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      }).catch(() => {}).finally(() => {
+        document.getElementById('sending-state').style.display = 'none';
+        renderResult(total);
+      });
+    } else {
+      renderResult(total);
+    }
+  }
+
+  function skipAndShowResult() {
+    const total = Object.values(answers).reduce((s, v) => s + v, 0);
+    renderResult(total);
+  }
+
+  function renderResult(total) {
+    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('progress-wrap').style.display = 'none';
+
+    const rs = document.getElementById('result-section');
+    rs.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const scoreEl = document.getElementById('score-num');
+    let count = 0;
+    const timer = setInterval(() => {
+      count++;
+      scoreEl.textContent = count;
+      if (count >= total) clearInterval(timer);
+    }, 60);
+    setTimeout(() => {
+      document.getElementById('score-bar').style.width = ((total / 21) * 100) + '%';
+    }, 200);
+
+    const iconEl  = document.getElementById('result-icon');
+    const labelEl = document.getElementById('result-rank-label');
+    const titleEl = document.getElementById('result-title');
+    const descEl  = document.getElementById('result-desc');
+    const barEl   = document.getElementById('score-bar');
+    const ctaEl   = document.getElementById('result-cta');
+    const listEl  = document.getElementById('result-checklist');
+
+    if (total >= 17) {
+      iconEl.textContent = '🔥';  iconEl.className = 'result-icon high';
+      labelEl.textContent = 'ホームページ必要度：高';  labelEl.className = 'result-label high';
+      barEl.className = 'score-bar high';
+      titleEl.textContent = '今すぐホームページを作るべきタイミングです';
+      descEl.innerHTML = 'SNSで集客の基盤は作れています。でも今のままでは「料金が分からない」「予約しにくい」というお客様を逃し続けています。<br><br>ホームページ1枚で、<strong>料金・予約・お店の雰囲気</strong>をまとめると、問い合わせ数は確実に変わります。';
+      ctaEl.innerHTML = `
+        <div class="cta-card primary">
+          <h3>無料でページ案を<br>お作りします</h3>
+          <p>診断結果をもとに、あなたのお店に合ったホームページのイメージ案を無料でご提案します。制作のご依頼は不要です。まずはお気軽にどうぞ。</p>
+          <a href="${LINE_URL}" class="btn-cta-line">📩 LINEで無料相談する</a>
+          <a href="index.html" class="btn-cta-white">サービス詳細を見る</a>
+        </div>`;
+    } else if (total >= 11) {
+      iconEl.textContent = '💡';  iconEl.className = 'result-icon mid';
+      labelEl.textContent = 'ホームページ必要度：中';  labelEl.className = 'result-label mid';
+      barEl.className = 'score-bar mid';
+      titleEl.textContent = 'あと一歩で集客が変わるかもしれません';
+      descEl.innerHTML = '現状でも集客の仕組みはある程度できています。ホームページを作ることで、<strong>Google検索からの流入</strong>や<strong>既存客のリピート促進</strong>に繋がる可能性があります。<br><br>一度、現状の課題を整理してみませんか？';
+      ctaEl.innerHTML = `
+        <div class="cta-card secondary">
+          <h3>無料で現状ヒアリングします</h3>
+          <p>「本当に今ホームページが必要か？」から一緒に考えます。押し売りは一切しません。</p>
+          <a href="${LINE_URL}" class="btn-cta-blue">LINEで無料相談する</a>
+        </div>`;
+    } else {
+      iconEl.textContent = '👍';  iconEl.className = 'result-icon low';
+      labelEl.textContent = 'ホームページ必要度：低め';  labelEl.className = 'result-label low';
+      barEl.className = 'score-bar low';
+      titleEl.textContent = '今すぐでなくてもOK。でも将来の布石として…';
+      descEl.innerHTML = '現状の集客環境はある程度整っています。すぐにホームページが必要というわけではありませんが、<strong>新規客の開拓や集客の幅を広げたい</strong>タイミングが来たときに備えておくことをおすすめします。';
+      ctaEl.innerHTML = `
+        <div class="cta-card secondary">
+          <h3>将来の準備として話を聞いてみる</h3>
+          <p>今すぐでなくてもOK。興味があればお気軽にどうぞ。</p>
+          <a href="index.html" class="btn-cta-blue">サービス詳細を見る</a>
+        </div>`;
+    }
+
+    const qLabels = ['','ホームページ','SNS活動','料金・メニュー情報','予約・問い合わせ','コンテンツ・写真','開業年数','集客意欲'];
+    const comments = {
+      3: ['なし → 要作成','活発 → 強み','埋もれている → 整理が必要','DM・LINEのみ → 入り口が狭い','こだわりあり → 活かせる','開業間もない → 今が最適','意欲高い → 行動に移そう'],
+      2: ['古い → リニューアルを検討','不定期 → もったいない','一部あり → もう一歩','予約サイト → 自前でも持てる','普通の写真 → もう少し追加を','2〜4年 → 今でも遅くない','意欲あり → まずは小さく始めよう'],
+      1: ['既にあり → 活用できている','ほとんどなし → SNSから始めよう','公開済み → しっかり見せられている','システム完備 → 活用できている','写真少なめ → 先に準備を','5年以上 → 実績を前面に出そう','現状満足 → 維持が大切']
+    };
+    const icons = { 3: '⚠️', 2: '📌', 1: '✅' };
+
+    let html = '';
+    for (let i = 1; i <= 7; i++) {
+      const s = answers[i];
+      const positive = s === 1 ? ' positive' : '';
+      html += `<li class="${positive}"><span class="icon">${icons[s]}</span><span><strong>${qLabels[i]}：</strong>${comments[s][i-1]}</span></li>`;
+    }
+    listEl.innerHTML = html;
+  }
+
+  function retryQuiz() {
+    for (let i = 1; i <= 7; i++) {
+      delete answers[i];
+      const card = document.getElementById('q' + i);
+      if (card) {
+        card.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+        const btn = card.querySelector('.btn-next, .btn-result');
+        if (btn) btn.disabled = true;
+      }
+    }
+    document.getElementById('field-gyoshu').value = '';
+    document.getElementById('field-mise').value = '';
+    document.getElementById('field-renraku').value = '';
+    document.getElementById('result-section').style.display = 'none';
+    document.getElementById('progress-wrap').style.display = 'none';
+    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('start-card').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

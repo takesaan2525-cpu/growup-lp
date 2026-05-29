@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GrowUP スライドプレビュー</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #111; font-family: 'Calibri', 'Hiragino Sans', sans-serif; padding: 20px; }
+.nav { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 100; }
+.nav button { background: rgba(255,255,255,0.15); border: none; color: white; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; }
+.nav button.active { background: #2563EB; }
+.slides { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; align-items: center; }
+.slide {
+  width: 800px; height: 450px;
+  border-radius: 8px; overflow: hidden; position: relative;
+  flex-shrink: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.slide-num {
+  position: absolute; top: 10px; right: 14px;
+  background: rgba(0,0,0,0.4); color: white;
+  font-size: 11px; padding: 3px 8px; border-radius: 10px; z-index: 10;
+}
+
+/* ── SLIDE 1 ── */
+.s1 { background: #1E293B; }
+.s1 .bar { position: absolute; left: 0; top: 0; width: 44px; height: 100%; background: #2563EB; }
+.s1 .content { position: absolute; left: 68px; top: 0; right: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+.s1 .logo { font-size: 18px; margin-bottom: 24px; }
+.s1 .logo span:first-child { color: #2563EB; font-weight: 900; }
+.s1 .logo span:last-child { color: #94A3B8; }
+.s1 h1 { font-size: 38px; font-weight: 900; color: white; line-height: 1.3; margin-bottom: 20px; }
+.s1 .sub { font-size: 14px; color: #94A3B8; margin-bottom: 28px; }
+.s1 .badges { display: flex; gap: 10px; }
+.s1 .badge { padding: 8px 18px; border-radius: 4px; color: white; font-size: 13px; font-weight: 700; }
+.s1 .badge.blue { background: #2563EB; }
+.s1 .badge.green { background: #16A34A; }
+
+/* ── SLIDE 2 ── */
+.s2 { background: white; }
+.s2 .header { background: #F8FAFC; padding: 16px 28px; font-size: 22px; font-weight: 800; color: #1E293B; border-bottom: 1px solid #E2E8F0; }
+.s2 .list { padding: 10px 28px; }
+.s2 .item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px; color: #1E293B; }
+.s2 .check { width: 28px; height: 28px; border-radius: 50%; background: #DCFCE7; border: 2px solid #16A34A; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #16A34A; font-weight: 900; font-size: 13px; }
+
+/* ── SLIDE 3 ── */
+.s3 { background: #2563EB; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.s3 h2 { font-size: 30px; font-weight: 900; color: white; margin-bottom: 8px; }
+.s3 .sub { font-size: 14px; color: #BFDBFE; margin-bottom: 28px; }
+.s3 .cards { display: flex; gap: 20px; }
+.s3 .card { background: white; border-radius: 10px; padding: 20px 28px; width: 200px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.s3 .label { font-size: 12px; color: #64748B; margin-bottom: 6px; }
+.s3 .price { font-size: 46px; font-weight: 900; color: #1E293B; line-height: 1; }
+.s3 .unit { font-size: 14px; color: #64748B; margin-top: 4px; }
+.s3 .foot { padding: 8px; margin-top: 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+.s3 .foot.gray { background: #F8FAFC; color: #64748B; }
+.s3 .foot.green { background: #DCFCE7; color: #16A34A; }
+
+/* ── SLIDE 4 ── */
+.s4 { background: #F8FAFC; }
+.s4 .header { background: #1E293B; padding: 16px 28px; font-size: 20px; font-weight: 800; color: white; }
+.s4 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 14px 20px; }
+.s4 .item { background: white; border-radius: 8px; padding: 11px 14px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: #1E293B; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+.s4 .emoji { font-size: 20px; }
+
+/* ── SLIDE 5 ── */
+.s5 { background: white; }
+.s5 .header { background: #F8FAFC; padding: 16px 28px; font-size: 22px; font-weight: 800; color: #1E293B; border-bottom: 1px solid #E2E8F0; }
+.s5 .cards { display: flex; gap: 14px; padding: 20px 24px; }
+.s5 .card { flex: 1; background: white; border-radius: 10px; padding: 20px 16px; border-top: 4px solid #2563EB; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.s5 .emoji { font-size: 30px; margin-bottom: 10px; }
+.s5 .title { font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 8px; line-height: 1.3; }
+.s5 .body { font-size: 11px; color: #64748B; line-height: 1.7; }
+
+/* ── SLIDE 6 ── */
+.s6 { background: #EFF6FF; }
+.s6 .header { background: #2563EB; padding: 16px 28px; font-size: 22px; font-weight: 800; color: white; }
+.s6 .steps { display: flex; gap: 0; padding: 20px 20px; align-items: flex-start; }
+.s6 .step { flex: 1; text-align: center; position: relative; }
+.s6 .step:not(:last-child)::after { content: '→'; position: absolute; right: -8px; top: 18px; color: #2563EB; font-size: 18px; font-weight: 900; }
+.s6 .num { width: 40px; height: 40px; background: #2563EB; border-radius: 50%; color: white; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+.s6 .card { background: white; border-radius: 10px; padding: 12px 10px; margin: 0 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); min-height: 180px; }
+.s6 .step-title { font-size: 13px; font-weight: 800; color: #1E293B; margin-bottom: 8px; }
+.s6 .step-body { font-size: 11px; color: #64748B; line-height: 1.6; }
+
+/* ── SLIDE 7 ── */
+.s7 { background: white; }
+.s7 .header { background: #F8FAFC; padding: 16px 28px; font-size: 22px; font-weight: 800; color: #1E293B; border-bottom: 1px solid #E2E8F0; }
+.s7 .list { padding: 8px 24px; }
+.s7 .item { padding: 12px 0; border-bottom: 1px solid #E2E8F0; }
+.s7 .q-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 5px; }
+.s7 .q-badge { background: #2563EB; color: white; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 3px; flex-shrink: 0; }
+.s7 .q-text { font-size: 13px; font-weight: 700; color: #1E293B; }
+.s7 .a-row { display: flex; gap: 10px; padding-left: 36px; }
+.s7 .a-badge { color: #16A34A; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.s7 .a-text { font-size: 12px; color: #64748B; line-height: 1.6; }
+
+/* ── SLIDE 8 ── */
+.s8 { background: #1E293B; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.s8 .top-bar { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #16A34A; }
+.s8 h2 { font-size: 30px; font-weight: 900; color: white; margin-bottom: 12px; text-align: center; }
+.s8 .sub { font-size: 13px; color: #94A3B8; text-align: center; line-height: 1.7; margin-bottom: 24px; }
+.s8 .cta { background: #16A34A; color: white; padding: 18px 40px; border-radius: 10px; text-align: center; box-shadow: 0 8px 24px rgba(22,163,74,0.4); margin-bottom: 20px; }
+.s8 .cta .main { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+.s8 .cta .url { font-size: 13px; color: #DCFCE7; }
+.s8 .trust { display: flex; gap: 28px; }
+.s8 .trust span { font-size: 13px; color: #64748B; }
+.s8 .trust span::before { content: '✓ '; color: #16A34A; }
+</style>
+</head>
+<body>
+<div class="slides">
+
+  <!-- SLIDE 1 -->
+  <div class="slide s1">
+    <div class="slide-num">1 / 8</div>
+    <div class="bar"></div>
+    <div class="content">
+      <div class="logo"><span>GrowUP</span><span>  サポート</span></div>
+      <h1>個人事業主・店舗向け<br>格安ホームページ制作</h1>
+      <div class="sub">サービス・料金 案内資料</div>
+      <div class="badges">
+        <div class="badge blue">制作費 60,000円</div>
+        <div class="badge blue">月額 10,000円</div>
+        <div class="badge green">いつでも解約OK</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide s2">
+    <div class="slide-num">2 / 8</div>
+    <div class="header">こんなお悩みはありませんか？</div>
+    <div class="list">
+      <div class="item"><div class="check">✓</div>Instagramだけで集客していて、料金表や予約方法が流れてしまう</div>
+      <div class="item"><div class="check">✓</div>Googleマップに公式サイトがなく、信用してもらいにくい</div>
+      <div class="item"><div class="check">✓</div>ホームページが欲しいけど、制作会社に10〜100万円は出せない</div>
+      <div class="item"><div class="check">✓</div>開業したばかりで、集客の入口を作りたい</div>
+      <div class="item"><div class="check">✓</div>LINEやDMで予約を受けているが、なかなか問い合わせが増えない</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide s3">
+    <div class="slide-num" style="background:rgba(255,255,255,0.2)">3 / 8</div>
+    <h2>GrowUPが解決します</h2>
+    <div class="sub">1ページのホームページで、集客の入口を低コストで作れます</div>
+    <div class="cards">
+      <div class="card">
+        <div class="label">初期制作費</div>
+        <div class="price">60,000</div>
+        <div class="unit">円（税込）</div>
+        <div class="foot gray">ホームページ制作一式込み</div>
+      </div>
+      <div class="card">
+        <div class="label">月額管理費</div>
+        <div class="price">10,000</div>
+        <div class="unit">円 ／ 月</div>
+        <div class="foot green">いつでも月単位で解約OK</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide s4">
+    <div class="slide-num" style="background:rgba(0,0,0,0.3);color:white">4 / 8</div>
+    <div class="header">制作するホームページに含まれるもの</div>
+    <div class="grid">
+      <div class="item"><span class="emoji">📱</span>スマホ対応デザイン</div>
+      <div class="item"><span class="emoji">📋</span>サービス紹介・料金表</div>
+      <div class="item"><span class="emoji">📞</span>LINE／電話／地図リンク</div>
+      <div class="item"><span class="emoji">📣</span>SNSリンク</div>
+      <div class="item"><span class="emoji">📩</span>問い合わせボタン</div>
+      <div class="item"><span class="emoji">🔍</span>基本SEO設定</div>
+      <div class="item"><span class="emoji">✏️</span>制作中の修正1回</div>
+      <div class="item"><span class="emoji">🔄</span>公開後の軽微な更新</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide s5">
+    <div class="slide-num">5 / 8</div>
+    <div class="header">なぜこの価格で作れるのか</div>
+    <div class="cards">
+      <div class="card">
+        <div class="emoji">⚡</div>
+        <div class="title">無駄のない制作フロー</div>
+        <div class="body">大手のように何十人も関わらず、必要な工程だけに集中。コスト削減をそのまま価格に還元しています。</div>
+      </div>
+      <div class="card">
+        <div class="emoji">💰</div>
+        <div class="title">1人運営で中間コストゼロ</div>
+        <div class="body">営業費・管理費がかかりません。費用はすべてお客様の制作品質に使われます。</div>
+      </div>
+      <div class="card">
+        <div class="emoji">🎯</div>
+        <div class="title">必要なものに絞った設計</div>
+        <div class="body">予約・決済など「今は不要なもの」は省略。料金・連絡先を1ページに集めるだけで集客効果は大きく変わります。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6 -->
+  <div class="slide s6">
+    <div class="slide-num">6 / 8</div>
+    <div class="header">制作の流れ</div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="card">
+          <div class="step-title">無料相談（LINE）</div>
+          <div class="step-body">集客状況・掲載内容をヒアリング。「何を載せればいいか分からない」でもOK。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="card">
+          <div class="step-title">ページ構成の提案</div>
+          <div class="step-body">ヒアリングをもとに無料でページ案を提案。合意したら制作スタート。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="card">
+          <div class="step-title">制作・確認</div>
+          <div class="step-body">1〜2週間で初稿を納品。1回の修正を反映します。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div class="card">
+          <div class="step-title">公開</div>
+          <div class="step-body">ドメイン・サーバー設定まで対応。公開後も軽微な更新はいつでも。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 -->
+  <div class="slide s7">
+    <div class="slide-num">7 / 8</div>
+    <div class="header">よくある質問</div>
+    <div class="list">
+      <div class="item">
+        <div class="q-row"><span class="q-badge">Q</span><span class="q-text">本当に6万円で作れますか？</span></div>
+        <div class="a-row"><span class="a-badge">A</span><span class="a-text">無駄な工程を省いたシンプルな制作フローにより実現。予約システム・複数ページは別途お見積りとなります。</span></div>
+      </div>
+      <div class="item">
+        <div class="q-row"><span class="q-badge">Q</span><span class="q-text">月額1万円はいつまでかかりますか？</span></div>
+        <div class="a-row"><span class="a-badge">A</span><span class="a-text">解約されるまでです。月単位でいつでも解約でき、解約後の管理・更新対応は終了となります。</span></div>
+      </div>
+      <div class="item">
+        <div class="q-row"><span class="q-badge">Q</span><span class="q-text">パソコンが苦手でも大丈夫ですか？</span></div>
+        <div class="a-row"><span class="a-badge">A</span><span class="a-text">はい。すべてLINEでのやりとりで進められます。専門知識は一切不要です。</span></div>
+      </div>
+      <div class="item">
+        <div class="q-row"><span class="q-badge">Q</span><span class="q-text">完成まで何日かかりますか？</span></div>
+        <div class="a-row"><span class="a-badge">A</span><span class="a-text">ヒアリング〜公開まで、通常1〜2週間程度です。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8 -->
+  <div class="slide s8">
+    <div class="slide-num" style="background:rgba(255,255,255,0.15);color:white">8 / 8</div>
+    <div class="top-bar"></div>
+    <h2>まずは無料でご相談ください</h2>
+    <div class="sub">「何を載せればいいか分からない」その段階でもOKです。<br>LINEで一言送るだけで、無料でページ案をお出しします。</div>
+    <div class="cta">
+      <div class="main">💬  LINEで「HP相談」と送る</div>
+      <div class="url">https://lin.ee/Y4Uq7uP</div>
+    </div>
+    <div class="trust">
+      <span>返信24時間以内</span>
+      <span>強引な勧誘なし</span>
+      <span>完全無料</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

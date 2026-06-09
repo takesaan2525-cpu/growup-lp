@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>格安ホームページ制作 | GrowUP サポート</title>
-  <meta name="description" content="個人事業主向け格安ホームページ制作。丁寧なヒアリングで、制作費6万円・月1万円を実現。">
+  <title>Web制作・業務ツール販売 | GrowUP サポート</title>
+  <meta name="description" content="個人事業主・夜職・メンエス店舗向けのHP制作と業務自動化ツール販売。制作費6万円〜・ツール3〜4万円（買い切り）。LINEで無料相談。">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -856,6 +856,141 @@
       animation: none;
     }
 
+    /* ===== NAV ===== */
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: 2px;
+    }
+    .nav-link {
+      font-size: 13px; font-weight: 700;
+      color: var(--gray-text);
+      padding: 7px 13px;
+      border-radius: 50px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { background: var(--blue-light); color: var(--blue); }
+    .nav-link.tool-nav { color: var(--green); }
+    .nav-link.tool-nav:hover { background: var(--green-light); }
+
+    /* ===== SERVICE INTRO ===== */
+    .service-intro { background: var(--white); }
+    .service-intro-grid {
+      display: flex; flex-direction: column;
+      gap: 20px; max-width: 680px; margin: 0 auto;
+    }
+    .service-intro-card {
+      border-radius: 20px; padding: 28px 24px;
+      border: 2px solid #E2E8F0;
+      transition: box-shadow 0.3s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .service-intro-card:hover {
+      box-shadow: 0 12px 36px rgba(37,99,235,0.13);
+      transform: translateY(-4px);
+    }
+    .service-intro-card.hp {
+      border-color: rgba(37,99,235,0.25);
+      background: linear-gradient(135deg, #EFF6FF 0%, #fff 60%);
+    }
+    .service-intro-card.tool {
+      border-color: rgba(22,163,74,0.25);
+      background: linear-gradient(135deg, #F0FFF4 0%, #fff 60%);
+    }
+    .service-intro-label {
+      font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+      margin-bottom: 10px; padding: 3px 10px;
+      border-radius: 50px; display: inline-block;
+    }
+    .service-intro-card.hp .service-intro-label { background: var(--blue-light); color: var(--blue); }
+    .service-intro-card.tool .service-intro-label { background: var(--green-light); color: var(--green); }
+    .service-intro-icon { font-size: 38px; margin-bottom: 10px; display: block; }
+    .service-intro-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .service-intro-text { font-size: 14px; color: var(--gray-text); line-height: 1.85; margin-bottom: 14px; }
+    .service-intro-price { font-size: 13px; color: var(--gray-text); margin-bottom: 18px; }
+    .service-intro-price strong { font-size: 22px; font-weight: 900; color: var(--black); margin-right: 2px; }
+    .btn-service {
+      display: inline-block; font-size: 14px; font-weight: 700;
+      padding: 10px 22px; border-radius: 50px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-service:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-service.blue { background: var(--blue); color: var(--white); }
+    .btn-service.green { background: var(--green); color: var(--white); }
+
+    /* ===== TOOL TEASER ===== */
+    .tool-teaser {
+      background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #0A2D14 100%);
+      padding: 72px 20px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .tool-teaser::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: rgba(22,163,74,0.08);
+      border-radius: 50%; filter: blur(60px);
+    }
+    .tool-teaser-eyebrow {
+      display: inline-block;
+      background: rgba(22,163,74,0.15);
+      border: 1px solid rgba(22,163,74,0.3);
+      color: #4ADE80;
+      font-size: 11px; font-weight: 800; letter-spacing: 1px;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 16px;
+    }
+    .tool-teaser-title {
+      font-size: 24px; font-weight: 900; color: var(--white);
+      margin-bottom: 14px; line-height: 1.4;
+      position: relative; z-index: 1;
+    }
+    .tool-teaser-sub {
+      font-size: 14px; color: rgba(255,255,255,0.7);
+      margin-bottom: 28px; line-height: 1.9;
+      max-width: 460px; margin-left: auto; margin-right: auto;
+      position: relative; z-index: 1;
+    }
+    .tool-tags {
+      display: flex; flex-wrap: wrap;
+      gap: 10px; justify-content: center;
+      margin-bottom: 32px; position: relative; z-index: 1;
+    }
+    .tool-tag {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.82);
+      font-size: 13px; font-weight: 600;
+      padding: 7px 16px; border-radius: 50px;
+    }
+    .tool-teaser-btns { display: flex; flex-direction: column; align-items: center; gap: 12px; position: relative; z-index: 1; }
+    .btn-demo {
+      position: relative; overflow: hidden;
+      display: block; width: 100%; max-width: 300px;
+      background: linear-gradient(135deg, var(--green), #15803D);
+      color: var(--white); font-size: 16px; font-weight: 800;
+      padding: 16px 28px; border-radius: 50px; text-align: center;
+      box-shadow: 0 4px 20px rgba(22,163,74,0.4);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-demo::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shimmer 2.8s infinite;
+    }
+    .btn-demo:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(22,163,74,0.55); }
+    .btn-tool-page {
+      display: block; width: 100%; max-width: 300px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white); font-size: 14px; font-weight: 700;
+      padding: 14px 28px; border-radius: 50px; text-align: center;
+      transition: background 0.2s;
+    }
+    .btn-tool-page:hover { background: rgba(255,255,255,0.15); }
+
     /* ===== RESPONSIVE ===== */
     @media (min-width: 600px) {
       .hero h1 { font-size: 46px; }
@@ -866,6 +1001,11 @@
       .pricing-card { flex: 1; }
       .support-cards { flex-direction: row; max-width: 680px; }
       .support-card { flex: 1; justify-content: center; }
+      .header-nav { display: flex; }
+      .service-intro-grid { flex-direction: row; }
+      .service-intro-card { flex: 1; }
+      .tool-teaser-btns { flex-direction: row; justify-content: center; }
+      .btn-demo, .btn-tool-page { width: auto; }
     }
     @media (min-width: 800px) {
       .cards-3 .card { flex: 1 1 calc(33% - 14px); }
@@ -881,7 +1021,11 @@
     <div class="header-logo">
       <span class="logo-main">GrowUP</span><span class="logo-sub"> サポート</span>
     </div>
-    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header">💬 LINEで相談</a>
+    <nav class="header-nav">
+      <a href="index.html" class="nav-link active">HP制作</a>
+      <a href="tools.html" class="nav-link tool-nav">🛠 ツール販売</a>
+    </nav>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header">💬 LINE相談</a>
   </header>
 
   <!-- HERO -->
@@ -890,26 +1034,49 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
     <div class="hero-inner">
-      <span class="hero-eyebrow">✦ 個人事業主・フリーランス向け</span>
-      <h1>ホームページ、<br><span class="grad">安くて後回しに</span><br>していませんか？</h1>
+      <span class="hero-eyebrow">✦ 個人事業主・夜職・メンエス店舗向け</span>
+      <h1>Web制作 × 業務ツールで<br><span class="grad">集客・業務を</span><br>まるごと解決</h1>
       <p class="hero-sub">
-        丁寧なヒアリングと無駄のない制作で、<br>
-        制作費6万円・月1万円を実現。<br>
-        LINE・電話・地図リンク・料金表を<br>
-        1ページにまとめます。
+        ホームページ制作から業務自動化ツールまで、<br>
+        個人事業主・店舗オーナーの<br>
+        「面倒くさい」をまとめて解決します。
       </p>
       <div class="hero-message">
         <div class="hero-message-icon">💬</div>
-        <p>「何を載せたらいいか分からない」でも大丈夫。まずはLINEで一言送るだけで、無料でページ案をお出しします。</p>
+        <p>「何から始めたらいいか分からない」でも大丈夫。まずはLINEで一言送るだけで、無料でご提案します。</p>
       </div>
       <div class="hero-badges">
-        <span class="hero-badge">✅ 制作費 60,000円</span>
-        <span class="hero-badge">✅ 月額 10,000円</span>
+        <span class="hero-badge">✅ HP制作 60,000円〜</span>
+        <span class="hero-badge">✅ ツール 30,000円〜</span>
+        <span class="hero-badge">✅ 夜職・メンエス対応</span>
         <span class="hero-badge">✅ いつでも解約OK</span>
       </div>
       <div class="hero-cta">
         <a href="https://lin.ee/Y4Uq7uP" class="btn-primary">▶ LINEで無料相談する</a>
-        <a href="samples.html" class="btn-secondary">無料でページ案を見る</a>
+        <a href="tools.html" class="btn-secondary">🛠 業務ツールを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE INTRO -->
+  <section class="service-intro">
+    <h2 class="section-title reveal">GrowUP サポートの2つのサービス</h2>
+    <div class="service-intro-grid">
+      <div class="service-intro-card hp reveal delay-1">
+        <span class="service-intro-label">SERVICE 01</span>
+        <span class="service-intro-icon">🌐</span>
+        <div class="service-intro-title">ホームページ制作</div>
+        <p class="service-intro-text">Googleマップや予約サイトと連動する、集客に強いHPを格安で制作。夜職・メンエス・個人サロンなど業界問わず対応。</p>
+        <p class="service-intro-price">制作費 <strong>60,000</strong>円〜 / 管理費 月<strong>10,000</strong>円〜</p>
+        <a href="#pricing" class="btn-service blue">料金・詳細を見る →</a>
+      </div>
+      <div class="service-intro-card tool reveal delay-2">
+        <span class="service-intro-label">SERVICE 02</span>
+        <span class="service-intro-icon">🛠</span>
+        <div class="service-intro-title">業務自動化ツール販売</div>
+        <p class="service-intro-text">LINE自動返信・予約管理・掲載更新自動化など、店舗業務を自動化するツールを買い切り価格で提供。夜職・メンエス特化。</p>
+        <p class="service-intro-price">買い切り <strong>30,000</strong>〜<strong>40,000</strong>円 / 管理費 月<strong>10,000</strong>円〜</p>
+        <a href="tools.html" class="btn-service green">ツールの詳細を見る →</a>
       </div>
     </div>
   </section>
@@ -923,6 +1090,8 @@
       <li class="checklist-item reveal delay-3"><span class="checklist-icon">✓</span><span>ホームページが欲しいけど、制作会社に10〜100万円は出せない</span></li>
       <li class="checklist-item reveal delay-4"><span class="checklist-icon">✓</span><span>開業したばかりで、集客の入口を作りたい</span></li>
       <li class="checklist-item reveal delay-5"><span class="checklist-icon">✓</span><span>LINEやDMで予約を受けているが、問い合わせが来ない</span></li>
+      <li class="checklist-item reveal delay-1"><span class="checklist-icon">✓</span><span>メンエス・夜職の店舗で、予約管理やLINE返信に追われている</span></li>
+      <li class="checklist-item reveal delay-2"><span class="checklist-icon">✓</span><span>複数の掲載サイトを手動で更新するのが面倒で、更新漏れがある</span></li>
     </ul>
   </section>
 
@@ -960,6 +1129,28 @@
       <div class="grid-item reveal delay-2"><span class="grid-item-icon">🔍</span>基本SEO設定</div>
       <div class="grid-item reveal delay-1"><span class="grid-item-icon">✏️</span>制作中の修正1回</div>
       <div class="grid-item reveal delay-2"><span class="grid-item-icon">🔄</span>公開後の軽微な更新</div>
+    </div>
+  </section>
+
+  <!-- TOOL TEASER -->
+  <section class="tool-teaser">
+    <span class="tool-teaser-eyebrow reveal">NEW ✦ 業務自動化ツール販売</span>
+    <h2 class="tool-teaser-title reveal">夜職・メンエス店舗の<br>業務を自動化するツール</h2>
+    <p class="tool-teaser-sub reveal">
+      予約管理・LINE自動返信・掲載サイト更新を自動化。<br>
+      買い切り30,000〜40,000円で、毎日の手間をゼロに。<br>
+      まずは無料デモを体験してみてください。
+    </p>
+    <div class="tool-tags reveal">
+      <span class="tool-tag">📩 LINE自動返信</span>
+      <span class="tool-tag">📅 予約管理自動化</span>
+      <span class="tool-tag">🔄 掲載更新自動化</span>
+      <span class="tool-tag">🌙 夜職・メンエス特化</span>
+      <span class="tool-tag">💰 買い切りOK</span>
+    </div>
+    <div class="tool-teaser-btns reveal">
+      <a href="https://tweet-tool-six.vercel.app/demo" target="_blank" class="btn-demo">▶ 無料デモを試してみる</a>
+      <a href="tools.html" class="btn-tool-page">ツール詳細ページ →</a>
     </div>
   </section>
 
@@ -1100,18 +1291,18 @@
     <h2 class="section-title reveal">その他のサポートメニュー</h2>
     <p class="other-support-sub">ホームページ制作以外にも対応できます</p>
     <div class="support-cards">
-      <div class="support-card reveal delay-1">📱 SNS投稿代行（Instagram・X）</div>
+      <div class="support-card reveal delay-1">🛠 業務自動化ツール制作・販売</div>
       <div class="support-card reveal delay-2">💬 LINE公式アカウント構築</div>
-      <div class="support-card reveal delay-3">🎬 ショート動画制作（TikTok・Reels）</div>
+      <div class="support-card reveal delay-3">📱 SNS運用サポート（Instagram・X）</div>
     </div>
-    <p class="support-contact reveal">詳細はLINEでご相談ください</p>
+    <p class="support-contact reveal">詳細はLINEでご相談ください ／ <a href="tools.html" style="color:var(--blue);text-decoration:underline;">ツール販売ページはこちら</a></p>
   </section>
 
   <!-- CTA -->
   <section class="cta-section">
-    <h2 class="cta-title reveal">まずは無料で<br>相談してみてください</h2>
-    <p class="cta-sub reveal">「何を載せればいいか分からない」その段階でもOKです。今の投稿内容をもとに、無料で簡単なページ案をお出しします。</p>
-    <a href="https://lin.ee/Y4Uq7uP" class="btn-cta reveal">▶ LINEで「HP相談」と送る</a>
+    <h2 class="cta-title reveal">HP制作もツール制作も<br>まずは無料相談から</h2>
+    <p class="cta-sub reveal">「何から始めたらいいか分からない」その段階でOKです。ヒアリングして、HP制作・ツール導入のどちらが合うかも一緒に考えます。</p>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-cta reveal">▶ LINEで「相談したい」と送る</a>
     <p class="cta-notes reveal">返信24時間以内 ／ 強引な勧誘なし ／ 完全無料</p>
   </section>
 

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>業務自動化ツール販売 | GrowUP サポート</title>
+  <meta name="description" content="夜職・メンエス店舗向けの業務自動化ツール。LINE自動返信・予約管理・掲載更新自動化を買い切り30,000〜40,000円で提供。無料デモあり。">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563EB;
+      --blue-dark: #1D4ED8;
+      --blue-light: #EFF6FF;
+      --green: #16A34A;
+      --green-light: #DCFCE7;
+      --purple: #7C3AED;
+      --purple-light: #EDE9FE;
+      --gray-light: #F8FAFC;
+      --gray-mid: #94A3B8;
+      --gray-text: #64748B;
+      --black: #1E293B;
+      --white: #FFFFFF;
+      --dark: #0F172A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+      font-size: 16px;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ===== GRADIENT TEXT ===== */
+    .grad {
+      background: linear-gradient(135deg, #4ADE80 0%, #06B6D4 60%, var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226,232,240,0.8);
+      padding: 12px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-logo { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
+    .header-logo .logo-main { color: var(--blue); }
+    .header-logo .logo-sub { color: var(--green); }
+
+    .header-nav {
+      display: none; align-items: center; gap: 2px;
+    }
+    .nav-link {
+      font-size: 13px; font-weight: 700;
+      color: var(--gray-text); padding: 7px 13px;
+      border-radius: 50px; transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { background: var(--blue-light); color: var(--blue); }
+    .nav-link.active { color: var(--green); background: var(--green-light); }
+
+    .btn-line-header {
+      background: var(--green); color: var(--white);
+      font-size: 14px; font-weight: 700;
+      padding: 9px 18px; border-radius: 50px;
+      white-space: nowrap;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 2px 10px rgba(22,163,74,0.35);
+    }
+    .btn-line-header:hover {
+      background: #15803D;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(22,163,74,0.45);
+    }
+
+    /* ===== HERO (dark) ===== */
+    .hero {
+      background: linear-gradient(135deg, #0F172A 0%, #1A2E4A 40%, #0A2010 100%);
+      padding: 72px 20px 80px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(70px); pointer-events: none; z-index: 0;
+    }
+    .blob-1 { width: 320px; height: 320px; background: rgba(22,163,74,0.12); top: -120px; right: -80px; animation: blobFloat 9s ease-in-out infinite; }
+    .blob-2 { width: 260px; height: 260px; background: rgba(37,99,235,0.1); bottom: -80px; left: -60px; animation: blobFloat 11s ease-in-out infinite reverse; }
+    .blob-3 { width: 180px; height: 180px; background: rgba(124,58,237,0.08); top: 40%; left: 50%; animation: blobFloat 7s ease-in-out infinite 2s; }
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(15px,-20px) scale(1.06); }
+    }
+
+    .hero-inner { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 800;
+      color: #4ADE80;
+      background: rgba(22,163,74,0.15);
+      border: 1px solid rgba(22,163,74,0.3);
+      padding: 5px 14px; border-radius: 50px;
+      margin-bottom: 22px; letter-spacing: 1px;
+    }
+
+    .hero h1 {
+      font-size: 36px; font-weight: 900;
+      color: var(--white); line-height: 1.35;
+      margin-bottom: 20px; letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      font-size: 15px; color: rgba(255,255,255,0.72);
+      line-height: 1.9; margin-bottom: 28px;
+    }
+
+    .hero-price-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px; padding: 20px 28px;
+      display: inline-block; margin-bottom: 32px;
+    }
+    .hero-price-label { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 700; margin-bottom: 4px; }
+    .hero-price-num { font-size: 44px; font-weight: 900; color: #4ADE80; line-height: 1.1; letter-spacing: -2px; }
+    .hero-price-unit { font-size: 16px; color: rgba(255,255,255,0.6); font-weight: 600; }
+    .hero-price-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 36px;
+    }
+    .hero-badge {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+      font-size: 13px; font-weight: 700;
+      padding: 7px 16px; border-radius: 50px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .hero-cta { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+
+    .btn-primary {
+      position: relative; overflow: hidden;
+      display: block; width: 100%; max-width: 340px;
+      background: linear-gradient(135deg, var(--green) 0%, #15803D 100%);
+      color: var(--white); font-size: 18px; font-weight: 800;
+      padding: 18px 24px; border-radius: 50px; text-align: center;
+      transition: box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(22,163,74,0.5);
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+      animation: shimmer 2.8s infinite;
+    }
+    @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(22,163,74,0.6); }
+
+    .btn-demo-hero {
+      display: block; width: 100%; max-width: 340px;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: var(--white); font-size: 15px; font-weight: 700;
+      padding: 15px 24px; border-radius: 50px; text-align: center;
+      transition: background 0.2s;
+    }
+    .btn-demo-hero:hover { background: rgba(255,255,255,0.18); }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 72px 20px; }
+
+    .section-title {
+      font-size: 26px; font-weight: 800; text-align: center;
+      margin-bottom: 44px; line-height: 1.4;
+      position: relative; padding-bottom: 18px;
+    }
+    .section-title::after {
+      content: ""; position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 44px; height: 4px;
+      background: linear-gradient(90deg, var(--green), #06B6D4, var(--blue));
+      border-radius: 2px;
+    }
+    .section-label {
+      display: block; text-align: center;
+      font-size: 11px; font-weight: 800;
+      color: var(--green); letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    /* ===== PROBLEMS ===== */
+    .problems { background: var(--gray-light); position: relative; overflow: hidden; }
+    .problems::before {
+      content: ''; position: absolute;
+      top: -100px; right: -100px;
+      width: 300px; height: 300px;
+      background: rgba(124,58,237,0.05);
+      border-radius: 50%; filter: blur(60px);
+    }
+
+    .problem-list { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .problem-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--white); border-radius: 12px;
+      border-left: 4px solid #EF4444;
+      padding: 14px 18px; font-size: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      line-height: 1.7;
+    }
+    .problem-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ===== FEATURES ===== */
+    .features { background: var(--white); }
+
+    .feature-cards { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .feature-card {
+      border-radius: 20px; padding: 28px 24px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: box-shadow 0.3s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--green), #06B6D4);
+    }
+    .feature-card:hover { box-shadow: 0 12px 36px rgba(22,163,74,0.13); transform: translateY(-4px); }
+    .feature-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .feature-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--green-light); display: flex;
+      align-items: center; justify-content: center; font-size: 26px;
+      flex-shrink: 0;
+    }
+    .feature-title { font-size: 18px; font-weight: 800; margin-bottom: 2px; }
+    .feature-tag { font-size: 11px; font-weight: 700; color: var(--green); background: var(--green-light); padding: 2px 10px; border-radius: 50px; }
+    .feature-text { font-size: 14px; color: var(--gray-text); line-height: 1.85; margin-bottom: 14px; }
+    .feature-points { list-style: none; }
+    .feature-points li {
+      font-size: 13px; color: var(--gray-text);
+      padding: 5px 0; display: flex; gap: 8px;
+      align-items: flex-start;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .feature-points li:last-child { border-bottom: none; }
+    .feature-points li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    /* ===== DEMO SECTION ===== */
+    .demo-section {
+      background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #0A2D14 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .demo-section::before {
+      content: ''; position: absolute; top: -80px; left: -80px;
+      width: 280px; height: 280px;
+      background: rgba(22,163,74,0.1); border-radius: 50%; filter: blur(60px);
+    }
+    .demo-section::after {
+      content: ''; position: absolute; bottom: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: rgba(37,99,235,0.1); border-radius: 50%; filter: blur(50px);
+    }
+    .demo-inner { position: relative; z-index: 1; }
+    .demo-eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      font-size: 11px; font-weight: 800; letter-spacing: 1px;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 16px;
+    }
+    .demo-title { font-size: 24px; font-weight: 900; color: var(--white); margin-bottom: 14px; line-height: 1.4; }
+    .demo-sub { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 32px; line-height: 1.9; max-width: 440px; margin-left: auto; margin-right: auto; }
+
+    .demo-preview {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 20px;
+      max-width: 400px; margin: 0 auto 32px;
+    }
+    .demo-preview-label { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; }
+    .demo-preview-items { display: flex; flex-direction: column; gap: 8px; }
+    .demo-preview-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 600;
+    }
+    .demo-preview-item-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ADE80; flex-shrink: 0; }
+
+    .btn-demo-big {
+      position: relative; overflow: hidden;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--green), #15803D);
+      color: var(--white); font-size: 18px; font-weight: 800;
+      padding: 18px 40px; border-radius: 50px;
+      box-shadow: 0 4px 24px rgba(22,163,74,0.5);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-demo-big::after {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      animation: shimmer 2.8s infinite;
+    }
+    .btn-demo-big:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(22,163,74,0.65); }
+    .demo-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
+    /* ===== PRICING ===== */
+    .pricing { background: var(--white); }
+
+    .pricing-cards {
+      display: flex; flex-direction: column;
+      gap: 24px; max-width: 660px; margin: 0 auto 24px;
+    }
+    .pricing-card {
+      border: 2px solid #CBD5E1; border-radius: 22px;
+      padding: 32px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .pricing-card:hover { transform: translateY(-3px); }
+    .pricing-card.featured {
+      border: none; position: relative;
+      background: linear-gradient(180deg, #F0FFF4 0%, #FFFFFF 50%);
+      box-shadow: 0 0 0 2px var(--green), 0 16px 48px rgba(22,163,74,0.18);
+    }
+    .pricing-card.featured:hover {
+      box-shadow: 0 0 0 2px var(--green), 0 24px 60px rgba(22,163,74,0.25);
+    }
+    .badge-recommended {
+      position: absolute; top: -16px; left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--green), #16a34a);
+      color: var(--white); font-size: 13px; font-weight: 800;
+      padding: 5px 20px; border-radius: 50px;
+      white-space: nowrap; box-shadow: 0 4px 12px rgba(22,163,74,0.35);
+    }
+    .pricing-plan-name { font-size: 16px; font-weight: 700; color: var(--gray-text); margin-bottom: 18px; text-align: center; }
+    .pricing-price { text-align: center; margin-bottom: 6px; }
+    .pricing-price-label { font-size: 12px; color: var(--gray-mid); margin-bottom: 2px; }
+    .pricing-price-num { font-size: 50px; font-weight: 900; color: var(--black); line-height: 1.1; letter-spacing: -2px; }
+    .pricing-price-unit { font-size: 18px; font-weight: 700; color: var(--gray-text); }
+    .badge-cancel {
+      display: block; background: var(--green-light); color: var(--green);
+      font-size: 13px; font-weight: 700; padding: 5px 14px;
+      border-radius: 50px; margin: 14px auto 18px; width: fit-content;
+    }
+    .pricing-list { list-style: none; margin-bottom: 24px; }
+    .pricing-list li {
+      font-size: 14px; padding: 7px 0;
+      display: flex; align-items: flex-start; gap: 8px;
+      color: var(--gray-text); border-bottom: 1px solid #F1F5F9;
+    }
+    .pricing-list li:last-child { border-bottom: none; }
+    .pricing-list li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .btn-green-full {
+      position: relative; overflow: hidden;
+      display: block; width: 100%;
+      background: linear-gradient(135deg, var(--green), #15803D);
+      color: var(--white); font-size: 16px; font-weight: 800;
+      padding: 16px; border-radius: 50px; text-align: center;
+      transition: box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 4px 14px rgba(22,163,74,0.35);
+    }
+    .btn-green-full::after {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shimmer 3s infinite;
+    }
+    .btn-green-full:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(22,163,74,0.45); }
+    .btn-blue-full {
+      display: block; width: 100%; background: var(--white);
+      color: var(--blue); font-size: 16px; font-weight: 800;
+      padding: 16px; border-radius: 50px; border: 2px solid var(--blue);
+      text-align: center; transition: background 0.2s, box-shadow 0.2s;
+    }
+    .btn-blue-full:hover { background: var(--blue-light); box-shadow: 0 4px 14px rgba(37,99,235,0.15); }
+    .pricing-note { font-size: 13px; color: var(--gray-mid); text-align: center; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    /* ===== FLOW ===== */
+    .flow { background: var(--gray-light); position: relative; overflow: hidden; }
+    .steps { display: flex; flex-direction: column; max-width: 600px; margin: 0 auto; }
+    .step { display: flex; gap: 18px; position: relative; }
+    .step:not(:last-child)::after {
+      content: ""; position: absolute;
+      left: 19px; top: 48px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--green), rgba(22,163,74,0.1));
+    }
+    .step-num {
+      flex-shrink: 0; width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--green), #16a34a);
+      color: var(--white); font-size: 15px; font-weight: 800;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      box-shadow: 0 4px 12px rgba(22,163,74,0.4);
+    }
+    .step-num::before {
+      content: ''; position: absolute; inset: -5px;
+      border-radius: 50%; border: 2px solid rgba(22,163,74,0.25);
+      animation: ring-pulse 2s ease-in-out infinite;
+    }
+    @keyframes ring-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 0; }
+    }
+    .step-body { padding-bottom: 36px; flex: 1; }
+    .step-inner {
+      background: var(--white); border-radius: 14px;
+      padding: 18px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      border: 1px solid rgba(255,255,255,0.9);
+    }
+    .step-label { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 1px; margin-bottom: 4px; }
+    .step-title { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+    .step-text { font-size: 14px; color: var(--gray-text); line-height: 1.8; }
+
+    /* ===== FAQ ===== */
+    .faq { background: var(--white); }
+    .faq-list { max-width: 680px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid #E2E8F0; }
+    .faq-item:first-child { border-top: 1px solid #E2E8F0; }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 20px 0; text-align: left;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 12px; font-family: inherit;
+    }
+    .faq-q-text { font-size: 16px; font-weight: 700; color: var(--black); line-height: 1.5; }
+    .faq-q-icon {
+      flex-shrink: 0; width: 26px; height: 26px;
+      border-radius: 50%; background: var(--green-light);
+      color: var(--green); font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.25s, background 0.2s, color 0.2s; margin-top: 1px;
+    }
+    .faq-item.open .faq-q-icon {
+      transform: rotate(45deg);
+      background: linear-gradient(135deg, var(--green), #06B6D4);
+      color: var(--white);
+    }
+    .faq-a { display: none; padding: 0 0 20px; font-size: 15px; color: var(--gray-text); line-height: 1.85; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #064E3B 0%, #065F46 40%, #1E3A5F 100%);
+      background-size: 300% 300%;
+      animation: gradMove 8s ease infinite;
+      padding: 80px 20px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    @keyframes gradMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .cta-section::before { content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+    .cta-title { font-size: 24px; font-weight: 900; color: var(--white); margin-bottom: 16px; line-height: 1.45; position: relative; z-index: 1; }
+    .cta-sub { font-size: 15px; color: rgba(255,255,255,0.85); margin-bottom: 36px; line-height: 1.85; max-width: 480px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+    .btn-cta {
+      position: relative; overflow: hidden;
+      display: block; max-width: 340px; margin: 0 auto 20px;
+      background: var(--white); color: var(--green);
+      font-size: 18px; font-weight: 800;
+      padding: 20px 28px; border-radius: 50px; text-align: center;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2); z-index: 1;
+    }
+    .btn-cta::after {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(22,163,74,0.08), transparent);
+      animation: shimmer 2.5s infinite;
+    }
+    .btn-cta:hover { transform: translateY(-2px); opacity: 0.97; }
+    .cta-notes { font-size: 13px; color: rgba(255,255,255,0.6); position: relative; z-index: 1; }
+
+    /* ===== FOOTER ===== */
+    .footer { background: var(--dark); padding: 40px 20px; text-align: center; }
+    .footer-logo { font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 14px; }
+    .footer-link { display: inline-block; color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 16px; text-decoration: underline; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* ===== FLOAT BTN ===== */
+    .float-btn {
+      position: fixed; bottom: 24px; right: 20px; z-index: 200;
+      background: linear-gradient(135deg, var(--green), #15803D);
+      color: var(--white); font-size: 14px; font-weight: 800;
+      padding: 14px 22px; border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(22,163,74,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+      animation: float-pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes float-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(22,163,74,0.5); }
+      50% { box-shadow: 0 4px 30px rgba(22,163,74,0.75), 0 0 0 8px rgba(22,163,74,0.08); }
+    }
+    .float-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(22,163,74,0.6); animation: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 44px; }
+      .header-nav { display: flex; }
+      .feature-cards { flex-direction: row; flex-wrap: wrap; }
+      .feature-card { flex: 1 1 calc(50% - 10px); }
+      .pricing-cards { flex-direction: row; align-items: flex-start; }
+      .pricing-card { flex: 1; }
+    }
+    @media (min-width: 800px) {
+      .section-title { font-size: 30px; }
+      .cta-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo">
+      <span class="logo-main">GrowUP</span><span class="logo-sub"> サポート</span>
+    </div>
+    <nav class="header-nav">
+      <a href="index.html" class="nav-link">HP制作</a>
+      <a href="tools.html" class="nav-link active">🛠 ツール販売</a>
+    </nav>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header">💬 LINE相談</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="hero-inner">
+      <span class="hero-eyebrow">🌙 夜職・メンエス店舗向け 業務自動化ツール</span>
+      <h1>毎日の手間を<br><span class="grad">全部自動化</span>する<br>業務ツール</h1>
+      <p class="hero-sub">
+        LINE返信・予約管理・掲載サイト更新…<br>
+        その手間、全部なくせます。<br>
+        買い切り価格で導入コストも最小限。
+      </p>
+      <div class="hero-price-box">
+        <p class="hero-price-label">買い切り価格</p>
+        <p><span class="hero-price-num">30,000</span><span class="hero-price-unit">〜40,000円</span></p>
+        <p class="hero-price-sub">+ 月額管理費 10,000円〜（任意）</p>
+      </div>
+      <div class="hero-badges">
+        <span class="hero-badge">📩 LINE自動返信</span>
+        <span class="hero-badge">📅 予約管理自動化</span>
+        <span class="hero-badge">🔄 掲載更新自動化</span>
+        <span class="hero-badge">💰 買い切りOK</span>
+      </div>
+      <div class="hero-cta">
+        <a href="https://lin.ee/Y4Uq7uP" class="btn-primary">▶ LINEで無料相談する</a>
+        <a href="https://tweet-tool-six.vercel.app/demo" target="_blank" class="btn-demo-hero">▷ 無料デモを試す（体験版）</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section class="problems">
+    <span class="section-label reveal">PROBLEMS</span>
+    <h2 class="section-title reveal">こんな悩み、ありませんか？</h2>
+    <div class="problem-list">
+      <div class="problem-item reveal delay-1"><span class="problem-icon">😩</span><span>LINEの問い合わせ対応に毎日追われていて、本業に集中できない</span></div>
+      <div class="problem-item reveal delay-2"><span class="problem-icon">😩</span><span>複数の掲載サイト（エステラブ・リラナビ等）の更新を手動でやっていて更新漏れが起きている</span></div>
+      <div class="problem-item reveal delay-3"><span class="problem-icon">😩</span><span>予約が入ったのに他サイトに重複して入ってしまい、ダブルブッキングが発生した</span></div>
+      <div class="problem-item reveal delay-4"><span class="problem-icon">😩</span><span>料金・コース変更のたびに全サイトを1つずつ更新するのが大変</span></div>
+      <div class="problem-item reveal delay-1"><span class="problem-icon">😩</span><span>新規のお客様への返信が遅れて、他の店に流れてしまっている気がする</span></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <span class="section-label reveal">FEATURES</span>
+    <h2 class="section-title reveal">3つの自動化機能</h2>
+    <div class="feature-cards">
+
+      <div class="feature-card reveal delay-1">
+        <div class="feature-card-header">
+          <div class="feature-icon">📩</div>
+          <div>
+            <div class="feature-title">LINE自動返信</div>
+            <span class="feature-tag">最も人気</span>
+          </div>
+        </div>
+        <p class="feature-text">「料金は？」「予約したい」などのメッセージに24時間自動で返信。新規顧客の離脱を防ぎます。</p>
+        <ul class="feature-points">
+          <li>キーワード別の自動返信設定</li>
+          <li>料金・コース案内の自動送信</li>
+          <li>空き時間の自動案内</li>
+          <li>初回メッセージの自動ウェルカム返信</li>
+        </ul>
+      </div>
+
+      <div class="feature-card reveal delay-2">
+        <div class="feature-card-header">
+          <div class="feature-icon">📅</div>
+          <div>
+            <div class="feature-title">予約管理自動化</div>
+            <span class="feature-tag">ダブルブッキング防止</span>
+          </div>
+        </div>
+        <p class="feature-text">1つのサイトで予約が入ったら、他のすべての掲載サイトを自動でブロック。ダブルブッキングがなくなります。</p>
+        <ul class="feature-points">
+          <li>複数サイトの予約状況を一元管理</li>
+          <li>予約確定で他サイトを自動クローズ</li>
+          <li>キャンセル時の自動再開放</li>
+          <li>LINEへの予約通知自動送信</li>
+        </ul>
+      </div>
+
+      <div class="feature-card reveal delay-3">
+        <div class="feature-card-header">
+          <div class="feature-icon">🔄</div>
+          <div>
+            <div class="feature-title">掲載更新自動化</div>
+            <span class="feature-tag">更新漏れゼロ</span>
+          </div>
+        </div>
+        <p class="feature-text">料金・コース・写真を1か所で変更するだけで、全掲載サイトに自動反映。更新の手間が劇的に減ります。</p>
+        <ul class="feature-points">
+          <li>掲載サイト情報の一括更新</li>
+          <li>写真・プロフィールの自動同期</li>
+          <li>キャンペーン情報の一斉配信</li>
+          <li>更新完了の自動通知</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="demo-section">
+    <div class="demo-inner">
+      <span class="demo-eyebrow reveal">FREE DEMO</span>
+      <h2 class="demo-title reveal">まず無料デモを<br>体験してください</h2>
+      <p class="demo-sub reveal">
+        実際にLINE自動返信や予約管理がどう動くか、<br>
+        デモ画面でそのまま試せます。<br>
+        登録不要・完全無料。
+      </p>
+      <div class="demo-preview reveal">
+        <p class="demo-preview-label">DEMO で体験できること</p>
+        <div class="demo-preview-items">
+          <div class="demo-preview-item"><span class="demo-preview-item-dot"></span>LINE自動返信シミュレーター</div>
+          <div class="demo-preview-item"><span class="demo-preview-item-dot"></span>予約連動・自動ブロックシミュレーター</div>
+          <div class="demo-preview-item"><span class="demo-preview-item-dot"></span>掲載更新の流れを体験</div>
+        </div>
+      </div>
+      <a href="https://tweet-tool-six.vercel.app/demo" target="_blank" class="btn-demo-big reveal">▶ 無料デモを体験する</a>
+      <p class="demo-note reveal">登録不要・完全無料・スマホでも動作</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <span class="section-label reveal">PRICING</span>
+    <h2 class="section-title reveal">料金プラン</h2>
+    <div class="pricing-cards">
+      <div class="pricing-card featured reveal delay-1">
+        <span class="badge-recommended">おすすめ</span>
+        <p class="pricing-plan-name">フルパッケージ</p>
+        <div class="pricing-price">
+          <div class="pricing-price-label">買い切り価格</div>
+          <div><span class="pricing-price-num">40,000</span><span class="pricing-price-unit">円</span></div>
+        </div>
+        <span class="badge-cancel">買い切り・月額なしで使える</span>
+        <ul class="pricing-list">
+          <li>LINE自動返信ツール</li>
+          <li>予約管理・自動ブロック機能</li>
+          <li>掲載更新一括管理機能</li>
+          <li>初期設定・操作レクチャー込み</li>
+          <li>導入後1ヶ月の無料サポート</li>
+          <li>カスタムキーワード設定（10件）</li>
+        </ul>
+        <a href="https://lin.ee/Y4Uq7uP" class="btn-green-full">LINEで相談・購入する</a>
+      </div>
+      <div class="pricing-card reveal delay-2">
+        <p class="pricing-plan-name">単機能プラン</p>
+        <div class="pricing-price">
+          <div class="pricing-price-label">買い切り価格</div>
+          <div><span class="pricing-price-num">30,000</span><span class="pricing-price-unit">円〜</span></div>
+        </div>
+        <div style="margin: 18px 0 20px; font-size: 14px; color: var(--gray-text); line-height: 2.2;">
+          <p>LINE自動返信のみ、など</p>
+          <p>1機能からの導入OK</p>
+          <p>必要な機能だけ選べる</p>
+        </div>
+        <a href="https://lin.ee/Y4Uq7uP" class="btn-blue-full">LINEで相談する</a>
+      </div>
+    </div>
+    <p class="pricing-note reveal">
+      月額管理プラン（10,000円〜）では、キーワード追加・機能更新・不具合対応を継続サポート。<br>
+      導入後の設定変更・機能拡張は別途お見積りとなります。
+    </p>
+  </section>
+
+  <!-- FLOW -->
+  <section class="flow">
+    <span class="section-label reveal">FLOW</span>
+    <h2 class="section-title reveal">導入の流れ</h2>
+    <div class="steps">
+      <div class="step reveal delay-1">
+        <div class="step-num">1</div>
+        <div class="step-body"><div class="step-inner">
+          <div class="step-label">STEP 1</div>
+          <div class="step-title">LINEで無料相談</div>
+          <p class="step-text">現在の業務課題・使用中の掲載サイト・必要な機能をヒアリングします。まずは気軽にメッセージを送ってください。</p>
+        </div></div>
+      </div>
+      <div class="step reveal delay-2">
+        <div class="step-num">2</div>
+        <div class="step-body"><div class="step-inner">
+          <div class="step-label">STEP 2</div>
+          <div class="step-title">デモ体験・お見積り</div>
+          <p class="step-text">無料デモで実際の動きを確認してもらい、導入する機能と費用をご提示します。</p>
+        </div></div>
+      </div>
+      <div class="step reveal delay-3">
+        <div class="step-num">3</div>
+        <div class="step-body"><div class="step-inner">
+          <div class="step-label">STEP 3</div>
+          <div class="step-title">カスタマイズ・設定</div>
+          <p class="step-text">店舗情報・キーワード・掲載サイトに合わせて設定。通常3〜5日で納品します。</p>
+        </div></div>
+      </div>
+      <div class="step reveal delay-4">
+        <div class="step-num">4</div>
+        <div class="step-body"><div class="step-inner">
+          <div class="step-label">STEP 4</div>
+          <div class="step-title">納品・レクチャー</div>
+          <p class="step-text">操作マニュアルを渡してLINEまたはビデオ通話で使い方をご説明。1ヶ月間の無料サポートがつきます。</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <span class="section-label reveal">FAQ</span>
+    <h2 class="section-title reveal">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">夜職の業種でも問題なく使えますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">はい、完全対応しています。メンズエステ・夜キャバ・デリヘル・ガールズバーなどの業種向けに設計しています。業界特有の掲載サイト（エステラブ・リラナビ等）にも対応します。</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">スマホだけで管理できますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">はい。LINEを使った管理がメインなので、スマホだけで全て操作できます。パソコン不要です。</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">買い切りの後、追加費用はかかりますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">基本的にかかりません。月額管理プランは任意で、不要であればサポート期間終了後も買い切りでそのまま使い続けられます。ただし、仕様変更やキーワード追加などのカスタマイズは別途費用が発生する場合があります。</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">LINE公式アカウントを持っていないと使えませんか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">LINE公式アカウントが必要な機能もありますが、アカウント開設のサポートも行っています。まずLINEでご相談ください。</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">どの掲載サイトに対応していますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">エステラブ・リラナビ・マッサージ師・ヒーリングなど主要サイトに対応しています。対応サイトはヒアリング時にご確認ください。希望サイトへの対応追加も相談可能です。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="cta-title reveal">まずは無料デモか<br>LINEで相談してください</h2>
+    <p class="cta-sub reveal">「うちの店舗でも使えるか？」その確認だけでもOKです。デモを見てから決めてもらえればOK。押し売りは一切しません。</p>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-cta reveal">▶ LINEで「ツール相談」と送る</a>
+    <p class="cta-notes reveal">返信24時間以内 ／ 強引な勧誘なし ／ 完全無料</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">GrowUP サポート</div>
+    <a href="https://lin.ee/Y4Uq7uP" class="footer-link">LINEで相談する</a>
+    <p style="margin-bottom:12px;">
+      <a href="index.html" style="color:rgba(255,255,255,0.4);font-size:12px;text-decoration:underline;margin:0 10px;">ホームページ制作はこちら</a>
+      <a href="legal.html#tokushoho" style="color:rgba(255,255,255,0.4);font-size:12px;text-decoration:underline;margin:0 10px;">特定商取引法に基づく表示</a>
+      <a href="legal.html#privacy" style="color:rgba(255,255,255,0.4);font-size:12px;text-decoration:underline;margin:0 10px;">プライバシーポリシー</a>
+    </p>
+    <p class="footer-copy">© 2026 GrowUP サポート｜遠田 健</p>
+  </footer>
+
+  <a href="https://lin.ee/Y4Uq7uP" class="float-btn">💬 LINE相談</a>
+
+  <script>
+    /* スクロールリビール */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* FAQアコーディオン */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const item = this.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) { item.classList.add('open'); this.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+  </script>
+</body>
+</html>

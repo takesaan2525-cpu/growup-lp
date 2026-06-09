@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>業務自動化ツール ご提案資料 | GrowUP サポート</title>
+  <meta name="description" content="メンエス・夜職店舗向け業務自動化ツールのご提案資料です。">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #16A34A;
+      --green-light: #DCFCE7;
+      --blue: #2563EB;
+      --dark: #0F172A;
+      --dark2: #1E293B;
+      --gray: #64748B;
+      --gray-light: #F8FAFC;
+      --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── COVER ── */
+    .cover {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0F172A 0%, #1A2E4A 45%, #0A2010 100%);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 60px 24px;
+      position: relative; overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: rgba(22,163,74,0.07);
+      border-radius: 50%; filter: blur(80px);
+    }
+    .cover::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: rgba(37,99,235,0.07);
+      border-radius: 50%; filter: blur(70px);
+    }
+    .cover-inner { position: relative; z-index: 1; max-width: 600px; }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(22,163,74,0.15);
+      border: 1px solid rgba(22,163,74,0.3);
+      color: #4ADE80;
+      font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 28px;
+    }
+    .cover h1 {
+      font-size: 36px; font-weight: 900; line-height: 1.3;
+      margin-bottom: 20px; letter-spacing: -0.5px;
+    }
+    .cover h1 span {
+      background: linear-gradient(135deg, #4ADE80, #06B6D4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cover-sub {
+      font-size: 15px; color: rgba(255,255,255,0.65);
+      line-height: 1.9; margin-bottom: 36px;
+    }
+    .cover-meta {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 13px; color: rgba(255,255,255,0.45);
+    }
+    .cover-meta strong { color: rgba(255,255,255,0.8); }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 64px 24px;
+      max-width: 680px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      color: #4ADE80; margin-bottom: 8px; display: block;
+    }
+    .section h2 {
+      font-size: 26px; font-weight: 900; margin-bottom: 32px;
+      line-height: 1.4;
+    }
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 0 24px;
+    }
+
+    /* ── PROBLEMS ── */
+    .problems-bg { background: #111827; }
+    .problem-list { display: flex; flex-direction: column; gap: 12px; }
+    .problem-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid #EF4444;
+      border-radius: 10px; padding: 14px 18px;
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+    }
+    .problem-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* ── SOLUTION ── */
+    .solution-cards { display: flex; flex-direction: column; gap: 16px; }
+    .solution-card {
+      background: rgba(22,163,74,0.06);
+      border: 1px solid rgba(22,163,74,0.2);
+      border-radius: 16px; padding: 22px 20px;
+    }
+    .solution-card-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 10px;
+    }
+    .solution-num {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(22,163,74,0.2); border: 1px solid rgba(22,163,74,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .solution-title { font-size: 16px; font-weight: 800; }
+    .solution-tag {
+      font-size: 10px; font-weight: 700; color: #4ADE80;
+      background: rgba(22,163,74,0.15); padding: 2px 8px;
+      border-radius: 50px; margin-top: 2px; display: inline-block;
+    }
+    .solution-text { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.8; }
+    .solution-points { margin-top: 10px; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .solution-points li {
+      font-size: 12px; color: rgba(255,255,255,0.6);
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .solution-points li::before { content: "✓"; color: #4ADE80; font-weight: 700; flex-shrink: 0; }
+
+    /* ── DEMO ── */
+    .demo-bg {
+      background: linear-gradient(135deg, #0A2010 0%, #0F172A 100%);
+    }
+    .demo-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 28px 24px;
+      text-align: center;
+    }
+    .demo-box-label { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 700; letter-spacing: 1px; margin-bottom: 16px; }
+    .demo-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .demo-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 12px 16px;
+      display: flex; align-items: center; gap: 12px;
+      font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 600;
+      text-align: left;
+    }
+    .demo-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ADE80; flex-shrink: 0; }
+    .btn-demo {
+      display: block; width: 100%;
+      background: linear-gradient(135deg, var(--green), #15803D);
+      color: var(--white); font-size: 16px; font-weight: 800;
+      padding: 16px 24px; border-radius: 50px; text-align: center;
+      box-shadow: 0 4px 20px rgba(22,163,74,0.4);
+      transition: opacity 0.2s, transform 0.15s;
+      position: relative; overflow: hidden;
+    }
+    .btn-demo::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shimmer 2.8s infinite;
+    }
+    @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+    .btn-demo:hover { opacity: 0.9; transform: translateY(-1px); }
+    .demo-note { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 10px; }
+
+    /* ── PRICING ── */
+    .pricing-bg { background: #111827; }
+    .pricing-cards { display: flex; flex-direction: column; gap: 16px; }
+    .pricing-card {
+      border-radius: 18px; padding: 26px 22px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+    }
+    .pricing-card.featured {
+      border: 1px solid rgba(22,163,74,0.4);
+      background: rgba(22,163,74,0.06);
+      position: relative;
+    }
+    .pricing-badge {
+      position: absolute; top: -13px; left: 20px;
+      background: linear-gradient(90deg, var(--green), #16a34a);
+      color: var(--white); font-size: 11px; font-weight: 800;
+      padding: 4px 14px; border-radius: 50px;
+      box-shadow: 0 3px 10px rgba(22,163,74,0.35);
+    }
+    .pricing-name { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 700; margin-bottom: 10px; }
+    .pricing-price { font-size: 42px; font-weight: 900; line-height: 1; margin-bottom: 4px; letter-spacing: -1px; }
+    .pricing-unit { font-size: 15px; color: rgba(255,255,255,0.5); font-weight: 600; }
+    .pricing-tag {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      color: #4ADE80; background: rgba(22,163,74,0.15);
+      padding: 3px 10px; border-radius: 50px; margin: 10px 0 14px;
+    }
+    .pricing-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .pricing-list li {
+      font-size: 13px; color: rgba(255,255,255,0.65);
+      display: flex; gap: 8px; align-items: flex-start;
+      padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .pricing-list li:last-child { border-bottom: none; }
+    .pricing-list li::before { content: "✓"; color: #4ADE80; font-weight: 700; flex-shrink: 0; }
+
+    /* ── FLOW ── */
+    .flow-steps { display: flex; flex-direction: column; }
+    .flow-step { display: flex; gap: 16px; position: relative; }
+    .flow-step:not(:last-child)::after {
+      content: '';
+      position: absolute; left: 17px; top: 40px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(22,163,74,0.4), rgba(22,163,74,0.05));
+    }
+    .flow-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(22,163,74,0.15);
+      border: 1.5px solid rgba(22,163,74,0.4);
+      color: #4ADE80; font-size: 13px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .flow-body { padding-bottom: 28px; flex: 1; }
+    .flow-title { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .flow-text { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.8; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #064E3B 0%, #065F46 50%, #1E3A5F 100%);
+      padding: 64px 24px; text-align: center;
+    }
+    .cta-inner { max-width: 480px; margin: 0 auto; }
+    .cta-section h2 { font-size: 24px; font-weight: 900; margin-bottom: 14px; line-height: 1.4; }
+    .cta-section p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.9; margin-bottom: 32px; }
+    .btn-cta {
+      display: block; width: 100%; max-width: 340px; margin: 0 auto 14px;
+      background: var(--white); color: var(--green);
+      font-size: 18px; font-weight: 800;
+      padding: 18px 24px; border-radius: 50px; text-align: center;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-cta:hover { opacity: 0.95; transform: translateY(-1px); }
+    .cta-note { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); padding: 32px 24px; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 2; }
+    footer a { color: rgba(255,255,255,0.45); text-decoration: underline; }
+
+    @media (min-width: 600px) {
+      .cover h1 { font-size: 44px; }
+      .pricing-cards { flex-direction: row; }
+      .pricing-card { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-inner">
+      <span class="cover-badge">🌙 メンエス・夜職店舗向け ご提案資料</span>
+      <h1>毎日の業務を<br><span>まるごと自動化</span>する<br>システムのご提案</h1>
+      <p class="cover-sub">
+        予約管理・LINE対応・掲載更新を一元化し、<br>
+        オーナー・スタッフの負担を大幅に削減します。
+      </p>
+      <div class="cover-meta">
+        <div><strong>提案者：</strong>GrowUP サポート　小林</div>
+        <div><strong>サービスサイト：</strong>https://growup-support.netlify.app</div>
+        <div><strong>料金：</strong>30,000〜40,000円（買い切り）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEMS -->
+  <div class="problems-bg">
+    <div class="section">
+      <span class="section-label">PROBLEMS</span>
+      <h2>こういうお悩み、<br>ありませんか？</h2>
+      <div class="problem-list">
+        <div class="problem-item"><span class="problem-icon">😩</span><span>LINEの問い合わせ対応に毎日追われていて、本業に集中できない</span></div>
+        <div class="problem-item"><span class="problem-icon">😩</span><span>複数の掲載サイト（エステラブ・リラナビ等）の更新を手動でやっていて更新漏れが起きている</span></div>
+        <div class="problem-item"><span class="problem-icon">😩</span><span>予約が重複してダブルブッキングになったことがある</span></div>
+        <div class="problem-item"><span class="problem-icon">😩</span><span>新規からのLINEへの返信が遅れて、他の店に取られてしまった気がする</span></div>
+        <div class="problem-item"><span class="problem-icon">😩</span><span>料金・コース変更のたびに全サイトを1つずつ更新するのが大変</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SOLUTION -->
+  <div class="section">
+    <span class="section-label">SOLUTION</span>
+    <h2>提供できる<br>3つの自動化</h2>
+    <div class="solution-cards">
+
+      <div class="solution-card">
+        <div class="solution-card-header">
+          <div class="solution-num">📩</div>
+          <div>
+            <div class="solution-title">LINE自動返信</div>
+            <span class="solution-tag">最も人気</span>
+          </div>
+        </div>
+        <p class="solution-text">「料金は？」「予約したい」などのメッセージに24時間自動で返信。新規顧客の離脱を防ぎます。</p>
+        <ul class="solution-points">
+          <li>キーワード別の自動返信設定（料金・コース・空き時間など）</li>
+          <li>初回メッセージへの自動ウェルカム返信</li>
+          <li>返信内容はいつでも変更可能</li>
+        </ul>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-card-header">
+          <div class="solution-num">📅</div>
+          <div>
+            <div class="solution-title">予約管理・自動連動</div>
+            <span class="solution-tag">ダブルブッキング防止</span>
+          </div>
+        </div>
+        <p class="solution-text">1つのサイトで予約が入ったら、他のすべての掲載サイトを自動でブロック。ダブルブッキングがゼロに。</p>
+        <ul class="solution-points">
+          <li>複数サイトの予約状況を一元管理</li>
+          <li>予約確定で他サイトを自動クローズ</li>
+          <li>キャンセル時の自動再開放</li>
+        </ul>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-card-header">
+          <div class="solution-num">🔄</div>
+          <div>
+            <div class="solution-title">掲載更新の一括管理</div>
+            <span class="solution-tag">更新漏れゼロ</span>
+          </div>
+        </div>
+        <p class="solution-text">料金・コース・写真を1か所で変更するだけで、全掲載サイトに自動反映。更新の手間が劇的に減ります。</p>
+        <ul class="solution-points">
+          <li>1か所更新 → 全サイト自動反映</li>
+          <li>キャンペーン情報の一斉配信</li>
+          <li>更新完了の自動通知</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DEMO -->
+  <div class="demo-bg">
+    <div class="section">
+      <span class="section-label">FREE DEMO</span>
+      <h2>実際に触って<br>確認できます</h2>
+      <div class="demo-box">
+        <p class="demo-box-label">デモで体験できること</p>
+        <div class="demo-items">
+          <div class="demo-item"><span class="demo-dot"></span>LINE自動返信シミュレーター（実際に文字を打って試せる）</div>
+          <div class="demo-item"><span class="demo-dot"></span>予約連動・自動ブロックシミュレーター</div>
+          <div class="demo-item"><span class="demo-dot"></span>掲載更新の自動反映の流れ</div>
+        </div>
+        <a href="https://tweet-tool-six.vercel.app/demo" target="_blank" class="btn-demo">▶ 無料デモを体験する</a>
+        <p class="demo-note">登録不要・完全無料・スマホで動作</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PRICING -->
+  <div class="pricing-bg">
+    <div class="section">
+      <span class="section-label">PRICING</span>
+      <h2>料金プラン</h2>
+      <div class="pricing-cards">
+
+        <div class="pricing-card featured">
+          <span class="pricing-badge">おすすめ</span>
+          <p class="pricing-name">フルパッケージ</p>
+          <div class="pricing-price">40,000<span class="pricing-unit">円</span></div>
+          <span class="pricing-tag">月額なし・買い切り</span>
+          <ul class="pricing-list">
+            <li>LINE自動返信ツール</li>
+            <li>予約管理・自動ブロック機能</li>
+            <li>掲載更新一括管理機能</li>
+            <li>初期設定・操作レクチャー込み</li>
+            <li>導入後1ヶ月の無料サポート</li>
+            <li>カスタムキーワード設定（10件）</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card">
+          <p class="pricing-name">単機能プラン</p>
+          <div class="pricing-price">30,000<span class="pricing-unit">円〜</span></div>
+          <span class="pricing-tag">月額なし・買い切り</span>
+          <ul class="pricing-list">
+            <li>LINE自動返信のみ、など</li>
+            <li>1機能からの導入OK</li>
+            <li>必要な機能だけ選べる</li>
+            <li>後からの追加も相談可</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 16px 18px;">
+        <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.8;">
+          ※ 月額管理プラン（10,000円〜）では、キーワード追加・機能更新・不具合対応を継続サポート（任意）<br>
+          ※ 導入後のカスタマイズ・機能拡張は別途お見積り<br>
+          ※ 「こんなのが欲しい」はゼロから対応できます。お気軽にご相談を。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FLOW -->
+  <div class="section">
+    <span class="section-label">FLOW</span>
+    <h2>導入の流れ</h2>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <div class="flow-title">ヒアリング（無料）</div>
+          <p class="flow-text">現在使っている掲載サイト・LINEの状況・お悩みをお聞きします。LINEまたはビデオ通話で30分以内。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <div class="flow-title">お見積り・プラン提案</div>
+          <p class="flow-text">ヒアリングをもとに最適なプランをご提案。デモで動きを確認してから決めていただけます。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <div class="flow-title">カスタマイズ・設定（3〜5日）</div>
+          <p class="flow-text">店舗情報・キーワード・掲載サイトに合わせて設定します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+          <div class="flow-title">納品・レクチャー・稼働</div>
+          <p class="flow-text">操作マニュアルをお渡しして使い方をご説明。稼働後1ヶ月は無料でサポートします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-inner">
+      <h2>まずはデモを見てから<br>決めてください</h2>
+      <p>「うちに合うか分からない」その確認だけでもOKです。<br>無理な売り込みは一切しません。</p>
+      <a href="https://tweet-tool-six.vercel.app/demo" target="_blank" class="btn-cta">▶ 無料デモを体験する</a>
+      <p class="cta-note">登録不要 · 完全無料 · しつこい営業なし</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <strong style="color:rgba(255,255,255,0.6);">GrowUP サポート　小林</strong><br>
+      <a href="https://growup-support.netlify.app" target="_blank">https://growup-support.netlify.app</a><br>
+      ツール販売ページ：<a href="https://growup-support.netlify.app/tools.html" target="_blank">https://growup-support.netlify.app/tools.html</a>
+    </p>
+  </footer>
+
+</body>
+</html>

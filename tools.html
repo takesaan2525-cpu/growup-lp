@@ -233,6 +233,11 @@
       line-height: 1.7;
     }
     .problem-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    /* 線アイコン（絵文字置き換え） */
+    .ico { width: 1em; height: 1em; display: inline-block; vertical-align: -0.12em; margin-right: 5px;
+      fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .problem-icon svg { width: 20px; height: 20px; fill: none; stroke: #ef4444; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-icon svg { width: 26px; height: 26px; fill: none; stroke: var(--green); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 
     /* ===== FEATURES ===== */
     .features { background: var(--white); }
@@ -550,9 +555,9 @@
     </div>
     <nav class="header-nav">
       <a href="index.html" class="nav-link">HP制作</a>
-      <a href="tools.html" class="nav-link active">🛠 ツール販売</a>
+      <a href="tools.html" class="nav-link active"><svg class="ico" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>ツール販売</a>
     </nav>
-    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header">💬 LINE相談</a>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>LINE相談</a>
   </header>
 
   <!-- HERO -->
@@ -574,10 +579,10 @@
         <p class="hero-price-sub">+ 月額管理費 10,000円〜（任意）</p>
       </div>
       <div class="hero-badges">
-        <span class="hero-badge">📩 LINE自動返信</span>
-        <span class="hero-badge">📅 予約管理自動化</span>
-        <span class="hero-badge">🔄 掲載更新自動化</span>
-        <span class="hero-badge">💰 買い切りOK</span>
+        <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>LINE自動返信</span>
+        <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>予約管理自動化</span>
+        <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>掲載更新自動化</span>
+        <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>買い切りOK</span>
       </div>
       <div class="hero-cta">
         <a href="https://lin.ee/Y4Uq7uP" class="btn-primary">▶ LINEで無料相談する</a>
@@ -591,11 +596,11 @@
     <span class="section-label reveal">PROBLEMS</span>
     <h2 class="section-title reveal">こんな悩み、ありませんか？</h2>
     <div class="problem-list">
-      <div class="problem-item reveal delay-1"><span class="problem-icon">😩</span><span>LINEの問い合わせ対応に毎日追われていて、本業に集中できない</span></div>
-      <div class="problem-item reveal delay-2"><span class="problem-icon">😩</span><span>複数の掲載サイト（エステラブ・リラナビ等）の更新を手動でやっていて更新漏れが起きている</span></div>
-      <div class="problem-item reveal delay-3"><span class="problem-icon">😩</span><span>予約が入ったのに他サイトに重複して入ってしまい、ダブルブッキングが発生した</span></div>
-      <div class="problem-item reveal delay-4"><span class="problem-icon">😩</span><span>料金・コース変更のたびに全サイトを1つずつ更新するのが大変</span></div>
-      <div class="problem-item reveal delay-1"><span class="problem-icon">😩</span><span>新規のお客様への返信が遅れて、他の店に流れてしまっている気がする</span></div>
+      <div class="problem-item reveal delay-1"><span class="problem-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><span>LINEの問い合わせ対応に毎日追われていて、本業に集中できない</span></div>
+      <div class="problem-item reveal delay-2"><span class="problem-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><span>複数の掲載サイト（エステラブ・リラナビ等）の更新を手動でやっていて更新漏れが起きている</span></div>
+      <div class="problem-item reveal delay-3"><span class="problem-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><span>予約が入ったのに他サイトに重複して入ってしまい、ダブルブッキングが発生した</span></div>
+      <div class="problem-item reveal delay-4"><span class="problem-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><span>料金・コース変更のたびに全サイトを1つずつ更新するのが大変</span></div>
+      <div class="problem-item reveal delay-1"><span class="problem-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><span>新規のお客様への返信が遅れて、他の店に流れてしまっている気がする</span></div>
     </div>
   </section>
 
@@ -607,7 +612,7 @@
 
       <div class="feature-card reveal delay-1">
         <div class="feature-card-header">
-          <div class="feature-icon">📩</div>
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div>
             <div class="feature-title">LINE自動返信</div>
             <span class="feature-tag">最も人気</span>
@@ -624,7 +629,7 @@
 
       <div class="feature-card reveal delay-2">
         <div class="feature-card-header">
-          <div class="feature-icon">📅</div>
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
           <div>
             <div class="feature-title">予約管理自動化</div>
             <span class="feature-tag">ダブルブッキング防止</span>
@@ -641,7 +646,7 @@
 
       <div class="feature-card reveal delay-3">
         <div class="feature-card-header">
-          <div class="feature-icon">🔄</div>
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
           <div>
             <div class="feature-title">掲載更新自動化</div>
             <span class="feature-tag">更新漏れゼロ</span>
@@ -829,7 +834,7 @@
     <p class="footer-copy">© 2026 GrowUP サポート｜遠田 健</p>
   </footer>
 
-  <a href="https://lin.ee/Y4Uq7uP" class="float-btn">💬 LINE相談</a>
+  <a href="https://lin.ee/Y4Uq7uP" class="float-btn"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>LINE相談</a>
 
   <script>
     /* スクロールリビール */

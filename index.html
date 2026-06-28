@@ -446,6 +446,14 @@
       transform: translateY(-2px);
     }
     .grid-item-icon { font-size: 22px; }
+    /* 線アイコン（絵文字置き換え・プロ仕様） */
+    .grid-item-icon, .card-icon, .service-intro-icon { color: var(--blue); }
+    .grid-item-icon svg, .card-icon svg, .service-intro-icon svg {
+      width: 1em; height: 1em; display: inline-block; vertical-align: -0.18em;
+      stroke: currentColor; fill: none; stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .grid-item-icon svg { margin-right: 4px; }
 
     /* ===== PRICING ===== */
     .pricing { background: var(--white); }
@@ -1064,7 +1072,7 @@
     <div class="service-intro-grid">
       <div class="service-intro-card hp reveal delay-1">
         <span class="service-intro-label">SERVICE 01</span>
-        <span class="service-intro-icon">🌐</span>
+        <span class="service-intro-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
         <div class="service-intro-title">ホームページ制作</div>
         <p class="service-intro-text">Googleマップや予約サイトと連動する、集客に強いHPを格安で制作。夜職・メンエス・個人サロンなど業界問わず対応。</p>
         <p class="service-intro-price">制作費 <strong>60,000</strong>円〜 / 管理費 月<strong>10,000</strong>円〜</p>
@@ -1072,7 +1080,7 @@
       </div>
       <div class="service-intro-card tool reveal delay-2">
         <span class="service-intro-label">SERVICE 02</span>
-        <span class="service-intro-icon">🛠</span>
+        <span class="service-intro-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
         <div class="service-intro-title">業務自動化ツール販売</div>
         <p class="service-intro-text">LINE自動返信・予約管理・掲載更新自動化など、店舗業務を自動化するツールを買い切り価格で提供。夜職・メンエス特化。</p>
         <p class="service-intro-price">買い切り <strong>30,000</strong>〜<strong>40,000</strong>円 / 管理費 月<strong>10,000</strong>円〜</p>
@@ -1100,17 +1108,17 @@
     <h2 class="section-title reveal">なぜこの価格で作れるのか</h2>
     <div class="cards-3">
       <div class="card reveal delay-1">
-        <span class="card-icon">⚡</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
         <div class="card-title">無駄のない制作フロー</div>
         <p class="card-text">何十人もの担当が関わる大手とは違い、必要な工程だけに集中して動きます。その分のコストをそのまま価格に還元しています。</p>
       </div>
       <div class="card reveal delay-2">
-        <span class="card-icon">💰</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
         <div class="card-title">1人運営だから中間コストゼロ</div>
         <p class="card-text">大手制作会社のような営業費・管理費がかかりません。あなたの費用はそのまま制作品質に使われます。</p>
       </div>
       <div class="card reveal delay-3">
-        <span class="card-icon">🎯</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
         <div class="card-title">必要なものに絞った設計</div>
         <p class="card-text">予約システムや決済機能など「今は不要なもの」は省いています。料金表・連絡先・SNSリンクを1ページにまとめるだけで、集客効果は大きく変わります。</p>
       </div>
@@ -1121,14 +1129,14 @@
   <section class="includes">
     <h2 class="section-title reveal">制作するホームページに含まれるもの</h2>
     <div class="grid-2">
-      <div class="grid-item reveal delay-1"><span class="grid-item-icon">📱</span>スマホ対応デザイン</div>
-      <div class="grid-item reveal delay-2"><span class="grid-item-icon">📋</span>サービス紹介・料金表</div>
-      <div class="grid-item reveal delay-1"><span class="grid-item-icon">📞</span>LINE／電話／地図リンク</div>
-      <div class="grid-item reveal delay-2"><span class="grid-item-icon">📣</span>SNSリンク</div>
-      <div class="grid-item reveal delay-1"><span class="grid-item-icon">📩</span>問い合わせボタン</div>
-      <div class="grid-item reveal delay-2"><span class="grid-item-icon">🔍</span>基本SEO設定</div>
-      <div class="grid-item reveal delay-1"><span class="grid-item-icon">✏️</span>制作中の修正1回</div>
-      <div class="grid-item reveal delay-2"><span class="grid-item-icon">🔄</span>公開後の軽微な更新</div>
+      <div class="grid-item reveal delay-1"><span class="grid-item-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>スマホ対応デザイン</div>
+      <div class="grid-item reveal delay-2"><span class="grid-item-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></span>サービス紹介・料金表</div>
+      <div class="grid-item reveal delay-1"><span class="grid-item-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>LINE／電話／地図リンク</div>
+      <div class="grid-item reveal delay-2"><span class="grid-item-icon"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></span>SNSリンク</div>
+      <div class="grid-item reveal delay-1"><span class="grid-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>問い合わせボタン</div>
+      <div class="grid-item reveal delay-2"><span class="grid-item-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>基本SEO設定</div>
+      <div class="grid-item reveal delay-1"><span class="grid-item-icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>制作中の修正1回</div>
+      <div class="grid-item reveal delay-2"><span class="grid-item-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>公開後の軽微な更新</div>
     </div>
   </section>
 

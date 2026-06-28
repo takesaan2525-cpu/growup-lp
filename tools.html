@@ -531,10 +531,85 @@
     }
     .float-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(22,163,74,0.6); animation: none; }
 
+    /* ===== LIGHT HERO (HPと統一) ===== */
+    .hero {
+      background: linear-gradient(160deg, #F0FFF4 0%, #FFFFFF 55%, #EFF6FF 100%);
+      text-align: left;
+    }
+    .hero h1 { color: var(--black); background:none; }
+    .hero-sub { color: var(--gray-text); }
+    .hero-eyebrow { color: var(--green); background: var(--green-light); border: 1px solid rgba(22,163,74,0.25); }
+    .hero-grid { display:flex; flex-direction:column; gap:40px; max-width:1180px; margin:0 auto; align-items:center; }
+    .hero-col-text { width:100%; }
+    .hero .hero-sub, .hero h1 { text-align:left; }
+
+    .crown-badge {
+      display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+      width:92px; height:92px; border-radius:50%;
+      background: linear-gradient(135deg, var(--green), #15803D);
+      color:#fff; font-size:12px; font-weight:900; line-height:1.25; text-align:center;
+      box-shadow:0 8px 22px rgba(22,163,74,0.35); margin-bottom:18px;
+    }
+    .crown-badge b { font-size:21px; color:#fff; }
+    .crown-badge svg { width:18px; height:18px; fill:#fff; margin-bottom:2px; }
+
+    .hero-price-box {
+      background: linear-gradient(135deg, var(--green-light), #fff);
+      border:1.5px solid rgba(22,163,74,0.3); box-shadow:0 8px 30px rgba(22,163,74,0.12);
+    }
+    .hero-price-label { color: var(--gray-text); }
+    .hero-price-num { color: var(--green); }
+    .hero-price-unit { color: var(--gray-text); }
+    .hero-price-sub { color: var(--gray-mid); }
+    .hero-badge { border:1.5px solid rgba(22,163,74,0.3); color: var(--green); background: rgba(255,255,255,0.9); }
+
+    .btn-outline-green {
+      display:block; width:100%; max-width:340px;
+      background:#fff; border:2px solid var(--green); color:var(--green);
+      font-size:15px; font-weight:800; padding:14px 24px; border-radius:50px; text-align:center;
+      transition: background .2s, transform .15s;
+    }
+    .btn-outline-green:hover { background: var(--green-light); transform: translateY(-1px); }
+
+    .hero-col-visual { width:100%; }
+    .mock-stage { position:relative; max-width:520px; margin:0 auto; padding:64px 0 30px; }
+    .mock-laptop { background:#1E293B; border-radius:14px 14px 4px 4px; padding:12px 12px 0; box-shadow:0 24px 50px rgba(15,23,42,0.28); }
+    .mock-screen { background:#fff; border-radius:6px; overflow:hidden; aspect-ratio:16/10; }
+    .mock-bar { background: var(--green); color:#fff; font-size:10px; font-weight:800; padding:7px 12px; display:flex; align-items:center; gap:6px; }
+    .mock-bar .dot { width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.6); }
+    .mock-body { padding:12px; }
+    .mock-kpis { display:flex; gap:8px; margin-bottom:10px; }
+    .mock-kpi { flex:1; background:var(--gray-light); border-radius:8px; padding:8px; }
+    .mock-kpi small { font-size:8px; color:var(--gray-mid); display:block; }
+    .mock-kpi b { font-size:14px; color:var(--black); }
+    .mock-rows { display:flex; flex-direction:column; gap:6px; }
+    .mock-row { display:flex; justify-content:space-between; align-items:center; background:#fff; border:1px solid #EEF2F7; border-radius:6px; padding:6px 8px; font-size:9px; color:var(--gray-text); }
+    .mock-row .ok { color:var(--green); font-weight:800; }
+    .mock-row .wait { color:#EA580C; font-weight:800; }
+    .mock-laptop-base { height:12px; background:linear-gradient(#CBD5E1,#94A3B8); border-radius:0 0 12px 12px; max-width:560px; margin:0 auto; }
+    .mock-phone { position:absolute; right:-6px; bottom:8px; width:122px; background:#1E293B; border-radius:18px; padding:8px 6px; box-shadow:0 18px 40px rgba(15,23,42,0.35); }
+    .mock-phone-screen { background:#E9F2FF; border-radius:12px; padding:8px 6px; }
+    .mock-msg { background:#fff; border-radius:8px; padding:6px 7px; font-size:7.5px; line-height:1.5; color:var(--black); margin-bottom:6px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+    .mock-msg b { color: var(--green); }
+    .mock-bubble { position:absolute; right:8px; top:0; background:#fff; border:2px solid var(--black); border-radius:16px; padding:9px 13px; font-size:12px; font-weight:900; color:var(--black); line-height:1.4; box-shadow:0 6px 18px rgba(0,0,0,0.12); transform:rotate(-2deg); max-width:160px; z-index:3; }
+    .mock-bubble .up { color: var(--green); font-size:15px; }
+
+    .reasons-gold { background: var(--gray-light); }
+    .reasons-row { display:grid; grid-template-columns:repeat(2,1fr); gap:22px 14px; max-width:1100px; margin:0 auto; }
+    .reason-cell { text-align:center; padding:8px; }
+    .reason-ico { color: var(--green); display:block; margin-bottom:8px; }
+    .reason-ico svg { width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round; }
+    .reason-cell h4 { font-size:15px; font-weight:900; margin-bottom:4px; color:var(--black); }
+    .reason-cell p { font-size:12.5px; color:var(--gray-text); line-height:1.6; }
+
+    /* 公式LINEロゴ */
+    .line-ico { width: 1.35em; height: 1.35em; display: inline-block; vertical-align: -0.34em; margin-right: 7px; }
+
     /* ===== RESPONSIVE ===== */
     @media (min-width: 600px) {
       .hero h1 { font-size: 44px; }
       .header-nav { display: flex; }
+      .reasons-row { grid-template-columns:repeat(4,1fr); }
       .feature-cards { flex-direction: row; flex-wrap: wrap; }
       .feature-card { flex: 1 1 calc(50% - 10px); }
       .pricing-cards { flex-direction: row; align-items: flex-start; }
@@ -543,6 +618,12 @@
     @media (min-width: 800px) {
       .section-title { font-size: 30px; }
       .cta-title { font-size: 28px; }
+    }
+    @media (min-width: 960px) {
+      .hero-grid { flex-direction: row; align-items: center; }
+      .hero-col-text { flex: 1.05; }
+      .hero-col-visual { flex: 1; }
+      .hero h1 { font-size: 48px; }
     }
   </style>
 </head>
@@ -557,7 +638,7 @@
       <a href="index.html" class="nav-link">HP制作</a>
       <a href="tools.html" class="nav-link active"><svg class="ico" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>ツール販売</a>
     </nav>
-    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>LINE相談</a>
+    <a href="https://line.me/R/ti/p/@964umwda?oat_content=url&ts=05221258" class="btn-line-header"><svg class="line-ico" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#06C755"/><path fill="#fff" d="M18 8c-6 0-10.8 3.8-10.8 8.6 0 4.3 3.8 7.9 9 8.5.4.1.8.2.9.5.1.3.1.6 0 .9l-.2 1.1c-.1.4-.4 1.6 1.5.9 1.9-.8 9.2-5.4 12.6-9.3 1.5-1.6 2.6-3.3 2.6-5.2C33.6 11.8 28.8 8 18 8z"/><text x="18" y="19" font-size="7" font-weight="900" text-anchor="middle" fill="#06C755" font-family="Arial, sans-serif">LINE</text></svg>無料相談する</a>
   </header>
 
   <!-- HERO -->
@@ -566,28 +647,76 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
     <div class="hero-inner">
-      <span class="hero-eyebrow">🌙 夜職・メンエス店舗向け 業務自動化ツール</span>
-      <h1>毎日の手間を<br><span class="grad">全部自動化</span>する<br>業務ツール</h1>
-      <p class="hero-sub">
-        LINE返信・予約管理・掲載サイト更新…<br>
-        その手間、全部なくせます。<br>
-        買い切り価格で導入コストも最小限。
-      </p>
-      <div class="hero-price-box">
-        <p class="hero-price-label">買い切り価格</p>
-        <p><span class="hero-price-num">30,000</span><span class="hero-price-unit">〜40,000円</span></p>
-        <p class="hero-price-sub">+ 月額管理費 10,000円〜（任意）</p>
+      <div class="hero-grid">
+        <div class="hero-col-text">
+          <span class="hero-eyebrow">夜職・メンエス店舗向け 業務自動化ツール</span>
+          <h1>毎日の手間を<br><span class="grad">全部自動化</span>する<br>業務ツール</h1>
+          <p class="hero-sub">
+            LINE返信・予約管理・掲載サイト更新…<br>
+            その手間、全部なくせます。<br>
+            店舗ごとに<strong style="color:var(--green)">ゼロからつくる</strong>、買い切り価格。
+          </p>
+          <div class="hero-price-box">
+            <p class="hero-price-label">業務ツール 買い切り</p>
+            <p><span class="hero-price-num">40,000</span><span class="hero-price-unit">円</span></p>
+            <p class="hero-price-sub">月額は管理が必要なときだけ・追加料金なし</p>
+          </div>
+          <div class="hero-badges">
+            <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>LINE自動返信</span>
+            <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>予約管理自動化</span>
+            <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>掲載更新自動化</span>
+            <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>買い切りOK</span>
+          </div>
+          <div class="hero-cta">
+            <a href="https://line.me/R/ti/p/@964umwda?oat_content=url&ts=05221258" class="btn-primary"><svg class="line-ico" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#06C755"/><path fill="#fff" d="M18 8c-6 0-10.8 3.8-10.8 8.6 0 4.3 3.8 7.9 9 8.5.4.1.8.2.9.5.1.3.1.6 0 .9l-.2 1.1c-.1.4-.4 1.6 1.5.9 1.9-.8 9.2-5.4 12.6-9.3 1.5-1.6 2.6-3.3 2.6-5.2C33.6 11.8 28.8 8 18 8z"/><text x="18" y="19" font-size="7" font-weight="900" text-anchor="middle" fill="#06C755" font-family="Arial, sans-serif">LINE</text></svg>LINEで無料相談する</a>
+            <a href="https://growup-tool.vercel.app/demo" target="_blank" class="btn-outline-green">無料デモを試す（体験版）</a>
+          </div>
+        </div>
+
+        <div class="hero-col-visual">
+          <div class="mock-stage">
+            <div class="crown-badge"><svg viewBox="0 0 24 24"><path d="M2 7l5 5 5-8 5 8 5-5-2 12H4L2 7z"/></svg>最短<br><b>3日</b>で制作</div>
+            <div class="mock-bubble">予約・連絡・集客を<br>自動化して<span class="up">売上UP！</span></div>
+            <div class="mock-laptop">
+              <div class="mock-screen">
+                <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp;GrowUP ダッシュボード</div>
+                <div class="mock-body">
+                  <div class="mock-kpis">
+                    <div class="mock-kpi"><small>本日の予約</small><b>12件</b></div>
+                    <div class="mock-kpi"><small>確認待ち</small><b>5件</b></div>
+                    <div class="mock-kpi"><small>売上(本日)</small><b>¥128,000</b></div>
+                  </div>
+                  <div class="mock-rows">
+                    <div class="mock-row"><span>10:00　山田 様　90分</span><span class="ok">確認済み</span></div>
+                    <div class="mock-row"><span>12:30　佐藤 様　120分</span><span class="ok">確認済み</span></div>
+                    <div class="mock-row"><span>15:00　鈴木 様　70分</span><span class="wait">確認待ち</span></div>
+                    <div class="mock-row"><span>17:30　高橋 様　90分</span><span class="wait">確認待ち</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mock-laptop-base"></div>
+            <div class="mock-phone">
+              <div class="mock-phone-screen">
+                <div class="mock-msg"><b>新規予約が入りました</b><br>5/18 14:30〜／90分</div>
+                <div class="mock-msg"><b>確認のお願い</b><br>5/18 17:30〜／120分</div>
+                <div class="mock-msg"><b>出勤リマインド</b><br>本日もよろしくお願いします</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hero-badges">
-        <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>LINE自動返信</span>
-        <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>予約管理自動化</span>
-        <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>掲載更新自動化</span>
-        <span class="hero-badge"><svg class="ico" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>買い切りOK</span>
-      </div>
-      <div class="hero-cta">
-        <a href="https://lin.ee/Y4Uq7uP" class="btn-primary">▶ LINEで無料相談する</a>
-        <a href="https://growup-tool.vercel.app/demo" target="_blank" class="btn-demo-hero">▷ 無料デモを試す（体験版）</a>
-      </div>
+    </div>
+  </section>
+
+  <!-- REASONS -->
+  <section class="reasons-gold">
+    <h2 class="section-title reveal">GrowUP サポートが選ばれる理由</h2>
+    <div class="reasons-row">
+      <div class="reason-cell reveal delay-1"><span class="reason-ico"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span><h4>ゼロから制作</h4><p>テンプレ流用なし。店舗に合わせて完全オーダーメイド</p></div>
+      <div class="reason-cell reveal delay-2"><span class="reason-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><h4>コストを削減</h4><p>買い切り＋月額は必要なときだけで長期的にお得</p></div>
+      <div class="reason-cell reveal delay-3"><span class="reason-ico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span><h4>手厚いサポート</h4><p>導入後も安心の継続サポート体制</p></div>
+      <div class="reason-cell reveal delay-4"><span class="reason-ico"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><h4>売上UPを実現</h4><p>集客と業務効率化で売上アップをサポート</p></div>
     </div>
   </section>
 
@@ -682,7 +811,7 @@
           <div class="demo-preview-item"><span class="demo-preview-item-dot"></span>掲載更新の流れを体験</div>
         </div>
       </div>
-      <a href="https://growup-tool.vercel.app/demo" target="_blank" class="btn-demo-big reveal">▶ 無料デモを体験する</a>
+      <a href="https://growup-tool.vercel.app/demo" target="_blank" class="btn-demo-big reveal">無料デモを体験する</a>
       <p class="demo-note reveal">登録不要・完全無料・スマホでも動作</p>
     </div>
   </section>
@@ -708,7 +837,7 @@
           <li>導入後1ヶ月の無料サポート</li>
           <li>カスタムキーワード設定（10件）</li>
         </ul>
-        <a href="https://lin.ee/Y4Uq7uP" class="btn-green-full">LINEで相談・購入する</a>
+        <a href="https://line.me/R/ti/p/@964umwda?oat_content=url&ts=05221258" class="btn-green-full"><svg class="line-ico" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#06C755"/><path fill="#fff" d="M18 8c-6 0-10.8 3.8-10.8 8.6 0 4.3 3.8 7.9 9 8.5.4.1.8.2.9.5.1.3.1.6 0 .9l-.2 1.1c-.1.4-.4 1.6 1.5.9 1.9-.8 9.2-5.4 12.6-9.3 1.5-1.6 2.6-3.3 2.6-5.2C33.6 11.8 28.8 8 18 8z"/><text x="18" y="19" font-size="7" font-weight="900" text-anchor="middle" fill="#06C755" font-family="Arial, sans-serif">LINE</text></svg>LINEで相談・購入する</a>
       </div>
       <div class="pricing-card reveal delay-2">
         <p class="pricing-plan-name">単機能プラン</p>
@@ -722,12 +851,12 @@
           <p>1機能からの導入OK</p>
           <p>必要な機能だけ選べる</p>
         </div>
-        <a href="https://lin.ee/Y4Uq7uP" class="btn-blue-full">LINEで相談する</a>
+        <a href="https://line.me/R/ti/p/@964umwda?oat_content=url&ts=05221258" class="btn-blue-full"><svg class="line-ico" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#06C755"/><path fill="#fff" d="M18 8c-6 0-10.8 3.8-10.8 8.6 0 4.3 3.8 7.9 9 8.5.4.1.8.2.9.5.1.3.1.6 0 .9l-.2 1.1c-.1.4-.4 1.6 1.5.9 1.9-.8 9.2-5.4 12.6-9.3 1.5-1.6 2.6-3.3 2.6-5.2C33.6 11.8 28.8 8 18 8z"/><text x="18" y="19" font-size="7" font-weight="900" text-anchor="middle" fill="#06C755" font-family="Arial, sans-serif">LINE</text></svg>LINEで相談する</a>
       </div>
     </div>
     <p class="pricing-note reveal">
-      月額管理プラン（10,000円〜）では、キーワード追加・機能更新・不具合対応を継続サポート。<br>
-      導入後の設定変更・機能拡張は別途お見積りとなります。
+      基本は買い切り・月額なし。月額管理は「管理が必要なときだけ」の任意プランです。<br>
+      （キーワード追加・機能更新・不具合対応などを継続サポート。設定変更・機能拡張は別途お見積り）
     </p>
   </section>
 
@@ -818,14 +947,14 @@
   <section class="cta-section">
     <h2 class="cta-title reveal">まずは無料デモか<br>LINEで相談してください</h2>
     <p class="cta-sub reveal">「うちの店舗でも使えるか？」その確認だけでもOKです。デモを見てから決めてもらえればOK。押し売りは一切しません。</p>
-    <a href="https://lin.ee/Y4Uq7uP" class="btn-cta reveal">▶ LINEで「ツール相談」と送る</a>
+    <a href="https://line.me/R/ti/p/@964umwda?oat_content=url&ts=05221258" class="btn-cta reveal"><svg class="line-ico" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#06C755"/><path fill="#fff" d="M18 8c-6 0-10.8 3.8-10.8 8.6 0 4.3 3.8 7.9 9 8.5.4.1.8.2.9.5.1.3.1.6 0 .9l-.2 1.1c-.1.4-.4 1.6 1.5.9 1.9-.8 9.2-5.4 12.6-9.3 1.5-1.6 2.6-3.3 2.6-5.2C33.6 11.8 28.8 8 18 8z"/><text x="18" y="19" font-size="7" font-weight="900" text-anchor="middle" fill="#06C755" font-family="Arial, sans-serif">LINE</text></svg>LINEでツールについて相談する</a>
     <p class="cta-notes reveal">返信24時間以内 ／ 強引な勧誘なし ／ 完全無料</p>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-logo">GrowUP サポート</div>
-    <a href="https://lin.ee/Y4Uq7uP" class="footer-link">LINEで相談する</a>
+    <a href="https://line.me/R/ti/p/@964umwda?oat_content=url&ts=05221258" class="footer-link"><svg class="line-ico" viewBox="0 0 36 36" aria-hidden="true" style="box-shadow:none;"><rect width="36" height="36" rx="9" fill="#06C755"/><path fill="#fff" d="M18 8c-6 0-10.8 3.8-10.8 8.6 0 4.3 3.8 7.9 9 8.5.4.1.8.2.9.5.1.3.1.6 0 .9l-.2 1.1c-.1.4-.4 1.6 1.5.9 1.9-.8 9.2-5.4 12.6-9.3 1.5-1.6 2.6-3.3 2.6-5.2C33.6 11.8 28.8 8 18 8z"/><text x="18" y="19" font-size="7" font-weight="900" text-anchor="middle" fill="#06C755" font-family="Arial, sans-serif">LINE</text></svg>LINEで相談する</a>
     <p style="margin-bottom:12px;">
       <a href="index.html" style="color:rgba(255,255,255,0.4);font-size:12px;text-decoration:underline;margin:0 10px;">ホームページ制作はこちら</a>
       <a href="legal.html#tokushoho" style="color:rgba(255,255,255,0.4);font-size:12px;text-decoration:underline;margin:0 10px;">特定商取引法に基づく表示</a>
@@ -834,7 +963,7 @@
     <p class="footer-copy">© 2026 GrowUP サポート｜遠田 健</p>
   </footer>
 
-  <a href="https://lin.ee/Y4Uq7uP" class="float-btn"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>LINE相談</a>
+  <a href="https://line.me/R/ti/p/@964umwda?oat_content=url&ts=05221258" class="float-btn"><svg class="line-ico" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#06C755"/><path fill="#fff" d="M18 8c-6 0-10.8 3.8-10.8 8.6 0 4.3 3.8 7.9 9 8.5.4.1.8.2.9.5.1.3.1.6 0 .9l-.2 1.1c-.1.4-.4 1.6 1.5.9 1.9-.8 9.2-5.4 12.6-9.3 1.5-1.6 2.6-3.3 2.6-5.2C33.6 11.8 28.8 8 18 8z"/><text x="18" y="19" font-size="7" font-weight="900" text-anchor="middle" fill="#06C755" font-family="Arial, sans-serif">LINE</text></svg>無料相談</a>
 
   <script>
     /* スクロールリビール */

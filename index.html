@@ -202,7 +202,8 @@
       line-height: 1.75;
       box-shadow: 0 4px 20px rgba(0,0,0,0.07);
     }
-    .hero-message-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .hero-message-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; color: var(--blue); }
+    .hero-message-icon svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.12em; }
 
     .hero-badges {
       display: flex;
@@ -454,6 +455,9 @@
       stroke-linecap: round; stroke-linejoin: round;
     }
     .grid-item-icon svg { margin-right: 4px; }
+    /* 汎用インラインアイコン（ボタン・タグ・ナビ用） */
+    .ico { width: 1em; height: 1em; display: inline-block; vertical-align: -0.12em; margin-right: 5px;
+      fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
     /* ===== PRICING ===== */
     .pricing { background: var(--white); }
@@ -1031,9 +1035,9 @@
     </div>
     <nav class="header-nav">
       <a href="index.html" class="nav-link active">HP制作</a>
-      <a href="tools.html" class="nav-link tool-nav">🛠 ツール販売</a>
+      <a href="tools.html" class="nav-link tool-nav"><svg class="ico" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>ツール販売</a>
     </nav>
-    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header">💬 LINE相談</a>
+    <a href="https://lin.ee/Y4Uq7uP" class="btn-line-header"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>LINE相談</a>
   </header>
 
   <!-- HERO -->
@@ -1050,7 +1054,7 @@
         「面倒くさい」をまとめて解決します。
       </p>
       <div class="hero-message">
-        <div class="hero-message-icon">💬</div>
+        <div class="hero-message-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
         <p>「何から始めたらいいか分からない」でも大丈夫。まずはLINEで一言送るだけで、無料でご提案します。</p>
       </div>
       <div class="hero-badges">
@@ -1061,7 +1065,7 @@
       </div>
       <div class="hero-cta">
         <a href="https://lin.ee/Y4Uq7uP" class="btn-primary">▶ LINEで無料相談する</a>
-        <a href="tools.html" class="btn-secondary">🛠 業務ツールを見る</a>
+        <a href="tools.html" class="btn-secondary"><svg class="ico" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>業務ツールを見る</a>
       </div>
     </div>
   </section>
@@ -1150,12 +1154,12 @@
       掲載更新だけの他社ツールは月額2〜3万円。GrowUPは<strong>全部入りで買い切り3〜4万・月額0円</strong>。
     </p>
     <div class="tool-tags reveal">
-      <span class="tool-tag">📡 掲載5サイト自動上位化</span>
-      <span class="tool-tag">📅 ネット予約</span>
-      <span class="tool-tag">📩 キャストへLINE自動通知</span>
-      <span class="tool-tag">✉️ 確認SMS</span>
-      <span class="tool-tag">🧮 給与専用計算機</span>
-      <span class="tool-tag">💰 買い切り・月額0</span>
+      <span class="tool-tag"><svg class="ico" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>掲載5サイト自動上位化</span>
+      <span class="tool-tag"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>ネット予約</span>
+      <span class="tool-tag"><svg class="ico" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>キャストへLINE自動通知</span>
+      <span class="tool-tag"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>確認SMS</span>
+      <span class="tool-tag"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="12" y1="11" x2="12" y2="11"/><line x1="16" y1="11" x2="16" y2="11"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="12" y1="16" x2="12" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>給与専用計算機</span>
+      <span class="tool-tag"><svg class="ico" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>買い切り・月額0</span>
     </div>
     <div class="tool-teaser-btns reveal">
       <a href="https://growup-tool.vercel.app/demo" target="_blank" class="btn-demo">▶ 無料デモを触ってみる</a>
@@ -1300,8 +1304,8 @@
     <h2 class="section-title reveal">その他のサポートメニュー</h2>
     <p class="other-support-sub">ホームページ制作以外にも対応できます</p>
     <div class="support-cards">
-      <div class="support-card reveal delay-1">🛠 業務自動化ツール制作・販売</div>
-      <div class="support-card reveal delay-2">💬 LINE公式アカウント構築</div>
+      <div class="support-card reveal delay-1"><svg class="ico" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>業務自動化ツール制作・販売</div>
+      <div class="support-card reveal delay-2"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>LINE公式アカウント構築</div>
       <div class="support-card reveal delay-3">📱 SNS運用サポート（Instagram・X）</div>
     </div>
     <p class="support-contact reveal">詳細はLINEでご相談ください ／ <a href="tools.html" style="color:var(--blue);text-decoration:underline;">ツール販売ページはこちら</a></p>
@@ -1326,7 +1330,7 @@
     <p class="footer-copy">© 2026 GrowUP サポート｜遠田 健</p>
   </footer>
 
-  <a href="https://lin.ee/Y4Uq7uP" class="float-btn">💬 LINE相談</a>
+  <a href="https://lin.ee/Y4Uq7uP" class="float-btn"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>LINE相談</a>
 
   <script>
     /* スクロールリビール */

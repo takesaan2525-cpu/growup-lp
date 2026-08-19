@@ -1,0 +1,1 @@
+GrowUP DX diagnosis submissions are persisted to Supabase table `public.growup_leads`. Public clients are insert-only via RLS; lead reads/updates remain server-side.

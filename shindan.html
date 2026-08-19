@@ -1,493 +1,55 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>無料DX診断｜GrowUP 店舗DX</title>
-  <meta name="description" content="店舗の予約・掲載更新・LINE連絡など、毎日の業務にどれだけ自動化余地があるか約1分で診断します。">
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --blue:#2563eb;--blue-dark:#1d4ed8;--blue-light:#eff6ff;
-      --green:#16a34a;--green-dark:#15803d;--green-light:#dcfce7;
-      --amber:#d97706;--amber-light:#fff7ed;--red:#dc2626;
-      --ink:#172033;--muted:#64748b;--line:#e2e8f0;--bg:#f5f7fb;--white:#fff;
-    }
-    html{scroll-behavior:smooth}
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Meiryo",sans-serif;
-      color:var(--ink);background:var(--bg);min-height:100vh;line-height:1.65
-    }
-    a{color:inherit}
-    .hero{
-      color:#fff;text-align:center;padding:52px 20px 44px;
-      background:
-        radial-gradient(circle at 82% 10%,rgba(59,130,246,.25),transparent 32%),
-        radial-gradient(circle at 10% 90%,rgba(34,197,94,.20),transparent 28%),
-        linear-gradient(145deg,#0f172a 0%,#19365d 58%,#0c3218 100%);
-    }
-    .hero-badge{
-      display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:999px;
-      background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.32);
-      color:#86efac;font-size:12px;font-weight:800;letter-spacing:.04em;margin-bottom:18px
-    }
-    .hero-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 5px rgba(74,222,128,.10)}
-    .hero h1{font-size:clamp(26px,7vw,38px);line-height:1.28;font-weight:900;letter-spacing:-.03em;margin-bottom:14px}
-    .hero h1 span{color:#60a5fa}
-    .hero p{font-size:14px;color:rgba(255,255,255,.74);max-width:580px;margin:0 auto}
-    .container{width:min(620px,100%);margin:0 auto;padding:26px 15px 60px}
-    .back-link{
-      display:inline-flex;align-items:center;gap:5px;text-decoration:none;color:var(--muted);
-      font-size:13px;font-weight:700;margin:0 0 18px 2px
-    }
-    .intro{
-      background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);
-      border-radius:16px;padding:16px 18px;margin-bottom:16px;box-shadow:0 5px 20px rgba(15,23,42,.05)
-    }
-    .intro strong{display:block;font-size:14px;margin-bottom:3px}
-    .intro p{font-size:12.5px;color:var(--muted)}
-    .progress-wrap{
-      position:sticky;top:0;z-index:10;background:rgba(245,247,251,.94);backdrop-filter:blur(10px);
-      padding:10px 2px 12px;margin-bottom:4px
-    }
-    .progress-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:700;margin-bottom:6px}
-    .progress{height:7px;background:#e7ebf2;border-radius:99px;overflow:hidden}
-    .progress-bar{height:100%;width:20%;background:linear-gradient(90deg,var(--blue),#06b6d4,var(--green));transition:width .25s ease}
-    .card{
-      background:#fff;border:1px solid #e9edf3;border-radius:20px;padding:24px 20px;
-      margin-bottom:14px;box-shadow:0 8px 28px rgba(15,23,42,.055)
-    }
-    .card-kicker{font-size:11px;font-weight:900;color:var(--blue);letter-spacing:.08em;margin-bottom:6px}
-    .card h2{font-size:18px;line-height:1.4;margin-bottom:18px}
-    .group{margin-bottom:20px}.group:last-child{margin-bottom:0}
-    label.field{display:block;font-size:13px;font-weight:800;margin-bottom:8px}
-    .req,.opt{font-size:10px;border-radius:99px;padding:2px 7px;margin-left:6px;vertical-align:1px}
-    .req{color:#b91c1c;background:#fef2f2}.opt{color:var(--muted);background:#f1f5f9}
-    input[type=text],input[type=url],textarea{
-      width:100%;padding:13px 14px;border:1.5px solid #cbd5e1;border-radius:11px;background:#fff;
-      color:var(--ink);font:inherit;font-size:14px;outline:none;transition:.2s
-    }
-    input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.10)}
-    textarea{min-height:86px;resize:vertical}
-    .options{display:grid;gap:8px}
-    .options.two{grid-template-columns:1fr 1fr}
-    .option,.chip{
-      position:relative;display:flex;align-items:center;gap:9px;border:1.5px solid var(--line);
-      background:#fff;border-radius:12px;padding:11px 12px;cursor:pointer;transition:.16s
-    }
-    .option:hover,.chip:hover{border-color:#93c5fd;background:#f8fbff}
-    .option input,.chip input{accent-color:var(--blue);flex:0 0 auto}
-    .option span,.chip span{font-size:13px;font-weight:700}
-    .option:has(input:checked),.chip:has(input:checked){border-color:var(--blue);background:var(--blue-light)}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{padding:8px 12px;border-radius:999px}
-    .chip span{font-size:12px}
-    .btn{
-      width:100%;border:0;border-radius:999px;padding:17px 20px;font-size:16px;font-weight:900;
-      cursor:pointer;transition:transform .15s,box-shadow .2s,opacity .2s
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn-primary{
-      color:#fff;background:linear-gradient(135deg,var(--green),var(--green-dark));
-      box-shadow:0 7px 22px rgba(22,163,74,.28)
-    }
-    .btn-secondary{background:#fff;border:1.5px solid var(--line);color:var(--ink);margin-top:10px}
-    .privacy{text-align:center;color:#94a3b8;font-size:11px;margin-top:10px}
-    .result{display:none}
-    .result-head{
-      position:relative;overflow:hidden;text-align:center;color:#fff;border-radius:24px;padding:28px 20px;
-      background:linear-gradient(145deg,#111827,#1e3a5f 58%,#0e3b20);box-shadow:0 16px 45px rgba(15,23,42,.16)
-    }
-    .result-head::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;top:-70px;background:rgba(59,130,246,.16)}
-    .score-label{font-size:12px;font-weight:800;color:#bfdbfe;letter-spacing:.06em}
-    .score{font-size:68px;line-height:1;font-weight:950;letter-spacing:-.06em;margin:8px 0 4px}
-    .score small{font-size:20px;font-weight:800;letter-spacing:0;margin-left:3px}
-    .score-title{font-size:20px;font-weight:900;margin-bottom:6px}
-    .score-desc{font-size:12px;color:rgba(255,255,255,.72)}
-    .metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-    .metric{background:#fff;border-radius:16px;padding:16px;border:1px solid var(--line);box-shadow:0 5px 18px rgba(15,23,42,.04)}
-    .metric small{display:block;color:var(--muted);font-size:11px;font-weight:700;margin-bottom:4px}
-    .metric strong{font-size:22px;line-height:1.2}
-    .metric strong.green{color:var(--green)}
-    .recommend{background:#fff;border-radius:20px;padding:20px;border:1px solid var(--line);margin-top:12px}
-    .recommend h3{font-size:16px;margin-bottom:12px}
-    .rec-item{display:flex;gap:11px;padding:13px 0;border-top:1px solid #eef2f7}
-    .rec-item:first-of-type{border-top:0;padding-top:0}
-    .rec-icon{
-      width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:var(--blue-light);
-      display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:900
-    }
-    .rec-body b{display:block;font-size:13px;margin-bottom:2px}.rec-body p{font-size:11.5px;color:var(--muted)}
-    .line-cta{
-      margin-top:14px;background:linear-gradient(145deg,#f0fdf4,#dcfce7);
-      border:1px solid #bbf7d0;border-radius:20px;padding:20px;text-align:center
-    }
-    .line-cta h3{font-size:17px;margin-bottom:4px}.line-cta p{font-size:12px;color:#4b5563;margin-bottom:14px}
-    .btn-line{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;background:#06c755;color:#fff}
-    .line-mark{width:22px;height:22px;border-radius:7px;background:#fff;color:#06c755;display:grid;place-items:center;font-size:12px;font-weight:950}
-    .result-note{
-      background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;padding:13px 15px;
-      font-size:11.5px;margin-top:12px
-    }
-    .copy-ok{display:none;font-size:11px;color:var(--green);text-align:center;margin-top:7px;font-weight:800}
-    @media(max-width:480px){
-      .options.two{grid-template-columns:1fr}
-      .card{padding:21px 17px}
-      .metrics{grid-template-columns:1fr 1fr}
-      .score{font-size:60px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>無料DX診断｜GrowUP 店舗DX</title>
+<meta name="description" content="店舗の予約・掲載更新・LINE連絡など、毎日の業務にどれだけ自動化余地があるか約1分で診断します。">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;background:#f5f7fb;color:#172033;line-height:1.65}a{color:inherit}.hero{padding:48px 18px 40px;text-align:center;color:white;background:radial-gradient(circle at 80% 0,rgba(59,130,246,.28),transparent 32%),linear-gradient(145deg,#0f172a,#19365d 58%,#0c3218)}.badge{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(74,222,128,.13);border:1px solid rgba(74,222,128,.32);color:#86efac;font-size:12px;font-weight:800}.hero h1{font-size:clamp(27px,7vw,40px);line-height:1.25;margin:16px 0 10px}.hero h1 span{color:#60a5fa}.hero p{max-width:600px;margin:auto;color:rgba(255,255,255,.74);font-size:14px}.wrap{width:min(640px,100%);margin:auto;padding:24px 15px 60px}.back{display:inline-block;margin-bottom:16px;color:#64748b;text-decoration:none;font-size:13px;font-weight:700}.intro,.card,.resultbox{background:#fff;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 8px 28px rgba(15,23,42,.05)}.intro{padding:15px 18px;margin-bottom:14px;border-left:4px solid #2563eb}.intro b{display:block;font-size:14px}.intro small{color:#64748b}.progress{height:7px;border-radius:99px;background:#e2e8f0;overflow:hidden;margin:14px 0 18px}.progress>i{display:block;height:100%;width:20%;background:linear-gradient(90deg,#2563eb,#06b6d4,#16a34a);transition:.2s}.card{padding:22px 18px;margin-bottom:14px}.kicker{font-size:11px;color:#2563eb;font-weight:900;letter-spacing:.08em}.card h2{font-size:18px;margin:5px 0 16px}.group{margin-bottom:18px}.group:last-child{margin-bottom:0}.label{display:block;font-size:13px;font-weight:800;margin-bottom:7px}.req,.opt{font-size:10px;padding:2px 7px;border-radius:99px;margin-left:6px}.req{background:#fef2f2;color:#b91c1c}.opt{background:#f1f5f9;color:#64748b}input[type=text],input[type=url],textarea{width:100%;padding:12px 13px;border:1.5px solid #cbd5e1;border-radius:11px;font:inherit;font-size:14px;outline:none}input:focus,textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}textarea{min-height:85px;resize:vertical}.options{display:grid;gap:8px}.two{grid-template-columns:1fr 1fr}.option,.chip{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer}.option:has(input:checked),.chip:has(input:checked){border-color:#2563eb;background:#eff6ff}.option span,.chip span{font-size:13px;font-weight:700}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:8px 11px;border-radius:999px}.btn{width:100%;border:0;border-radius:999px;padding:16px 20px;font-size:16px;font-weight:900;cursor:pointer}.primary{background:linear-gradient(135deg,#16a34a,#15803d);color:white;box-shadow:0 7px 22px rgba(22,163,74,.28)}.secondary{background:white;border:1.5px solid #e2e8f0;margin-top:10px}.privacy{text-align:center;color:#94a3b8;font-size:11px}.result{display:none}.scorebox{position:relative;overflow:hidden;text-align:center;color:white;border-radius:24px;padding:28px 20px;background:linear-gradient(145deg,#111827,#1e3a5f 58%,#0e3b20);box-shadow:0 16px 45px rgba(15,23,42,.16)}.scorelabel{font-size:12px;color:#bfdbfe;font-weight:800}.score{font-size:68px;font-weight:950;line-height:1;margin:9px 0 4px}.score small{font-size:19px}.scoretitle{font-size:20px;font-weight:900}.scoredesc{font-size:12px;color:rgba(255,255,255,.74)}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.metric{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:15px}.metric small{display:block;color:#64748b;font-size:11px}.metric strong{font-size:22px}.green{color:#16a34a}.resultbox{padding:19px;margin-top:12px}.resultbox h3{font-size:16px;margin:0 0 12px}.rec{display:flex;gap:10px;padding:12px 0;border-top:1px solid #eef2f7}.rec:first-child{border-top:0}.ico{width:34px;height:34px;border-radius:10px;background:#eff6ff;color:#2563eb;display:grid;place-items:center;font-weight:900;flex:0 0 34px}.rec b{font-size:13px}.rec p{font-size:11.5px;color:#64748b;margin:2px 0}.linebox{background:linear-gradient(145deg,#f0fdf4,#dcfce7);border-color:#bbf7d0;text-align:center}.linebtn{display:flex;justify-content:center;align-items:center;gap:8px;text-decoration:none;background:#06c755;color:white}.saved{display:none;margin-top:9px;font-size:11px;color:#15803d;font-weight:800}.hot{display:none;margin:10px auto 0;width:max-content;padding:5px 10px;border-radius:999px;background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:900}.note{font-size:11.5px;color:#9a3412;background:#fff7ed;border:1px solid #fed7aa;padding:12px 14px;border-radius:14px;margin-top:12px}@media(max-width:480px){.two{grid-template-columns:1fr}.score{font-size:60px}}
+</style>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-badge"><span class="hero-dot"></span>GrowUP 店舗DX — 無料診断</div>
-    <h1>毎日の店舗業務、<br><span>どこまで自動化できる？</span></h1>
-    <p>掲載更新・予約管理・LINE連絡・給与計算などを約1分で診断。入力内容から、自動化の優先順位をその場で表示します。</p>
-  </header>
-
-  <main class="container" id="form-view">
-    <a href="index.html" class="back-link">← サービスページに戻る</a>
-
-    <div class="intro">
-      <strong>契約なし・登録なしで診断できます</strong>
-      <p>結果を見て「これなら楽になりそう」と思った場合だけ、LINEでそのまま相談できます。</p>
-    </div>
-
-    <div class="progress-wrap">
-      <div class="progress-meta"><span>無料DX診断</span><span id="progress-text">1 / 5</span></div>
-      <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
-    </div>
-
-    <form id="diagnosis-form">
-      <section class="card" data-step="1">
-        <div class="card-kicker">STEP 01</div>
-        <h2>お店の基本情報</h2>
-        <div class="group">
-          <label class="field">店舗名<span class="req">必須</span></label>
-          <input type="text" name="store_name" placeholder="例：サンプルエステ" required>
-        </div>
-        <div class="group">
-          <label class="field">店舗・サービスのURL<span class="opt">任意</span></label>
-          <input type="url" name="website" placeholder="https://example.com">
-        </div>
-        <div class="group">
-          <label class="field">エリア<span class="opt">任意</span></label>
-          <input type="text" name="area" placeholder="例：大阪・難波 / 埼玉・大宮">
-        </div>
-      </section>
-
-      <section class="card" data-step="2">
-        <div class="card-kicker">STEP 02</div>
-        <h2>店舗の規模</h2>
-        <div class="group">
-          <label class="field">店舗数<span class="req">必須</span></label>
-          <div class="options two">
-            <label class="option"><input type="radio" name="store_count" value="1店舗" required><span>1店舗</span></label>
-            <label class="option"><input type="radio" name="store_count" value="2〜3店舗"><span>2〜3店舗</span></label>
-            <label class="option"><input type="radio" name="store_count" value="4店舗以上"><span>4店舗以上</span></label>
-          </div>
-        </div>
-        <div class="group">
-          <label class="field">スタッフ・キャスト人数<span class="req">必須</span></label>
-          <div class="options two">
-            <label class="option"><input type="radio" name="cast_count" value="1〜3名" required><span>1〜3名</span></label>
-            <label class="option"><input type="radio" name="cast_count" value="4〜7名"><span>4〜7名</span></label>
-            <label class="option"><input type="radio" name="cast_count" value="8〜14名"><span>8〜14名</span></label>
-            <label class="option"><input type="radio" name="cast_count" value="15名以上"><span>15名以上</span></label>
-          </div>
-        </div>
-      </section>
-
-      <section class="card" data-step="3">
-        <div class="card-kicker">STEP 03</div>
-        <h2>今の運用方法</h2>
-        <div class="group">
-          <label class="field">使っている掲載・集客サイト<span class="opt">複数選択可</span></label>
-          <div class="chips">
-            <label class="chip"><input type="checkbox" name="sites" value="エステラブ"><span>エステラブ</span></label>
-            <label class="chip"><input type="checkbox" name="sites" value="駅ちか"><span>駅ちか</span></label>
-            <label class="chip"><input type="checkbox" name="sites" value="エス魂"><span>エス魂</span></label>
-            <label class="chip"><input type="checkbox" name="sites" value="ヒーリング"><span>ヒーリング</span></label>
-            <label class="chip"><input type="checkbox" name="sites" value="メンエスMAP"><span>メンエスMAP</span></label>
-            <label class="chip"><input type="checkbox" name="sites" value="ホットペッパー"><span>ホットペッパー</span></label>
-            <label class="chip"><input type="checkbox" name="sites" value="Google"><span>Google</span></label>
-            <label class="chip"><input type="checkbox" name="sites" value="その他"><span>その他</span></label>
-          </div>
-        </div>
-        <div class="group">
-          <label class="field">現在の予約受付<span class="opt">複数選択可</span></label>
-          <div class="chips">
-            <label class="chip"><input type="checkbox" name="booking" value="電話"><span>電話</span></label>
-            <label class="chip"><input type="checkbox" name="booking" value="LINE"><span>LINE</span></label>
-            <label class="chip"><input type="checkbox" name="booking" value="掲載サイト"><span>掲載サイト</span></label>
-            <label class="chip"><input type="checkbox" name="booking" value="自社予約システム"><span>自社予約システム</span></label>
-          </div>
-        </div>
-      </section>
-
-      <section class="card" data-step="4">
-        <div class="card-kicker">STEP 04</div>
-        <h2>「面倒」と感じている業務</h2>
-        <div class="options">
-          <label class="option"><input type="checkbox" name="trouble" value="掲載サイトの更新"><span>複数の掲載サイトを毎日更新している</span></label>
-          <label class="option"><input type="checkbox" name="trouble" value="出勤情報の管理"><span>出勤・スタッフ情報の反映が面倒</span></label>
-          <label class="option"><input type="checkbox" name="trouble" value="予約・空き枠管理"><span>予約・空き枠を手作業で管理している</span></label>
-          <label class="option"><input type="checkbox" name="trouble" value="LINE連絡"><span>予約内容などを毎回LINEで連絡している</span></label>
-          <label class="option"><input type="checkbox" name="trouble" value="給与計算"><span>売上・給与計算を手作業でしている</span></label>
-          <label class="option"><input type="checkbox" name="trouble" value="ダブルブッキング"><span>予約の重複・確認ミスが心配</span></label>
-        </div>
-      </section>
-
-      <section class="card" data-step="5">
-        <div class="card-kicker">STEP 05</div>
-        <h2>欲しい仕組み</h2>
-        <div class="group">
-          <div class="chips">
-            <label class="chip"><input type="checkbox" name="features" value="掲載自動更新"><span>掲載自動更新</span></label>
-            <label class="chip"><input type="checkbox" name="features" value="ネット予約"><span>ネット予約</span></label>
-            <label class="chip"><input type="checkbox" name="features" value="LINE自動通知"><span>LINE自動通知</span></label>
-            <label class="chip"><input type="checkbox" name="features" value="予約管理"><span>予約一元管理</span></label>
-            <label class="chip"><input type="checkbox" name="features" value="スタッフ管理"><span>スタッフ管理</span></label>
-            <label class="chip"><input type="checkbox" name="features" value="給与計算"><span>給与計算</span></label>
-            <label class="chip"><input type="checkbox" name="features" value="売上管理"><span>売上管理</span></label>
-            <label class="chip"><input type="checkbox" name="features" value="HP制作"><span>HP制作</span></label>
-          </div>
-        </div>
-        <div class="group">
-          <label class="field">実機デモ<span class="req">必須</span></label>
-          <div class="options">
-            <label class="option"><input type="radio" name="demo_request" value="デモ希望" required><span>実際の画面を見てみたい</span></label>
-            <label class="option"><input type="radio" name="demo_request" value="資料希望"><span>まず資料・料金を見たい</span></label>
-            <label class="option"><input type="radio" name="demo_request" value="検討中"><span>まだ検討中</span></label>
-          </div>
-        </div>
-        <div class="group">
-          <label class="field">その他<span class="opt">任意</span></label>
-          <textarea name="message" placeholder="「これを自動化したい」など自由に入力してください"></textarea>
-        </div>
-      </section>
-
-      <button class="btn btn-primary" type="submit">無料で診断結果を見る</button>
-      <p class="privacy">入力内容はこの診断結果の作成と、LINE相談時のメッセージ作成にのみ使用します。</p>
-    </form>
-  </main>
-
-  <main class="container result" id="result-view">
-    <div class="result-head">
-      <div class="score-label">店舗DX・自動化余地スコア</div>
-      <div class="score"><span id="score-number">0</span><small>/100</small></div>
-      <div class="score-title" id="score-title">診断中</div>
-      <div class="score-desc" id="score-desc"></div>
-    </div>
-
-    <div class="metrics">
-      <div class="metric">
-        <small>削減できる可能性</small>
-        <strong class="green"><span id="hours-number">0</span>h〜</strong>
-      </div>
-      <div class="metric">
-        <small>おすすめ自動化</small>
-        <strong><span id="recommend-count">0</span>項目</strong>
-      </div>
-    </div>
-
-    <section class="recommend">
-      <h3>あなたの店舗で優先したい自動化</h3>
-      <div id="recommend-list"></div>
-    </section>
-
-    <section class="line-cta">
-      <h3>この診断結果のまま相談できます</h3>
-      <p>ボタンを押すと、店舗名・診断スコア・課題が入力された状態でGrowUP公式LINEが開きます。</p>
-      <a class="btn btn-line" id="line-button" href="#" target="_blank" rel="noopener">
-        <span class="line-mark">L</span>診断結果をLINEで送る
-      </a>
-      <button class="btn btn-secondary" id="copy-button" type="button">診断結果をコピー</button>
-      <div class="copy-ok" id="copy-ok">コピーしました</div>
-    </section>
-
-    <div class="result-note">
-      ※ 削減時間は入力内容から算出した目安です。実際の削減量・対応可否は、現在の運用方法や掲載媒体の仕様を確認して個別にご案内します。
-    </div>
-
-    <button class="btn btn-secondary" id="retry-button" type="button">入力内容を変更する</button>
-  </main>
-
-  <script>
-    const form = document.getElementById('diagnosis-form');
-    const formView = document.getElementById('form-view');
-    const resultView = document.getElementById('result-view');
-    const progressBar = document.getElementById('progress-bar');
-    const progressText = document.getElementById('progress-text');
-
-    const selected = (name) => [...form.querySelectorAll(`[name="${name}"]:checked`)].map(el => el.value);
-    const one = (name) => form.querySelector(`[name="${name}"]:checked`)?.value || '';
-
-    function updateProgress() {
-      const cards = [...document.querySelectorAll('[data-step]')];
-      let completed = 1;
-      for (const card of cards) {
-        const required = [...card.querySelectorAll('[required]')];
-        if (required.length && required.every(el => {
-          if (el.type === 'radio') return !!card.querySelector(`[name="${el.name}"]:checked`);
-          return !!el.value.trim();
-        })) completed = Math.max(completed, Number(card.dataset.step));
-      }
-      progressText.textContent = `${completed} / 5`;
-      progressBar.style.width = `${completed * 20}%`;
-    }
-
-    form.addEventListener('input', updateProgress);
-    form.addEventListener('change', updateProgress);
-
-    function buildRecommendations(troubles, features, bookings, sites) {
-      const recs = [];
-      const add = (title, desc, icon) => {
-        if (!recs.some(r => r.title === title)) recs.push({title, desc, icon});
-      };
-
-      if (troubles.includes('掲載サイトの更新') || features.includes('掲載自動更新') || sites.length >= 2) {
-        add('掲載・出勤情報の一括更新', '管理画面を1回更新するだけで、対応媒体へ反映する仕組みを優先。', '↻');
-      }
-      if (troubles.includes('予約・空き枠管理') || troubles.includes('ダブルブッキング') || features.includes('予約管理') || features.includes('ネット予約')) {
-        add('予約・空き枠の一元管理', '予約が入った瞬間に空き枠を更新し、重複予約を防ぐ運用へ。', '予');
-      }
-      if (troubles.includes('LINE連絡') || features.includes('LINE自動通知') || bookings.includes('LINE')) {
-        add('LINE通知の自動化', '予約確定・変更・出勤連絡など、定型連絡を自動で送信。', 'L');
-      }
-      if (troubles.includes('給与計算') || features.includes('給与計算') || features.includes('売上管理')) {
-        add('売上・給与の自動集計', '予約データから売上と給与を自動集計し、締め作業を短縮。', '¥');
-      }
-      if (troubles.includes('出勤情報の管理') || features.includes('スタッフ管理')) {
-        add('スタッフ・出勤管理', '出勤予定を1か所で管理し、各画面への転記を減らす。', '人');
-      }
-      if (features.includes('HP制作')) {
-        add('集客導線のあるHP制作', '見た目だけでなく、予約・LINE・問い合わせにつながる導線を整備。', 'HP');
-      }
-      if (!recs.length) {
-        add('部分自動化からスタート', '今の運用を確認して、最も時間がかかっている1業務だけ先に自動化。', '◎');
-      }
-      return recs.slice(0, 5);
-    }
-
-    function calculate() {
-      const storeCount = one('store_count');
-      const castCount = one('cast_count');
-      const demo = one('demo_request');
-      const sites = selected('sites');
-      const bookings = selected('booking');
-      const troubles = selected('trouble');
-      const features = selected('features');
-
-      let score = 12;
-      score += Math.min(troubles.length * 9, 45);
-      score += Math.min(sites.length * 4, 16);
-      score += bookings.includes('電話') ? 7 : 0;
-      score += bookings.includes('LINE') ? 4 : 0;
-      score += bookings.includes('掲載サイト') ? 4 : 0;
-      score += storeCount === '2〜3店舗' ? 8 : storeCount === '4店舗以上' ? 14 : 3;
-      score += castCount === '4〜7名' ? 5 : castCount === '8〜14名' ? 9 : castCount === '15名以上' ? 13 : 2;
-      score += demo === 'デモ希望' ? 5 : demo === '資料希望' ? 3 : 1;
-      score = Math.max(18, Math.min(100, score));
-
-      const recs = buildRecommendations(troubles, features, bookings, sites);
-      let hours = troubles.length * 3 + sites.length * 1.5;
-      if (storeCount === '2〜3店舗') hours += 4;
-      if (storeCount === '4店舗以上') hours += 8;
-      if (castCount === '8〜14名') hours += 3;
-      if (castCount === '15名以上') hours += 6;
-      hours = Math.max(3, Math.round(hours));
-
-      return {score, hours, recs, sites, bookings, troubles, features, demo};
-    }
-
-    function scoreCopy(score) {
-      if (score >= 80) return {
-        title:'自動化の効果がかなり大きい店舗です',
-        desc:'手作業が複数箇所に分散しています。まとめて仕組み化するほど効果が出やすい状態です。'
-      };
-      if (score >= 60) return {
-        title:'自動化を入れる価値が高い状態です',
-        desc:'毎日の定型作業をまとめるだけでも、かなりの時間短縮が期待できます。'
-      };
-      if (score >= 40) return {
-        title:'部分自動化から効果が出せそうです',
-        desc:'全部を変えず、負担の大きい業務から1〜2個自動化するのがおすすめです。'
-      };
-      return {
-        title:'今は小さく自動化するのが向いています',
-        desc:'運用を大きく変えず、繰り返し作業だけを自動化する方法が合いそうです。'
-      };
-    }
-
-    function makeSummary(data, result) {
-      const parts = [
-        '【GrowUP 無料DX診断】',
-        `店舗名：${data.get('store_name') || '-'}`,
-        data.get('area') ? `エリア：${data.get('area')}` : '',
-        data.get('website') ? `URL：${data.get('website')}` : '',
-        `自動化余地スコア：${result.score}/100`,
-        `削減時間の目安：月${result.hours}時間〜`,
-        result.troubles.length ? `困っている業務：${result.troubles.join(' / ')}` : '',
-        result.features.length ? `希望機能：${result.features.join(' / ')}` : '',
-        `希望：${result.demo || '-'}`,
-        data.get('message') ? `相談内容：${data.get('message')}` : '',
-        '',
-        'この内容で相談したいです。'
-      ].filter(Boolean);
-      return parts.join('\n');
-    }
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-
-      const data = new FormData(form);
-      const result = calculate();
-      const copy = scoreCopy(result.score);
-
-      document.getElementById('score-number').textContent = result.score;
-      document.getElementById('score-title').textContent = copy.title;
-      document.getElementById('score-desc').textContent = copy.desc;
-      document.getElementById('hours-number').textContent = result.hours;
-      document.getElementById('recommend-count').textContent = result.recs.length;
-
-      const list = document.getElementById('recommend-list');
-      list.innerHTML = result.recs.map(r => `
-        <div class="rec-item">
-          <div class="rec-icon">${r.icon}</div>
-          <div class="rec-body"><b>${r.title}</b><p>${r.desc}</p></div>
-        </div>
-      `).join('');
-
-      const summary = makeSummary(data, result);
-      const lineId = '%40964umwda';
-      document.getElementById('line-button').href =
-        `https://line.me/R/oaMessage/${lineId}/?${encodeURIComponent(summary)}`;
-
-      document.getElementById('copy-button').onclick = async () => {
-        try {
-          await navigator.clipboard.writeText(summary);
-          const ok = document.getElementById('copy-ok');
-          ok.style.display = 'block';
-          setTimeout(() => ok.style.display = 'none', 1800);
-        } catch (_) {
-          window.prompt('下の内容をコピーしてください', summary);
-        }
-      };
-
-      formView.style.display = 'none';
-      resultView.style.display = 'block';
-      window.scrollTo({top:0,behavior:'smooth'});
-    });
-
-    document.getElementById('retry-button').addEventListener('click', () => {
-      resultView.style.display = 'none';
-      formView.style.display = 'block';
-      window.scrollTo({top:0,behavior:'smooth'});
-    });
-
-    updateProgress();
-  </script>
-</body>
-</html>
+<header class="hero"><div class="badge">GrowUP 店舗DX — 無料診断</div><h1>毎日の店舗業務、<br><span>どこまで自動化できる？</span></h1><p>掲載更新・予約管理・LINE連絡・給与計算などを約1分で診断。入力内容から、自動化の優先順位をその場で表示します。</p></header>
+<main class="wrap" id="formView">
+<a class="back" href="index.html">← サービスページに戻る</a>
+<div class="intro"><b>契約なし・無料で診断できます</b><small>結果を見て「これなら楽になりそう」と思った場合だけ、そのままLINEで相談できます。</small></div>
+<div class="progress"><i id="bar"></i></div>
+<form id="form">
+<section class="card"><div class="kicker">STEP 01</div><h2>お店の基本情報</h2>
+<div class="group"><label class="label">店舗名<span class="req">必須</span></label><input name="store_name" type="text" required placeholder="例：サンプルエステ"></div>
+<div class="group"><label class="label">店舗・サービスURL<span class="opt">任意</span></label><input name="website" type="url" placeholder="https://example.com"></div>
+<div class="group"><label class="label">エリア<span class="opt">任意</span></label><input name="area" type="text" placeholder="例：埼玉・大宮"></div>
+</section>
+<section class="card"><div class="kicker">STEP 02</div><h2>店舗の規模</h2>
+<div class="group"><label class="label">店舗数<span class="req">必須</span></label><div class="options two"><label class="option"><input type="radio" name="store_count" value="1店舗" required><span>1店舗</span></label><label class="option"><input type="radio" name="store_count" value="2〜3店舗"><span>2〜3店舗</span></label><label class="option"><input type="radio" name="store_count" value="4店舗以上"><span>4店舗以上</span></label></div></div>
+<div class="group"><label class="label">スタッフ・キャスト人数<span class="req">必須</span></label><div class="options two"><label class="option"><input type="radio" name="cast_count" value="1〜3名" required><span>1〜3名</span></label><label class="option"><input type="radio" name="cast_count" value="4〜7名"><span>4〜7名</span></label><label class="option"><input type="radio" name="cast_count" value="8〜14名"><span>8〜14名</span></label><label class="option"><input type="radio" name="cast_count" value="15名以上"><span>15名以上</span></label></div></div>
+</section>
+<section class="card"><div class="kicker">STEP 03</div><h2>今の運用方法</h2>
+<div class="group"><label class="label">使っている掲載・集客サイト<span class="opt">複数可</span></label><div class="chips"><label class="chip"><input type="checkbox" name="sites" value="エステラブ"><span>エステラブ</span></label><label class="chip"><input type="checkbox" name="sites" value="駅ちか"><span>駅ちか</span></label><label class="chip"><input type="checkbox" name="sites" value="メンエスMAP"><span>メンエスMAP</span></label><label class="chip"><input type="checkbox" name="sites" value="ホットペッパー"><span>ホットペッパー</span></label><label class="chip"><input type="checkbox" name="sites" value="その他"><span>その他</span></label></div></div>
+<div class="group"><label class="label">主な予約方法<span class="opt">複数可</span></label><div class="chips"><label class="chip"><input type="checkbox" name="booking" value="電話"><span>電話</span></label><label class="chip"><input type="checkbox" name="booking" value="LINE"><span>LINE</span></label><label class="chip"><input type="checkbox" name="booking" value="掲載サイト"><span>掲載サイト</span></label><label class="chip"><input type="checkbox" name="booking" value="自前予約システム"><span>自前予約システム</span></label></div></div>
+</section>
+<section class="card"><div class="kicker">STEP 04</div><h2>面倒に感じている業務</h2><div class="chips"><label class="chip"><input type="checkbox" name="trouble" value="掲載サイトの更新"><span>掲載サイトの更新</span></label><label class="chip"><input type="checkbox" name="trouble" value="出勤情報の管理"><span>出勤情報の管理</span></label><label class="chip"><input type="checkbox" name="trouble" value="予約・空き枠管理"><span>予約・空き枠管理</span></label><label class="chip"><input type="checkbox" name="trouble" value="LINE連絡"><span>LINE連絡</span></label><label class="chip"><input type="checkbox" name="trouble" value="給与計算"><span>給与計算</span></label><label class="chip"><input type="checkbox" name="trouble" value="ダブルブッキング"><span>ダブルブッキング</span></label></div></section>
+<section class="card"><div class="kicker">STEP 05</div><h2>希望する改善</h2>
+<div class="group"><div class="chips"><label class="chip"><input type="checkbox" name="features" value="掲載自動更新"><span>掲載自動更新</span></label><label class="chip"><input type="checkbox" name="features" value="ネット予約"><span>ネット予約</span></label><label class="chip"><input type="checkbox" name="features" value="LINE自動通知"><span>LINE自動通知</span></label><label class="chip"><input type="checkbox" name="features" value="予約管理"><span>予約管理</span></label><label class="chip"><input type="checkbox" name="features" value="スタッフ管理"><span>スタッフ管理</span></label><label class="chip"><input type="checkbox" name="features" value="給与計算"><span>給与計算</span></label><label class="chip"><input type="checkbox" name="features" value="売上管理"><span>売上管理</span></label><label class="chip"><input type="checkbox" name="features" value="HP制作"><span>HP制作</span></label></div></div>
+<div class="group"><label class="label">実機デモ<span class="req">必須</span></label><div class="options"><label class="option"><input type="radio" name="demo_request" value="デモ希望" required><span>実際の画面を見たい</span></label><label class="option"><input type="radio" name="demo_request" value="資料希望"><span>まず料金・資料を見たい</span></label><label class="option"><input type="radio" name="demo_request" value="検討中"><span>まだ検討中</span></label></div></div>
+<div class="group"><label class="label">連絡先<span class="opt">任意</span></label><input name="contact_info" type="text" maxlength="300" placeholder="メール / LINE ID / 電話番号など"></div>
+<div class="group"><label class="label">その他<span class="opt">任意</span></label><textarea name="message" placeholder="これを自動化したい、など"></textarea></div>
+</section>
+<button class="btn primary" type="submit" id="submitBtn">無料で診断結果を見る</button><p class="privacy">診断内容はGrowUPの相談対応・改善提案のために保存されます。営業目的以外への販売は行いません。</p>
+</form></main>
+<main class="wrap result" id="resultView"><div class="scorebox"><div class="scorelabel">店舗DX・自動化余地スコア</div><div class="score"><span id="score">0</span><small>/100</small></div><div class="scoretitle" id="scoreTitle"></div><div class="scoredesc" id="scoreDesc"></div><div class="hot" id="hot">🔥 HOT LEAD</div></div><div class="metrics"><div class="metric"><small>削減できる可能性</small><strong class="green"><span id="hours">0</span>h〜</strong></div><div class="metric"><small>おすすめ自動化</small><strong><span id="recCount">0</span>項目</strong></div></div><section class="resultbox"><h3>優先して自動化したい項目</h3><div id="recs"></div></section><section class="resultbox linebox"><h3>この診断結果のまま相談できます</h3><p style="font-size:12px;color:#4b5563">店舗名・スコア・課題が入力された状態でGrowUP公式LINEが開きます。</p><a class="btn linebtn" id="lineBtn" href="#" target="_blank" rel="noopener">LINEで相談する</a><div class="saved" id="saved">✓ 診断内容を保存しました</div></section><div class="note">※削減時間は目安です。実際の対応可否・削減量は現在の運用方法や掲載媒体を確認してご案内します。</div><button class="btn secondary" id="retry" type="button">入力内容を変更する</button></main>
+<script>
+const SUPABASE_URL='https://ezjozmfueggxtemumvof.supabase.co';
+const SUPABASE_KEY='sb_publishable_GLTndgL_19xg0GwZTsElRw_5CvZAl2n';
+const form=document.getElementById('form'),formView=document.getElementById('formView'),resultView=document.getElementById('resultView');
+const vals=n=>[...form.querySelectorAll(`[name="${n}"]:checked`)].map(x=>x.value),one=n=>form.querySelector(`[name="${n}"]:checked`)?.value||'';
+form.addEventListener('input',()=>{const req=[...form.querySelectorAll('[required]')],ok=req.filter(x=>x.type==='radio'?!!form.querySelector(`[name="${x.name}"]:checked`):x.value.trim()).length;document.getElementById('bar').style.width=Math.max(20,Math.round(ok/req.length*100))+'%'});
+function recommendations(t,f,b,s){const r=[],add=(a,d,i)=>{if(!r.some(x=>x.a===a))r.push({a,d,i})};if(t.includes('掲載サイトの更新')||f.includes('掲載自動更新')||s.length>=2)add('掲載・出勤情報の一括更新','複数媒体への転記を1回の更新にまとめます。','↻');if(t.includes('予約・空き枠管理')||t.includes('ダブルブッキング')||f.includes('予約管理')||f.includes('ネット予約'))add('予約・空き枠の一元管理','予約確定と同時に空き枠を更新し、重複予約を防ぎます。','予');if(t.includes('LINE連絡')||f.includes('LINE自動通知')||b.includes('LINE'))add('LINE通知の自動化','予約・変更・出勤連絡などの定型連絡を自動化します。','L');if(t.includes('給与計算')||f.includes('給与計算')||f.includes('売上管理'))add('売上・給与の自動集計','予約データから売上・給与を自動集計します。','¥');if(t.includes('出勤情報の管理')||f.includes('スタッフ管理'))add('スタッフ・出勤管理','出勤予定を1か所で管理します。','人');if(f.includes('HP制作'))add('集客導線のあるHP制作','予約・LINE・問い合わせにつながるHPを整えます。','HP');if(!r.length)add('部分自動化からスタート','一番面倒な1業務だけ先に自動化するのがおすすめです。','◎');return r.slice(0,5)}
+function calc(){const t=vals('trouble'),f=vals('features'),b=vals('booking'),s=vals('sites'),sc=one('store_count'),cc=one('cast_count'),demo=one('demo_request');let score=12+Math.min(t.length*9,45)+Math.min(s.length*4,16)+(b.includes('電話')?7:0)+(b.includes('LINE')?4:0)+(b.includes('掲載サイト')?4:0)+(sc==='2〜3店舗'?8:sc==='4店舗以上'?14:3)+(cc==='4〜7名'?5:cc==='8〜14名'?9:cc==='15名以上'?13:2)+(demo==='デモ希望'?5:demo==='資料希望'?3:1);score=Math.max(18,Math.min(100,score));let hours=t.length*3+s.length*1.5+(sc==='2〜3店舗'?4:sc==='4店舗以上'?8:0)+(cc==='8〜14名'?3:cc==='15名以上'?6:0);hours=Math.max(3,Math.round(hours));return{score,hours,t,f,b,s,demo,recs:recommendations(t,f,b,s)}}
+function copyFor(score){if(score>=80)return['自動化の効果がかなり大きい店舗です','手作業が複数箇所に分散しています。まとめて仕組み化するほど効果が出やすい状態です。'];if(score>=60)return['自動化を入れる価値が高い状態です','毎日の定型作業をまとめるだけでも、大きな時間短縮が期待できます。'];if(score>=40)return['部分自動化から効果が出せそうです','負担の大きい業務から1〜2個自動化するのがおすすめです。'];return['小さく自動化するのが向いています','繰り返し作業だけを自動化する方法が合いそうです。']}
+async function saveLead(data,r){const answers={website:data.get('website')||'',store_count:one('store_count'),cast_count:one('cast_count'),sites:r.s,booking:r.b,trouble:r.t,features:r.f,demo_request:r.demo,message:data.get('message')||''};const payload={store_name:String(data.get('store_name')||'').slice(0,120),area:String(data.get('area')||'').slice(0,120),contact_info:String(data.get('contact_info')||'').slice(0,300),score:r.score,estimated_hours:r.hours,priorities:r.recs.map(x=>x.a),answers,source:'dx_diagnosis',page_url:location.href,user_agent:navigator.userAgent};try{const res=await fetch(`${SUPABASE_URL}/rest/v1/growup_leads`,{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(payload)});if(res.ok)document.getElementById('saved').style.display='block';else console.warn('Lead save failed',res.status,await res.text())}catch(e){console.warn('Lead save failed',e)}}
+form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='診断中...';const data=new FormData(form),r=calc(),cp=copyFor(r.score);document.getElementById('score').textContent=r.score;document.getElementById('scoreTitle').textContent=cp[0];document.getElementById('scoreDesc').textContent=cp[1];document.getElementById('hours').textContent=r.hours;document.getElementById('recCount').textContent=r.recs.length;document.getElementById('recs').innerHTML=r.recs.map(x=>`<div class="rec"><div class="ico">${x.i}</div><div><b>${x.a}</b><p>${x.d}</p></div></div>`).join('');if(r.score>=80)document.getElementById('hot').style.display='block';const summary=['【GrowUP 無料DX診断】',`店舗名：${data.get('store_name')}`,data.get('area')?`エリア：${data.get('area')}`:'',`自動化余地スコア：${r.score}/100`,`削減時間の目安：月${r.hours}時間〜`,r.t.length?`困っている業務：${r.t.join(' / ')}`:'',r.f.length?`希望機能：${r.f.join(' / ')}`:'',`希望：${r.demo}`,'','この内容で相談したいです。'].filter(Boolean).join('\n');document.getElementById('lineBtn').href=`https://line.me/R/oaMessage/%40964umwda/?${encodeURIComponent(summary)}`;formView.style.display='none';resultView.style.display='block';window.scrollTo({top:0,behavior:'smooth'});await saveLead(data,r);btn.disabled=false;btn.textContent='無料で診断結果を見る'});
+document.getElementById('retry').onclick=()=>{resultView.style.display='none';formView.style.display='block';window.scrollTo({top:0,behavior:'smooth'})};
+</script>
+</body></html>
